@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AbdiiMart — Online Marketplace</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f6f8;
+    color:#111;
+    padding-bottom:80px;
+}
+
+header{
+    background:#111;
+    color:white;
+    padding:18px 20px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#00c853;
+}
+
+.cart{
+    position:relative;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.cart-count{
+    position:absolute;
+    top:-8px;
+    right:-9px;
+    background:#00c853;
+    color:#111;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.search{
+    margin-top:15px;
+}
+
+.search input{
+    width:100%;
+    padding:13px 16px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    font-size:15px;
+}
+
+.hero{
+    margin:20px;
+    padding:25px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#111,#252525);
+    color:white;
+}
+
+.hero h1{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#ccc;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+.btn{
+    border:none;
+    background:#00c853;
+    color:#111;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.section{
+    padding:0 20px;
+    margin-top:25px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.section-title h2{
+    font-size:20px;
+}
+
+.section-title span{
+    color:#00a844;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.categories{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding-bottom:5px;
+}
+
+.category{
+    min-width:90px;
+    background:white;
+    border-radius:14px;
+    padding:15px 10px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+    cursor:pointer;
+}
+
+.category-icon{
+    font-size:28px;
+    margin-bottom:7px;
+}
+
+.category p{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.product{
+    background:white;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
+
+.product-image{
+    height:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef0f2;
+    font-size:65px;
+}
+
+.product-info{
+    padding:13px;
+}
+
+.product-name{
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.price{
+    color:#00a844;
+    font-size:17px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.product button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:9px;
+    background:#111;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.product button:hover{
+    background:#00c853;
+    color:#111;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:white;
+    border-top:1px solid #ddd;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:2000;
+}
+
+.nav-item{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.nav-item div{
+    font-size:23px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#00a844;
+    font-weight:bold;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:3000;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+.modal-content{
+    width:100%;
+    max-width:600px;
+    background:white;
+    border-radius:22px 22px 0 0;
+    padding:25px;
+    max-height:80vh;
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    font-size:25px;
+    cursor:pointer;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-total{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.checkout{
+    width:100%;
+    margin-top:15px;
+    padding:14px;
+    border:none;
+    background:#00c853;
+    color:#111;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@media(min-width:700px){
+    .products{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .hero{
+        max-width:1000px;
+        margin:25px auto;
+    }
+
+    .section{
+        max-width:1000px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .bottom-nav{
+        display:none;
+    }
+
+    body{
+        padding-bottom:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-top">
+        <div class="logo">
+            Abdii<span>Mart</span>
+        </div>
+
+        <div class="cart" onclick="openCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </div>
+
+    <div class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+            onkeyup="searchProducts()"
+        >
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>Welcome to AbdiiMart 🛒</h1>
+
+    <p>
+        Discover products, connect with sellers,
+        and shop easily in one modern marketplace.
+    </p>
+
+    <button class="btn" onclick="scrollToProducts()">
+        Shop Now
+    </button>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Categories</h2>
+        <span>View all</span>
+    </div>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('All')">
+            <div class="category-icon">🛍️</div>
+            <p>All</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('Electronics')">
+            <div class="category-icon">📱</div>
+            <p>Electronics</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('Fashion')">
+            <div class="category-icon">👕</div>
+            <p>Fashion</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('Shoes')">
+            <div class="category-icon">👟</div>
+            <p>Shoes</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('Home')">
+            <div class="category-icon">🏠</div>
+            <p>Home</p>
+        </div>
+
+        <div class="category" onclick="filterCategory('Beauty')">
+            <div class="category-icon">💄</div>
+            <p>Beauty</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="productsSection">
+
+    <div class="section-title">
+        <h2>Popular Products</h2>
+        <span>See all</span>
+    </div>
+
+    <div class="products" id="products">
+
+    </div>
+
+</section>
+
+
+<!-- CART MODAL -->
+
+<div class="modal" id="cartModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Your Cart 🛒</h2>
+
+            <div class="close" onclick="closeCart()">×</div>
+
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-total">
+            Total: <span id="cartTotal">0</span> ETB
+        </div>
+
+        <button class="checkout" onclick="checkout()">
+            Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom-nav">
+
+    <div class="nav-item active" onclick="goHome()">
+        <div>🏠</div>
+        Home
+    </div>
+
+    <div class="nav-item" onclick="scrollToProducts()">
+        <div>🛒</div>
+        Shop
+    </div>
+
+    <div class="nav-item" onclick="openCart()">
+        <div>🛍️</div>
+        Cart
+    </div>
+
+    <div class="nav-item" onclick="profile()">
+        <div>👤</div>
+        Profile
+    </div>
+
+</div>
+
+
+<script>
+
+const productsData = [
+
+    {
+        id:1,
+        name:"Smart Phone",
+        price:12500,
+        category:"Electronics",
+        image:"📱"
+    },
+
+    {
+        id:2,
+        name:"Wireless Headphones",
+        price:1800,
+        category:"Electronics",
+        image:"🎧"
+    },
+
+    {
+        id:3,
+        name:"Premium T-Shirt",
+        price:850,
+        category:"Fashion",
+        image:"👕"
+    },
+
+    {
+        id:4,
+        name:"Running Shoes",
+        price:2200,
+        category:"Shoes",
+        image:"👟"
+    },
+
+    {
+        id:5,
+        name:"Smart Watch",
+        price:3200,
+        category:"Electronics",
+        image:"⌚"
+    },
+
+    {
+        id:6,
+        name:"Backpack",
+        price:1400,
+        category:"Fashion",
+        image:"🎒"
+    },
+
+    {
+        id:7,
+        name:"Home Chair",
+        price:2500,
+        category:"Home",
+        image:"🪑"
+    },
+
+    {
+        id:8,
+        name:"Beauty Kit",
+        price:1700,
+        category:"Beauty",
+        image:"💄"
+    }
+
+];
+
+
+let cart = JSON.parse(localStorage.getItem("abdiiMartCart")) || [];
+
+
+function displayProducts(list){
+
+    const container = document.getElementById("products");
+
+    container.innerHTML = "";
+
+    if(list.length === 0){
+
+        container.innerHTML =
+        "<p>No products found.</p>";
+
+        return;
+    }
+
+    list.forEach(product => {
+
+        container.innerHTML += `
+
+        <div class="product">
+
+            <div class="product-image">
+                ${product.image}
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-name">
+                    ${product.name}
+                </div>
+
+                <div class="price">
+                    ${product.price.toLocaleString()} ETB
+                </div>
+
+                <button onclick="addToCart(${product.id})">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+function addToCart(id){
+
+    const product =
+    productsData.find(p => p.id === id);
+
+    cart.push(product);
+
+    localStorage.setItem(
+        "abdiiMartCart",
+        JSON.stringify(cart)
+    );
+
+    updateCart();
+
+    alert(product.name + " added to cart 🛒");
+
+}
+
+
+function updateCart(){
+
+    document.getElementById("cartCount").innerText =
+    cart.length;
+
+}
+
+
+function openCart(){
+
+    const modal =
+    document.getElementById("cartModal");
+
+    modal.style.display = "flex";
+
+    renderCart();
+
+}
+
+
+function closeCart(){
+
+    document.getElementById("cartModal")
+    .style.display = "none";
+
+}
+
+
+function renderCart(){
+
+    const container =
+    document.getElementById("cartItems");
+
+    container.innerHTML = "";
+
+    let total = 0;
+
+    if(cart.length === 0){
+
+        container.innerHTML =
+        "<p>Your cart is empty 🛒</p>";
+
+    }
+
+    cart.forEach((product,index) => {
+
+        total += product.price;
+
+        container.innerHTML += `
+
+        <div class="cart-item">
+
+            <div>
+                <strong>${product.name}</strong>
+                <br>
+                ${product.price.toLocaleString()} ETB
+            </div>
+
+            <button
+            onclick="removeCart(${index})"
+            style="
+            border:none;
+            background:#ff4444;
+            color:white;
+            padding:8px 12px;
+            border-radius:7px;
+            ">
+            Remove
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("cartTotal")
+    .innerText = total.toLocaleString();
+
+}
+
+
+function removeCart(index){
+
+    cart.splice(index,1);
+
+    localStorage.setItem(
+        "abdiiMartCart",
+        JSON.stringify(cart)
+    );
+
+    updateCart();
+
+    renderCart();
+
+}
+
+
+function searchProducts(){
+
+    const query =
+    document.getElementById("searchInput")
+    .value.toLowerCase();
+
+    const results =
+    productsData.filter(product =>
+        product.name.toLowerCase()
+        .includes(query)
+    );
+
+    displayProducts(results);
+
+}
+
+
+function filterCategory(category){
+
+    if(category === "All"){
+
+        displayProducts(productsData);
+
+        return;
+    }
+
+    const results =
+    productsData.filter(product =>
+        product.category === category
+    );
+
+    displayProducts(results);
+
+}
+
+
+function scrollToProducts(){
+
+    document.getElementById("productsSection")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function goHome(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function profile(){
+
+    alert(
+        "Profile system will be added in the next version 👤"
+    );
+
+}
+
+
+function checkout(){
+
+    if(cart.length === 0){
+
+        alert("Your cart is empty.");
+
+        return;
+    }
+
+    alert(
+        "Checkout system coming soon 🚀"
+    );
+
+}
+
+
+/* START */
+
+displayProducts(productsData);
+
+updateCart();
+
+</script>
+
+</body>
+</html>
