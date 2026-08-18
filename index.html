@@ -109,6 +109,19 @@ header{
     cursor:pointer;
 }
 
+.telegram-btn{
+    width:100%;
+    margin-top:12px;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    background:#229ED9;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+}
+
 .section{
     padding:0 20px;
     margin-top:25px;
@@ -280,6 +293,7 @@ header{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    gap:10px;
     padding:13px 0;
     border-bottom:1px solid #eee;
 }
@@ -302,7 +316,14 @@ header{
     cursor:pointer;
 }
 
+.empty{
+    text-align:center;
+    padding:25px 5px;
+    color:#777;
+}
+
 @media(min-width:700px){
+
     .products{
         grid-template-columns:repeat(4,1fr);
     }
@@ -334,6 +355,7 @@ header{
 <header>
 
     <div class="header-top">
+
         <div class="logo">
             Abdii<span>Mart</span>
         </div>
@@ -342,15 +364,18 @@ header{
             🛒
             <span class="cart-count" id="cartCount">0</span>
         </div>
+
     </div>
 
     <div class="search">
+
         <input
             type="text"
             id="searchInput"
             placeholder="Search products..."
             onkeyup="searchProducts()"
         >
+
     </div>
 
 </header>
@@ -369,14 +394,23 @@ header{
         Shop Now
     </button>
 
+    <button class="telegram-btn" onclick="openTelegram()">
+        ✈️ Chat with Abdii Market on Telegram
+    </button>
+
 </section>
 
 
 <section class="section">
 
     <div class="section-title">
+
         <h2>Categories</h2>
-        <span>View all</span>
+
+        <span onclick="filterCategory('All')">
+            View all
+        </span>
+
     </div>
 
     <div class="categories">
@@ -419,13 +453,16 @@ header{
 <section class="section" id="productsSection">
 
     <div class="section-title">
+
         <h2>Popular Products</h2>
-        <span>See all</span>
+
+        <span onclick="displayProducts(productsData)">
+            See all
+        </span>
+
     </div>
 
-    <div class="products" id="products">
-
-    </div>
+    <div class="products" id="products"></div>
 
 </section>
 
@@ -447,11 +484,13 @@ header{
         <div id="cartItems"></div>
 
         <div class="cart-total">
-            Total: <span id="cartTotal">0</span> ETB
+            Total:
+            <span id="cartTotal">0</span>
+            ETB
         </div>
 
         <button class="checkout" onclick="checkout()">
-            Proceed to Checkout
+            📲 Order via Telegram
         </button>
 
     </div>
@@ -478,15 +517,26 @@ header{
         Cart
     </div>
 
-    <div class="nav-item" onclick="profile()">
-        <div>👤</div>
-        Profile
+    <div class="nav-item" onclick="openTelegram()">
+        <div>💬</div>
+        Telegram
     </div>
 
 </div>
 
 
 <script>
+
+/* =========================
+   ABDII MARKET SETTINGS
+========================= */
+
+const TELEGRAM_USERNAME = "AbdiiMarketBot";
+
+
+/* =========================
+   PRODUCTS
+========================= */
 
 const productsData = [
 
@@ -557,19 +607,31 @@ const productsData = [
 ];
 
 
-let cart = JSON.parse(localStorage.getItem("abdiiMartCart")) || [];
+/* =========================
+   CART
+========================= */
 
+let cart =
+JSON.parse(localStorage.getItem("abdiiMartCart")) || [];
+
+
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
 
 function displayProducts(list){
 
-    const container = document.getElementById("products");
+    const container =
+    document.getElementById("products");
 
     container.innerHTML = "";
 
     if(list.length === 0){
 
         container.innerHTML =
-        "<p>No products found.</p>";
+        `<div class="empty">
+            ❌ No products found.
+        </div>`;
 
         return;
     }
@@ -595,7 +657,7 @@ function displayProducts(list){
                 </div>
 
                 <button onclick="addToCart(${product.id})">
-                    Add to Cart
+                    🛒 Add to Cart
                 </button>
 
             </div>
@@ -609,24 +671,50 @@ function displayProducts(list){
 }
 
 
+/* =========================
+   ADD TO CART
+========================= */
+
 function addToCart(id){
 
     const product =
     productsData.find(p => p.id === id);
 
+    if(!product){
+        return;
+    }
+
     cart.push(product);
+
+    saveCart();
+
+    updateCart();
+
+    alert(
+        product.name +
+        " added to cart 🛒"
+    );
+
+}
+
+
+/* =========================
+   SAVE CART
+========================= */
+
+function saveCart(){
 
     localStorage.setItem(
         "abdiiMartCart",
         JSON.stringify(cart)
     );
 
-    updateCart();
-
-    alert(product.name + " added to cart 🛒");
-
 }
 
+
+/* =========================
+   UPDATE CART
+========================= */
 
 function updateCart(){
 
@@ -636,17 +724,23 @@ function updateCart(){
 }
 
 
+/* =========================
+   OPEN CART
+========================= */
+
 function openCart(){
 
-    const modal =
-    document.getElementById("cartModal");
-
-    modal.style.display = "flex";
+    document.getElementById("cartModal")
+    .style.display = "flex";
 
     renderCart();
 
 }
 
+
+/* =========================
+   CLOSE CART
+========================= */
 
 function closeCart(){
 
@@ -655,6 +749,10 @@ function closeCart(){
 
 }
 
+
+/* =========================
+   RENDER CART
+========================= */
 
 function renderCart(){
 
@@ -668,34 +766,49 @@ function renderCart(){
     if(cart.length === 0){
 
         container.innerHTML =
-        "<p>Your cart is empty 🛒</p>";
+        `<div class="empty">
+            🛒 Your cart is empty.
+        </div>`;
 
+        document.getElementById("cartTotal")
+        .innerText = "0";
+
+        return;
     }
+
 
     cart.forEach((product,index) => {
 
-        total += product.price;
+        total += Number(product.price);
 
         container.innerHTML += `
 
         <div class="cart-item">
 
             <div>
-                <strong>${product.name}</strong>
+
+                <strong>
+                    ${product.image}
+                    ${product.name}
+                </strong>
+
                 <br>
+
                 ${product.price.toLocaleString()} ETB
+
             </div>
 
             <button
-            onclick="removeCart(${index})"
-            style="
-            border:none;
-            background:#ff4444;
-            color:white;
-            padding:8px 12px;
-            border-radius:7px;
-            ">
-            Remove
+                onclick="removeCart(${index})"
+                style="
+                border:none;
+                background:#ff4444;
+                color:white;
+                padding:8px 12px;
+                border-radius:7px;
+                cursor:pointer;
+                ">
+                Remove
             </button>
 
         </div>
@@ -704,20 +817,23 @@ function renderCart(){
 
     });
 
+
     document.getElementById("cartTotal")
-    .innerText = total.toLocaleString();
+    .innerText =
+    total.toLocaleString();
 
 }
 
+
+/* =========================
+   REMOVE CART
+========================= */
 
 function removeCart(index){
 
     cart.splice(index,1);
 
-    localStorage.setItem(
-        "abdiiMartCart",
-        JSON.stringify(cart)
-    );
+    saveCart();
 
     updateCart();
 
@@ -726,22 +842,41 @@ function removeCart(index){
 }
 
 
+/* =========================
+   SEARCH
+========================= */
+
 function searchProducts(){
 
     const query =
     document.getElementById("searchInput")
-    .value.toLowerCase();
+    .value
+    .toLowerCase()
+    .trim();
 
     const results =
     productsData.filter(product =>
-        product.name.toLowerCase()
+
+        product.name
+        .toLowerCase()
         .includes(query)
+
+        ||
+
+        product.category
+        .toLowerCase()
+        .includes(query)
+
     );
 
     displayProducts(results);
 
 }
 
+
+/* =========================
+   CATEGORY FILTER
+========================= */
 
 function filterCategory(category){
 
@@ -762,6 +897,10 @@ function filterCategory(category){
 }
 
 
+/* =========================
+   SCROLL TO PRODUCTS
+========================= */
+
 function scrollToProducts(){
 
     document.getElementById("productsSection")
@@ -771,6 +910,10 @@ function scrollToProducts(){
 
 }
 
+
+/* =========================
+   HOME
+========================= */
 
 function goHome(){
 
@@ -782,32 +925,113 @@ function goHome(){
 }
 
 
-function profile(){
+/* =========================
+   OPEN TELEGRAM BOT
+========================= */
 
-    alert(
-        "Profile system will be added in the next version 👤"
+function openTelegram(){
+
+    const telegramURL =
+    "https://t.me/" +
+    TELEGRAM_USERNAME;
+
+    window.open(
+        telegramURL,
+        "_blank"
     );
 
 }
 
+
+/* =========================
+   CREATE ORDER MESSAGE
+========================= */
+
+function createOrderMessage(){
+
+    let message =
+    "🛒 *New AbdiiMart Order*%0A%0A";
+
+    let total = 0;
+
+    cart.forEach((product,index) => {
+
+        message +=
+        `${index + 1}. ${product.name} — ` +
+        `${product.price.toLocaleString()} ETB%0A`;
+
+        total += Number(product.price);
+
+    });
+
+    message +=
+    `%0A💰 *Total:* ` +
+    `${total.toLocaleString()} ETB%0A%0A`;
+
+    message +=
+    "👤 Please send your name, phone number and delivery address.";
+
+    return message;
+
+}
+
+
+/* =========================
+   CHECKOUT VIA TELEGRAM
+========================= */
 
 function checkout(){
 
     if(cart.length === 0){
 
-        alert("Your cart is empty.");
+        alert(
+            "Your cart is empty 🛒"
+        );
 
         return;
     }
 
-    alert(
-        "Checkout system coming soon 🚀"
+    const message =
+    createOrderMessage();
+
+    /*
+      Telegram bot username.
+      User will open the bot first.
+    */
+
+    const telegramURL =
+    "https://t.me/" +
+    TELEGRAM_USERNAME +
+    "?start=order";
+
+    window.open(
+        telegramURL,
+        "_blank"
     );
+
+    /*
+      Show order details for the user
+      to copy/send to the bot.
+    */
+
+    setTimeout(() => {
+
+        alert(
+            "Order prepared 🛒\n\n" +
+            decodeURIComponent(
+                message
+            )
+            .replace(/%0A/g,"\n")
+        );
+
+    },500);
 
 }
 
 
-/* START */
+/* =========================
+   START
+========================= */
 
 displayProducts(productsData);
 
