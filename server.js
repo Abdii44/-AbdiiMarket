@@ -5,87 +5,121 @@ const app = express();
 
 const PORT = process.env.PORT || 10000;
 
-const CHAPA_SECRET_KEY = process.env.CHAPA_SECRET_KEY;
+const CHAPA_SECRET_KEY =
+  process.env.CHAPA_SECRET_KEY;
 
 const PUBLIC_BASE_URL =
   process.env.PUBLIC_BASE_URL ||
-  "https://abdiimarket.onrender.com";
+  "https://abdiimarket-089r.onrender.com";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve frontend files
-app.use(express.static(path.join(__dirname)));
+// Serve frontend
+app.use(express.static(__dirname));
 
-// Health check
+
+// ===============================
+// HEALTH CHECK
+// ===============================
+
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
-    message: "Abdii Market backend is running 🚀"
+    message: "Abdii Market backend is running 🚀",
+    chapa_key_loaded: Boolean(CHAPA_SECRET_KEY),
+    base_url: PUBLIC_BASE_URL
   });
 });
 
-// Create Chapa payment
+
+// ===============================
+// CREATE CHAPA PAYMENT
+// ===============================
+
 app.post("/api/create-payment", async (req, res) => {
 
   try {
 
+    console.log("Payment request received");
+
+    // Check Chapa key
     if (!CHAPA_SECRET_KEY) {
+
+      console.error(
+        "CHAPA_SECRET_KEY is missing"
+      );
 
       return res.status(500).json({
         success: false,
-        message: "CHAPA_SECRET_KEY is missing on server."
+        message:
+          "CHAPA_SECRET_KEY is missing on server."
       });
-
     }
 
+
     const order = req.body;
+
 
     if (!order) {
 
       return res.status(400).json({
         success: false,
-        message: "Order data is missing."
+        message:
+          "Order data is missing."
       });
-
     }
 
-    const amount = Number(order.amount);
+
+    const amount =
+      Number(order.amount);
+
 
     if (!amount || amount <= 0) {
 
       return res.status(400).json({
         success: false,
-        message: "Invalid payment amount."
+        message:
+          "Invalid payment amount."
       });
-
     }
+
 
     const customer =
       order.customer || {};
 
+
     const firstName =
-      customer.firstName || "Customer";
+      customer.firstName ||
+      "Customer";
+
 
     const lastName =
-      customer.lastName || "Abdii";
+      customer.lastName ||
+      "Abdii";
+
 
     const phone =
       customer.phone || "";
+
 
     const email =
       customer.email ||
       "customer@example.com";
 
+
     const txRef =
       order.orderId ||
       `ABD-${Date.now()}`;
 
+
     const callbackUrl =
       `${PUBLIC_BASE_URL}/api/chapa/callback`;
 
+
     const returnUrl =
       `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(txRef)}`;
+
 
     const payload = {
 
@@ -109,68 +143,88 @@ app.post("/api/create-payment", async (req, res) => {
 
       customization: {
         title: "Abdii Market",
-        description: "Payment for Abdii Market order"
+        description:
+          "Payment for Abdii Market order"
       }
 
     };
 
-    console.log("Creating Chapa payment:", {
-      tx_ref: txRef,
-      amount: amount
-    });
 
-    const response =
-      await fetch(
-        "https://api.chapa.co/v1/transaction/initialize",
-        {
-          method: "POST",
+    console.log(
+      "Initializing Chapa:",
+      {
+        tx_ref: txRef,
+        amount: amount
+      }
+    );
 
-          headers: {
-            "Authorization":
-              `Bearer ${CHAPA_SECRET_KEY}`,
 
-            "Content-Type":
-              "application/json"
-          },
+    const response = await fetch(
+      "https://api.chapa.co/v1/transaction/initialize",
+      {
+        method: "POST",
 
-          body: JSON.stringify(payload)
-        }
-      );
+        headers: {
+          "Authorization":
+            `Bearer ${CHAPA_SECRET_KEY}`,
+
+          "Content-Type":
+            "application/json"
+        },
+
+        body:
+          JSON.stringify(payload)
+      }
+    );
+
 
     const data =
       await response.json();
+
 
     console.log(
       "Chapa response:",
       data
     );
 
+
     if (!response.ok) {
 
       return res.status(response.status).json({
+
         success: false,
+
         message:
           data?.message ||
           "Chapa payment initialization failed.",
-        chapa: data
-      });
 
+        chapa:
+          data
+
+      });
     }
+
 
     const checkoutUrl =
       data?.data?.checkout_url ||
       data?.checkout_url;
 
+
     if (!checkoutUrl) {
 
       return res.status(500).json({
+
         success: false,
+
         message:
           "Chapa did not return checkout URL.",
-        chapa: data
-      });
 
+        chapa:
+          data
+
+      });
     }
+
 
     return res.json({
 
@@ -184,12 +238,14 @@ app.post("/api/create-payment", async (req, res) => {
 
     });
 
+
   } catch (error) {
 
     console.error(
       "Payment error:",
       error
     );
+
 
     return res.status(500).json({
 
@@ -208,51 +264,82 @@ app.post("/api/create-payment", async (req, res) => {
 });
 
 
-// Chapa callback
+// ===============================
+// CHAPA CALLBACK
+// ===============================
+
 app.get(
   "/api/chapa/callback",
   async (req, res) => {
 
     try {
 
+      if (!CHAPA_SECRET_KEY) {
+
+        return res.redirect(
+          "/?payment=failed"
+        );
+      }
+
+
       const txRef =
         req.query.tx_ref ||
         req.query.trx_ref;
+
 
       if (!txRef) {
 
         return res.status(400).send(
           "Transaction reference missing."
         );
-
       }
 
-      const response =
-        await fetch(
-          `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(txRef)}`,
-          {
-            method: "GET",
 
-            headers: {
-              "Authorization":
-                `Bearer ${CHAPA_SECRET_KEY}`
-            }
+      console.log(
+        "Verifying transaction:",
+        txRef
+      );
+
+
+      const response = await fetch(
+
+        `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(txRef)}`,
+
+        {
+          method: "GET",
+
+          headers: {
+            "Authorization":
+              `Bearer ${CHAPA_SECRET_KEY}`,
+
+            "Content-Type":
+              "application/json"
           }
-        );
+        }
+
+      );
+
 
       const data =
         await response.json();
+
 
       console.log(
         "Chapa verification:",
         data
       );
 
+
       const status =
         data?.data?.status ||
         data?.status;
 
-      if (status === "success") {
+
+      if (
+        status &&
+        status.toLowerCase() ===
+        "success"
+      ) {
 
         return res.redirect(
           `/?payment=success&tx_ref=${encodeURIComponent(txRef)}`
@@ -260,9 +347,11 @@ app.get(
 
       }
 
+
       return res.redirect(
         `/?payment=failed&tx_ref=${encodeURIComponent(txRef)}`
       );
+
 
     } catch (error) {
 
@@ -270,6 +359,7 @@ app.get(
         "Callback error:",
         error
       );
+
 
       return res.redirect(
         "/?payment=failed"
@@ -281,7 +371,10 @@ app.get(
 );
 
 
-// Root page
+// ===============================
+// ROOT
+// ===============================
+
 app.get("/", (req, res) => {
 
   res.sendFile(
@@ -294,6 +387,10 @@ app.get("/", (req, res) => {
 });
 
 
+// ===============================
+// START SERVER
+// ===============================
+
 app.listen(
   PORT,
   "0.0.0.0",
@@ -301,6 +398,14 @@ app.listen(
 
     console.log(
       `🚀 Abdii Market server running on port ${PORT}`
+    );
+
+    console.log(
+      `🌍 Base URL: ${PUBLIC_BASE_URL}`
+    );
+
+    console.log(
+      `🔐 Chapa key loaded: ${Boolean(CHAPA_SECRET_KEY)}`
     );
 
   }
