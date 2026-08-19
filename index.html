@@ -347,24 +347,6 @@ header{
     color:#777;
 }
 
-.success{
-    text-align:center;
-    padding:20px;
-}
-
-.success-icon{
-    font-size:55px;
-    margin-bottom:10px;
-}
-
-.order-id{
-    background:#f1f1f1;
-    padding:12px;
-    border-radius:9px;
-    margin:15px 0;
-    font-weight:bold;
-}
-
 .bottom-nav{
     position:fixed;
     bottom:0;
@@ -394,6 +376,12 @@ header{
 .nav-item.active{
     color:#00a844;
     font-weight:bold;
+}
+
+.loading{
+    text-align:center;
+    padding:20px;
+    color:#666;
 }
 
 @media(min-width:700px){
@@ -551,19 +539,30 @@ Shop Now
 <div class="modal-content">
 
 <div class="modal-header">
+
 <h2>Your Cart 🛒</h2>
-<div class="close" onclick="closeCart()">×</div>
+
+<div class="close" onclick="closeCart()">
+×
+</div>
+
 </div>
 
 <div id="cartItems"></div>
 
 <div class="cart-total">
+
 Total:
 <span id="cartTotal">0</span> ETB
+
 </div>
 
-<button class="checkout" onclick="openCheckout()">
+<button
+class="checkout"
+onclick="openCheckout()">
+
 💳 Checkout & Pay
+
 </button>
 
 </div>
@@ -578,16 +577,34 @@ Total:
 <div class="modal-content">
 
 <div class="modal-header">
+
 <h2>Checkout 📦</h2>
-<div class="close" onclick="closeCheckout()">×</div>
+
+<div
+class="close"
+onclick="closeCheckout()">
+
+×
 </div>
+
+</div>
+
 
 <div class="order-summary">
 
-<strong>Order total:</strong>
+<strong>
+Order total:
+</strong>
 
-<div style="font-size:22px;margin-top:6px;">
-<span id="checkoutTotal">0</span> ETB
+<div
+style="font-size:22px;margin-top:6px;">
+
+<span id="checkoutTotal">
+0
+</span>
+
+ETB
+
 </div>
 
 </div>
@@ -595,7 +612,9 @@ Total:
 
 <div class="form-group">
 
-<label>First Name *</label>
+<label>
+First Name *
+</label>
 
 <input
 id="firstName"
@@ -608,7 +627,9 @@ placeholder="Your first name"
 
 <div class="form-group">
 
-<label>Last Name *</label>
+<label>
+Last Name *
+</label>
 
 <input
 id="lastName"
@@ -621,7 +642,9 @@ placeholder="Your last name"
 
 <div class="form-group">
 
-<label>Phone Number *</label>
+<label>
+Phone Number *
+</label>
 
 <input
 id="phone"
@@ -634,7 +657,9 @@ placeholder="0912345678"
 
 <div class="form-group">
 
-<label>Email</label>
+<label>
+Email
+</label>
 
 <input
 id="email"
@@ -647,7 +672,9 @@ placeholder="you@example.com"
 
 <div class="form-group">
 
-<label>Delivery Address *</label>
+<label>
+Delivery Address *
+</label>
 
 <textarea
 id="address"
@@ -657,43 +684,14 @@ placeholder="City, area, house number..."
 </div>
 
 
-<button class="checkout" onclick="startPayment()">
+<button
+class="checkout"
+id="payButton"
+onclick="startPayment()">
+
 💳 Pay Now
+
 </button>
-
-</div>
-
-</div>
-
-
-<!-- SUCCESS -->
-
-<div class="modal" id="successModal">
-
-<div class="modal-content">
-
-<div class="success">
-
-<div class="success-icon">
-✅
-</div>
-
-<h2>Order Created!</h2>
-
-<p style="margin-top:10px;color:#666;">
-Your payment process has been started.
-</p>
-
-<div class="order-id">
-Order ID:
-<span id="successOrderId"></span>
-</div>
-
-<button class="checkout" onclick="closeSuccess()">
-Continue Shopping
-</button>
-
-</div>
 
 </div>
 
@@ -704,24 +702,47 @@ Continue Shopping
 
 <div class="bottom-nav">
 
-<div class="nav-item active" onclick="goHome()">
+<div
+class="nav-item active"
+onclick="goHome()">
+
 <div>🏠</div>
+
 Home
+
 </div>
 
-<div class="nav-item" onclick="scrollToProducts()">
+
+<div
+class="nav-item"
+onclick="scrollToProducts()">
+
 <div>🛒</div>
+
 Shop
+
 </div>
 
-<div class="nav-item" onclick="openCart()">
+
+<div
+class="nav-item"
+onclick="openCart()">
+
 <div>🛍️</div>
+
 Cart
+
 </div>
 
-<div class="nav-item" onclick="openTelegram()">
+
+<div
+class="nav-item"
+onclick="openTelegram()">
+
 <div>💬</div>
+
 Telegram
+
 </div>
 
 </div>
@@ -729,7 +750,37 @@ Telegram
 
 <script>
 
-const TELEGRAM_USERNAME = "AbdiiMarketBot";
+/* =====================================
+   ABDII MARKET CONFIGURATION
+===================================== */
+
+const TELEGRAM_USERNAME =
+"AbdiiMarketBot";
+
+
+/*
+   IMPORTANT:
+
+   Your backend is hosted on Render.
+
+   DO NOT put the Chapa Secret Key here.
+
+   The secret key stays on server.js
+   inside Render Environment Variables.
+*/
+
+const BACKEND_URL =
+"https://abdiimarket.onrender.com";
+
+
+const PAYMENT_ENDPOINT =
+BACKEND_URL +
+"/api/create-payment";
+
+
+/* =====================================
+   PRODUCTS
+===================================== */
 
 const productsData = [
 
@@ -800,50 +851,81 @@ image:"💄"
 ];
 
 
-let cart =
-JSON.parse(localStorage.getItem("abdiiMarketCart")) || [];
+/* =====================================
+   CART
+===================================== */
 
+let cart =
+JSON.parse(
+localStorage.getItem(
+"abdiiMarketCart"
+)
+) || [];
+
+
+/* =====================================
+   DISPLAY PRODUCTS
+===================================== */
 
 function displayProducts(list){
 
 const container =
-document.getElementById("products");
+document.getElementById(
+"products"
+);
 
-container.innerHTML="";
+container.innerHTML = "";
 
-if(list.length===0){
 
-container.innerHTML=
-`<div class="empty">
+if(list.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
 ❌ Product not found.
-</div>`;
+
+</div>
+
+`;
 
 return;
+
 }
 
 
-list.forEach(product=>{
+list.forEach(product => {
 
 container.innerHTML += `
 
 <div class="product">
 
 <div class="product-image">
+
 ${product.image}
+
 </div>
 
 <div class="product-info">
 
 <div class="product-name">
+
 ${product.name}
+
 </div>
 
 <div class="price">
-${product.price.toLocaleString()} ETB
+
+${product.price.toLocaleString()}
+ETB
+
 </div>
 
-<button onclick="addToCart(${product.id})">
+<button
+onclick="addToCart(${product.id})">
+
 🛒 Add to Cart
+
 </button>
 
 </div>
@@ -857,15 +939,30 @@ ${product.price.toLocaleString()} ETB
 }
 
 
+/* =====================================
+   ADD TO CART
+===================================== */
+
 function addToCart(id){
 
 const product =
-productsData.find(p=>p.id===id);
+productsData.find(
+p => p.id === id
+);
 
-if(!product)return;
+
+if(!product){
+
+return;
+
+}
+
 
 const existing =
-cart.find(item=>item.id===id);
+cart.find(
+item => item.id === id
+);
+
 
 if(existing){
 
@@ -874,91 +971,145 @@ existing.quantity++;
 }else{
 
 cart.push({
+
 ...product,
+
 quantity:1
+
 });
 
 }
+
 
 saveCart();
 
 updateCart();
 
-alert(product.name+" added to cart 🛒");
-
-}
-
-
-function saveCart(){
-
-localStorage.setItem(
-"abdiiMarketCart",
-JSON.stringify(cart)
+alert(
+product.name +
+" added to cart 🛒"
 );
 
 }
 
+
+/* =====================================
+   SAVE CART
+===================================== */
+
+function saveCart(){
+
+localStorage.setItem(
+
+"abdiiMarketCart",
+
+JSON.stringify(cart)
+
+);
+
+}
+
+
+/* =====================================
+   UPDATE CART
+===================================== */
 
 function updateCart(){
 
 const count =
 cart.reduce(
-(sum,item)=>sum+item.quantity,
+
+(sum,item) =>
+sum + item.quantity,
+
 0
+
 );
 
-document.getElementById("cartCount")
-.innerText=count;
+
+document.getElementById(
+"cartCount"
+).innerText = count;
 
 }
 
 
+/* =====================================
+   OPEN CART
+===================================== */
+
 function openCart(){
 
-document.getElementById("cartModal")
-.style.display="flex";
+document.getElementById(
+"cartModal"
+).style.display =
+"flex";
+
 
 renderCart();
 
 }
 
 
+/* =====================================
+   CLOSE CART
+===================================== */
+
 function closeCart(){
 
-document.getElementById("cartModal")
-.style.display="none";
+document.getElementById(
+"cartModal"
+).style.display =
+"none";
 
 }
 
+
+/* =====================================
+   RENDER CART
+===================================== */
 
 function renderCart(){
 
 const container =
-document.getElementById("cartItems");
+document.getElementById(
+"cartItems"
+);
 
-container.innerHTML="";
+container.innerHTML = "";
 
-if(cart.length===0){
 
-container.innerHTML=
-`<div class="empty">
+if(cart.length === 0){
+
+container.innerHTML = `
+
+<div class="empty">
+
 🛒 Your cart is empty.
-</div>`;
 
-document.getElementById("cartTotal")
-.innerText="0";
+</div>
+
+`;
+
+document.getElementById(
+"cartTotal"
+).innerText = "0";
 
 return;
+
 }
 
 
-let total=0;
+let total = 0;
 
 
-cart.forEach((item,index)=>{
+cart.forEach(
+(item,index) => {
 
 const itemTotal =
-item.price * item.quantity;
+item.price *
+item.quantity;
+
 
 total += itemTotal;
 
@@ -970,36 +1121,58 @@ container.innerHTML += `
 <div>
 
 <strong>
-${item.image} ${item.name}
+
+${item.image}
+${item.name}
+
 </strong>
 
-<div style="margin-top:5px;">
-${item.price.toLocaleString()} ETB × ${item.quantity}
+<div
+style="margin-top:5px;">
+
+${item.price.toLocaleString()}
+ETB ×
+${item.quantity}
+
 </div>
 
 </div>
+
 
 <div style="text-align:right;">
 
 <div class="quantity">
 
-<button onclick="changeQuantity(${index},-1)">
+<button
+onclick="changeQuantity(${index},-1)">
+
 −
+
 </button>
 
-<strong>${item.quantity}</strong>
+<strong>
 
-<button onclick="changeQuantity(${index},1)">
+${item.quantity}
+
+</strong>
+
+<button
+onclick="changeQuantity(${index},1)">
+
 +
+
 </button>
 
 </div>
+
 
 <button
 class="remove"
 style="margin-top:7px;"
 onclick="removeCart(${index})">
+
 Remove
+
 </button>
 
 </div>
@@ -1011,21 +1184,42 @@ Remove
 });
 
 
-document.getElementById("cartTotal")
-.innerText=total.toLocaleString();
+document.getElementById(
+"cartTotal"
+).innerText =
+total.toLocaleString();
 
 }
 
 
-function changeQuantity(index,change){
+/* =====================================
+   CHANGE QUANTITY
+===================================== */
 
-cart[index].quantity += change;
+function changeQuantity(
+index,
+change
+){
 
-if(cart[index].quantity<=0){
+if(!cart[index]){
+
+return;
+
+}
+
+
+cart[index].quantity +=
+change;
+
+
+if(
+cart[index].quantity <= 0
+){
 
 cart.splice(index,1);
 
 }
+
 
 saveCart();
 
@@ -1035,10 +1229,17 @@ renderCart();
 
 }
 
+
+/* =====================================
+   REMOVE CART
+===================================== */
 
 function removeCart(index){
 
-cart.splice(index,1);
+cart.splice(
+index,
+1
+);
 
 saveCart();
 
@@ -1048,81 +1249,147 @@ renderCart();
 
 }
 
+
+/* =====================================
+   GET TOTAL
+===================================== */
 
 function getCartTotal(){
 
 return cart.reduce(
-(total,item)=>
-total+(item.price*item.quantity),
+
+(total,item) =>
+
+total +
+(
+item.price *
+item.quantity
+),
+
 0
+
 );
 
 }
 
 
+/* =====================================
+   OPEN CHECKOUT
+===================================== */
+
 function openCheckout(){
 
-if(cart.length===0){
+if(cart.length === 0){
 
-alert("Your cart is empty 🛒");
+alert(
+"Your cart is empty 🛒"
+);
 
 return;
 
 }
 
-document.getElementById("checkoutTotal")
-.innerText=
-getCartTotal().toLocaleString();
+
+document.getElementById(
+"checkoutTotal"
+).innerText =
+getCartTotal()
+.toLocaleString();
+
 
 closeCart();
 
-document.getElementById("checkoutModal")
-.style.display="flex";
+
+document.getElementById(
+"checkoutModal"
+).style.display =
+"flex";
 
 }
 
+
+/* =====================================
+   CLOSE CHECKOUT
+===================================== */
 
 function closeCheckout(){
 
-document.getElementById("checkoutModal")
-.style.display="none";
+document.getElementById(
+"checkoutModal"
+).style.display =
+"none";
 
 }
 
+
+/* =====================================
+   CREATE ORDER ID
+===================================== */
 
 function createOrderId(){
 
-return "ABD-" +
-Date.now().toString().slice(-8);
+return (
+
+"ABD-" +
+
+Date.now()
+.toString()
+.slice(-8)
+
+);
 
 }
 
+
+/* =====================================
+   START PAYMENT
+===================================== */
 
 async function startPayment(){
 
 const firstName =
-document.getElementById("firstName").value.trim();
+document.getElementById(
+"firstName"
+).value.trim();
+
 
 const lastName =
-document.getElementById("lastName").value.trim();
+document.getElementById(
+"lastName"
+).value.trim();
+
 
 const phone =
-document.getElementById("phone").value.trim();
+document.getElementById(
+"phone"
+).value.trim();
+
 
 const email =
-document.getElementById("email").value.trim();
+document.getElementById(
+"email"
+).value.trim();
+
 
 const address =
-document.getElementById("address").value.trim();
+document.getElementById(
+"address"
+).value.trim();
 
 
-if(!firstName ||
+/* REQUIRED FIELDS */
+
+if(
+!firstName ||
 !lastName ||
 !phone ||
-!address){
+!address
+){
 
 alert(
+
 "Please complete all required fields."
+
 );
 
 return;
@@ -1130,132 +1397,246 @@ return;
 }
 
 
-if(!/^0[79][0-9]{8}$/.test(phone)){
+/* ETHIOPIAN PHONE VALIDATION */
+
+if(
+!/^0[79][0-9]{8}$/.test(
+phone
+)
+){
 
 alert(
+
 "Please enter a valid Ethiopian phone number."
+
 );
 
 return;
 
 }
 
+
+/* CART CHECK */
+
+if(cart.length === 0){
+
+alert(
+"Your cart is empty 🛒"
+);
+
+return;
+
+}
+
+
+/* ORDER ID */
 
 const orderId =
 createOrderId();
 
+
+/* ORDER DATA */
 
 const order = {
 
 orderId:orderId,
 
 customer:{
-firstName:firstName,
-lastName:lastName,
-phone:phone,
-email:email,
-address:address
+
+firstName:
+firstName,
+
+lastName:
+lastName,
+
+phone:
+phone,
+
+email:
+email,
+
+address:
+address
+
 },
 
 items:cart,
 
-amount:getCartTotal(),
+amount:
+getCartTotal(),
 
-currency:"ETB",
+currency:
+"ETB",
 
-createdAt:new Date().toISOString()
+createdAt:
+new Date()
+.toISOString()
 
 };
 
 
+/* SAVE LOCAL ORDER */
+
 localStorage.setItem(
+
 "abdiiLastOrder",
+
 JSON.stringify(order)
+
 );
 
 
-/*
+/* DISABLE BUTTON */
 
-IMPORTANT:
+const payButton =
+document.getElementById(
+"payButton"
+);
 
-This calls YOUR backend.
+payButton.disabled = true;
 
-Your backend must:
+payButton.innerText =
+"⏳ Connecting to Chapa...";
 
-1. Receive this order
-2. Create Chapa transaction
-3. Keep secret key on server
-4. Return checkout_url
-
-*/
 
 try{
 
+
+/*
+   SEND ORDER TO RENDER BACKEND
+
+   This is the important fix.
+
+   OLD:
+   /api/create-payment
+
+   NEW:
+   https://abdiimarket.onrender.com/api/create-payment
+*/
+
 const response =
-await fetch("/api/create-payment",{
+await fetch(
+
+PAYMENT_ENDPOINT,
+
+{
 
 method:"POST",
 
 headers:{
-"Content-Type":"application/json"
+
+"Content-Type":
+"application/json"
+
 },
 
-body:JSON.stringify(order)
-
-});
-
-
-if(!response.ok){
-
-throw new Error(
-"Payment server error"
-);
+body:
+JSON.stringify(order)
 
 }
 
+);
+
+
+/* CHECK SERVER RESPONSE */
 
 const data =
 await response.json();
 
 
-if(data.checkout_url){
+console.log(
+"Payment response:",
+data
+);
+
+
+if(!response.ok){
+
+throw new Error(
+
+data.error ||
+data.message ||
+"Payment server error"
+
+);
+
+}
+
+
+/* CHAPA CHECKOUT URL */
+
+if(
+data.checkout_url
+){
+
+/*
+   Go directly to Chapa
+*/
 
 window.location.href =
 data.checkout_url;
 
-}else{
-
-throw new Error(
-"Payment URL not received"
-);
+return;
 
 }
+
+
+/* NO PAYMENT URL */
+
+throw new Error(
+
+"Chapa checkout URL was not returned by the server."
+
+);
+
 
 }catch(error){
 
-console.error(error);
-
-alert(
-"Payment system is not connected yet.\n\n" +
-"Connect the backend and Chapa secret key first."
+console.error(
+"Payment error:",
+error
 );
 
-}
+
+alert(
+
+"Payment could not be started.\n\n" +
+
+(error.message ||
+"Please try again.")
+
+);
+
+
+/* ENABLE BUTTON AGAIN */
+
+payButton.disabled = false;
+
+payButton.innerText =
+"💳 Pay Now";
 
 }
 
+}
+
+
+/* =====================================
+   SEARCH
+===================================== */
 
 function searchProducts(){
 
 const query =
-document.getElementById("searchInput")
-.value
+document.getElementById(
+"searchInput"
+).value
 .toLowerCase()
 .trim();
 
 
 const results =
-productsData.filter(product=>
+productsData.filter(
+product =>
 
 product.name
 .toLowerCase()
@@ -1269,75 +1650,113 @@ product.category
 
 );
 
-displayProducts(results);
+
+displayProducts(
+results
+);
 
 }
 
 
-function filterCategory(category){
+/* =====================================
+   CATEGORY
+===================================== */
 
-if(category==="All"){
+function filterCategory(
+category
+){
 
-displayProducts(productsData);
+if(
+category === "All"
+){
+
+displayProducts(
+productsData
+);
 
 return;
 
 }
 
+
 const results =
 productsData.filter(
-product=>
-product.category===category
+
+product =>
+
+product.category ===
+category
+
 );
 
-displayProducts(results);
+
+displayProducts(
+results
+);
 
 }
 
+
+/* =====================================
+   SCROLL PRODUCTS
+===================================== */
 
 function scrollToProducts(){
 
 document.getElementById(
 "productsSection"
-).scrollIntoView({
+)
+.scrollIntoView({
+
 behavior:"smooth"
+
 });
 
 }
 
+
+/* =====================================
+   HOME
+===================================== */
 
 function goHome(){
 
 window.scrollTo({
+
 top:0,
+
 behavior:"smooth"
+
 });
 
 }
 
 
+/* =====================================
+   TELEGRAM
+===================================== */
+
 function openTelegram(){
 
 window.open(
-"https://t.me/"+TELEGRAM_USERNAME,
+
+"https://t.me/" +
+TELEGRAM_USERNAME,
+
 "_blank"
+
 );
 
 }
 
 
-function closeSuccess(){
+/* =====================================
+   START WEBSITE
+===================================== */
 
-document.getElementById(
-"successModal"
-).style.display="none";
-
-displayProducts(productsData);
-
-}
-
-
-displayProducts(productsData);
+displayProducts(
+productsData
+);
 
 updateCart();
 
