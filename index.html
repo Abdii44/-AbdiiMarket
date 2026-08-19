@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AbdiiMart — Online Marketplace</title>
+<title>Abdii Market — Online Marketplace</title>
 
 <style>
 *{
@@ -23,17 +23,21 @@ body{
 header{
     background:#111;
     color:white;
-    padding:18px 20px;
+    padding:16px 20px;
     position:sticky;
     top:0;
     z-index:1000;
+}
+
+.header{
+    max-width:1100px;
+    margin:auto;
 }
 
 .header-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:15px;
 }
 
 .logo{
@@ -47,7 +51,7 @@ header{
 
 .cart{
     position:relative;
-    font-size:24px;
+    font-size:25px;
     cursor:pointer;
 }
 
@@ -73,7 +77,7 @@ header{
 
 .search input{
     width:100%;
-    padding:13px 16px;
+    padding:14px 16px;
     border:none;
     outline:none;
     border-radius:12px;
@@ -81,50 +85,50 @@ header{
 }
 
 .hero{
-    margin:20px;
-    padding:25px;
-    border-radius:18px;
-    background:linear-gradient(135deg,#111,#252525);
+    max-width:1100px;
+    margin:20px auto;
+    padding:30px 22px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#111,#292929);
     color:white;
 }
 
 .hero h1{
-    font-size:28px;
+    font-size:30px;
     margin-bottom:10px;
 }
 
 .hero p{
     color:#ccc;
     line-height:1.5;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .btn{
     border:none;
     background:#00c853;
     color:#111;
-    padding:12px 18px;
+    padding:12px 20px;
     border-radius:10px;
     font-weight:bold;
     cursor:pointer;
 }
 
 .telegram-btn{
-    width:100%;
-    margin-top:12px;
-    padding:13px;
+    margin-left:8px;
+    padding:12px 18px;
     border:none;
     border-radius:10px;
     background:#229ED9;
     color:white;
     font-weight:bold;
     cursor:pointer;
-    font-size:15px;
 }
 
 .section{
+    max-width:1100px;
+    margin:25px auto;
     padding:0 20px;
-    margin-top:25px;
 }
 
 .section-title{
@@ -138,21 +142,14 @@ header{
     font-size:20px;
 }
 
-.section-title span{
-    color:#00a844;
-    font-size:14px;
-    cursor:pointer;
-}
-
 .categories{
     display:flex;
     gap:12px;
     overflow-x:auto;
-    padding-bottom:5px;
 }
 
 .category{
-    min-width:90px;
+    min-width:95px;
     background:white;
     border-radius:14px;
     padding:15px 10px;
@@ -226,6 +223,148 @@ header{
     color:#111;
 }
 
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:3000;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+.modal-content{
+    width:100%;
+    max-width:600px;
+    background:white;
+    border-radius:22px 22px 0 0;
+    padding:25px;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    font-size:27px;
+    cursor:pointer;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:13px 0;
+    border-bottom:1px solid #eee;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.quantity button{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:7px;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+.remove{
+    border:none;
+    background:#ff4444;
+    color:white;
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.cart-total{
+    margin-top:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.checkout{
+    width:100%;
+    margin-top:15px;
+    padding:15px;
+    border:none;
+    background:#00c853;
+    color:#111;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:9px;
+    outline:none;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+.order-summary{
+    background:#f5f6f8;
+    border-radius:12px;
+    padding:15px;
+    margin:15px 0;
+}
+
+.empty{
+    text-align:center;
+    padding:25px 5px;
+    color:#777;
+}
+
+.success{
+    text-align:center;
+    padding:20px;
+}
+
+.success-icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.order-id{
+    background:#f1f1f1;
+    padding:12px;
+    border-radius:9px;
+    margin:15px 0;
+    font-weight:bold;
+}
+
 .bottom-nav{
     position:fixed;
     bottom:0;
@@ -257,86 +396,10 @@ header{
     font-weight:bold;
 }
 
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.6);
-    z-index:3000;
-    align-items:flex-end;
-    justify-content:center;
-}
-
-.modal-content{
-    width:100%;
-    max-width:600px;
-    background:white;
-    border-radius:22px 22px 0 0;
-    padding:25px;
-    max-height:80vh;
-    overflow-y:auto;
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close{
-    font-size:25px;
-    cursor:pointer;
-}
-
-.cart-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:13px 0;
-    border-bottom:1px solid #eee;
-}
-
-.cart-total{
-    margin-top:20px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-.checkout{
-    width:100%;
-    margin-top:15px;
-    padding:14px;
-    border:none;
-    background:#00c853;
-    color:#111;
-    border-radius:10px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.empty{
-    text-align:center;
-    padding:25px 5px;
-    color:#777;
-}
-
 @media(min-width:700px){
 
     .products{
         grid-template-columns:repeat(4,1fr);
-    }
-
-    .hero{
-        max-width:1000px;
-        margin:25px auto;
-    }
-
-    .section{
-        max-width:1000px;
-        margin-left:auto;
-        margin-right:auto;
     }
 
     .bottom-nav{
@@ -346,6 +409,27 @@ header{
     body{
         padding-bottom:20px;
     }
+
+    .modal{
+        align-items:center;
+    }
+
+    .modal-content{
+        border-radius:20px;
+    }
+}
+
+@media(max-width:600px){
+
+    .hero{
+        margin:15px;
+    }
+
+    .telegram-btn{
+        margin-left:0;
+        margin-top:10px;
+        width:100%;
+    }
 }
 </style>
 </head>
@@ -354,146 +438,264 @@ header{
 
 <header>
 
-    <div class="header-top">
+<div class="header">
 
-        <div class="logo">
-            Abdii<span>Mart</span>
-        </div>
+<div class="header-top">
 
-        <div class="cart" onclick="openCart()">
-            🛒
-            <span class="cart-count" id="cartCount">0</span>
-        </div>
+<div class="logo">
+Abdii<span>Market</span>
+</div>
 
-    </div>
+<div class="cart" onclick="openCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
+</div>
 
-    <div class="search">
+</div>
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search products..."
-            onkeyup="searchProducts()"
-        >
+<div class="search">
 
-    </div>
+<input
+id="searchInput"
+type="text"
+placeholder="Search products..."
+oninput="searchProducts()"
+>
+
+</div>
+
+</div>
 
 </header>
 
 
 <section class="hero">
 
-    <h1>Welcome to AbdiiMart 🛒</h1>
+<h1>Welcome to Abdii Market 🛒</h1>
 
-    <p>
-        Discover products, connect with sellers,
-        and shop easily in one modern marketplace.
-    </p>
+<p>
+Buy and sell products easily in Ethiopia.
+Choose your product, add it to your cart,
+checkout and pay securely.
+</p>
 
-    <button class="btn" onclick="scrollToProducts()">
-        Shop Now
-    </button>
+<button class="btn" onclick="scrollToProducts()">
+Shop Now
+</button>
 
-    <button class="telegram-btn" onclick="openTelegram()">
-        ✈️ Chat with Abdii Market on Telegram
-    </button>
+<button class="telegram-btn" onclick="openTelegram()">
+✈️ Telegram
+</button>
 
 </section>
 
 
 <section class="section">
 
-    <div class="section-title">
+<div class="section-title">
+<h2>Categories</h2>
+</div>
 
-        <h2>Categories</h2>
+<div class="categories">
 
-        <span onclick="filterCategory('All')">
-            View all
-        </span>
+<div class="category" onclick="filterCategory('All')">
+<div class="category-icon">🛍️</div>
+<p>All</p>
+</div>
 
-    </div>
+<div class="category" onclick="filterCategory('Electronics')">
+<div class="category-icon">📱</div>
+<p>Electronics</p>
+</div>
 
-    <div class="categories">
+<div class="category" onclick="filterCategory('Fashion')">
+<div class="category-icon">👕</div>
+<p>Fashion</p>
+</div>
 
-        <div class="category" onclick="filterCategory('All')">
-            <div class="category-icon">🛍️</div>
-            <p>All</p>
-        </div>
+<div class="category" onclick="filterCategory('Shoes')">
+<div class="category-icon">👟</div>
+<p>Shoes</p>
+</div>
 
-        <div class="category" onclick="filterCategory('Electronics')">
-            <div class="category-icon">📱</div>
-            <p>Electronics</p>
-        </div>
+<div class="category" onclick="filterCategory('Home')">
+<div class="category-icon">🏠</div>
+<p>Home</p>
+</div>
 
-        <div class="category" onclick="filterCategory('Fashion')">
-            <div class="category-icon">👕</div>
-            <p>Fashion</p>
-        </div>
+<div class="category" onclick="filterCategory('Beauty')">
+<div class="category-icon">💄</div>
+<p>Beauty</p>
+</div>
 
-        <div class="category" onclick="filterCategory('Shoes')">
-            <div class="category-icon">👟</div>
-            <p>Shoes</p>
-        </div>
-
-        <div class="category" onclick="filterCategory('Home')">
-            <div class="category-icon">🏠</div>
-            <p>Home</p>
-        </div>
-
-        <div class="category" onclick="filterCategory('Beauty')">
-            <div class="category-icon">💄</div>
-            <p>Beauty</p>
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 <section class="section" id="productsSection">
 
-    <div class="section-title">
+<div class="section-title">
+<h2>Products</h2>
+</div>
 
-        <h2>Popular Products</h2>
-
-        <span onclick="displayProducts(productsData)">
-            See all
-        </span>
-
-    </div>
-
-    <div class="products" id="products"></div>
+<div class="products" id="products"></div>
 
 </section>
 
 
-<!-- CART MODAL -->
+<!-- CART -->
 
 <div class="modal" id="cartModal">
 
-    <div class="modal-content">
+<div class="modal-content">
 
-        <div class="modal-header">
+<div class="modal-header">
+<h2>Your Cart 🛒</h2>
+<div class="close" onclick="closeCart()">×</div>
+</div>
 
-            <h2>Your Cart 🛒</h2>
+<div id="cartItems"></div>
 
-            <div class="close" onclick="closeCart()">×</div>
+<div class="cart-total">
+Total:
+<span id="cartTotal">0</span> ETB
+</div>
 
-        </div>
+<button class="checkout" onclick="openCheckout()">
+💳 Checkout & Pay
+</button>
 
-        <div id="cartItems"></div>
+</div>
 
-        <div class="cart-total">
-            Total:
-            <span id="cartTotal">0</span>
-            ETB
-        </div>
+</div>
 
-        <button class="checkout" onclick="checkout()">
-            📲 Order via Telegram
-        </button>
 
-    </div>
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+<div class="modal-content">
+
+<div class="modal-header">
+<h2>Checkout 📦</h2>
+<div class="close" onclick="closeCheckout()">×</div>
+</div>
+
+<div class="order-summary">
+
+<strong>Order total:</strong>
+
+<div style="font-size:22px;margin-top:6px;">
+<span id="checkoutTotal">0</span> ETB
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>First Name *</label>
+
+<input
+id="firstName"
+type="text"
+placeholder="Your first name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Last Name *</label>
+
+<input
+id="lastName"
+type="text"
+placeholder="Your last name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone Number *</label>
+
+<input
+id="phone"
+type="tel"
+placeholder="0912345678"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+id="email"
+type="email"
+placeholder="you@example.com"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Delivery Address *</label>
+
+<textarea
+id="address"
+placeholder="City, area, house number..."
+></textarea>
+
+</div>
+
+
+<button class="checkout" onclick="startPayment()">
+💳 Pay Now
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SUCCESS -->
+
+<div class="modal" id="successModal">
+
+<div class="modal-content">
+
+<div class="success">
+
+<div class="success-icon">
+✅
+</div>
+
+<h2>Order Created!</h2>
+
+<p style="margin-top:10px;color:#666;">
+Your payment process has been started.
+</p>
+
+<div class="order-id">
+Order ID:
+<span id="successOrderId"></span>
+</div>
+
+<button class="checkout" onclick="closeSuccess()">
+Continue Shopping
+</button>
+
+</div>
+
+</div>
 
 </div>
 
@@ -502,536 +704,638 @@ header{
 
 <div class="bottom-nav">
 
-    <div class="nav-item active" onclick="goHome()">
-        <div>🏠</div>
-        Home
-    </div>
+<div class="nav-item active" onclick="goHome()">
+<div>🏠</div>
+Home
+</div>
 
-    <div class="nav-item" onclick="scrollToProducts()">
-        <div>🛒</div>
-        Shop
-    </div>
+<div class="nav-item" onclick="scrollToProducts()">
+<div>🛒</div>
+Shop
+</div>
 
-    <div class="nav-item" onclick="openCart()">
-        <div>🛍️</div>
-        Cart
-    </div>
+<div class="nav-item" onclick="openCart()">
+<div>🛍️</div>
+Cart
+</div>
 
-    <div class="nav-item" onclick="openTelegram()">
-        <div>💬</div>
-        Telegram
-    </div>
+<div class="nav-item" onclick="openTelegram()">
+<div>💬</div>
+Telegram
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   ABDII MARKET SETTINGS
-========================= */
-
 const TELEGRAM_USERNAME = "AbdiiMarketBot";
-
-
-/* =========================
-   PRODUCTS
-========================= */
 
 const productsData = [
 
-    {
-        id:1,
-        name:"Smart Phone",
-        price:12500,
-        category:"Electronics",
-        image:"📱"
-    },
+{
+id:1,
+name:"Smart Phone",
+price:12500,
+category:"Electronics",
+image:"📱"
+},
 
-    {
-        id:2,
-        name:"Wireless Headphones",
-        price:1800,
-        category:"Electronics",
-        image:"🎧"
-    },
+{
+id:2,
+name:"Wireless Headphones",
+price:1800,
+category:"Electronics",
+image:"🎧"
+},
 
-    {
-        id:3,
-        name:"Premium T-Shirt",
-        price:850,
-        category:"Fashion",
-        image:"👕"
-    },
+{
+id:3,
+name:"Premium T-Shirt",
+price:850,
+category:"Fashion",
+image:"👕"
+},
 
-    {
-        id:4,
-        name:"Running Shoes",
-        price:2200,
-        category:"Shoes",
-        image:"👟"
-    },
+{
+id:4,
+name:"Running Shoes",
+price:2200,
+category:"Shoes",
+image:"👟"
+},
 
-    {
-        id:5,
-        name:"Smart Watch",
-        price:3200,
-        category:"Electronics",
-        image:"⌚"
-    },
+{
+id:5,
+name:"Smart Watch",
+price:3200,
+category:"Electronics",
+image:"⌚"
+},
 
-    {
-        id:6,
-        name:"Backpack",
-        price:1400,
-        category:"Fashion",
-        image:"🎒"
-    },
+{
+id:6,
+name:"Backpack",
+price:1400,
+category:"Fashion",
+image:"🎒"
+},
 
-    {
-        id:7,
-        name:"Home Chair",
-        price:2500,
-        category:"Home",
-        image:"🪑"
-    },
+{
+id:7,
+name:"Home Chair",
+price:2500,
+category:"Home",
+image:"🪑"
+},
 
-    {
-        id:8,
-        name:"Beauty Kit",
-        price:1700,
-        category:"Beauty",
-        image:"💄"
-    }
+{
+id:8,
+name:"Beauty Kit",
+price:1700,
+category:"Beauty",
+image:"💄"
+}
 
 ];
 
 
-/* =========================
-   CART
-========================= */
-
 let cart =
-JSON.parse(localStorage.getItem("abdiiMartCart")) || [];
+JSON.parse(localStorage.getItem("abdiiMarketCart")) || [];
 
-
-/* =========================
-   DISPLAY PRODUCTS
-========================= */
 
 function displayProducts(list){
 
-    const container =
-    document.getElementById("products");
+const container =
+document.getElementById("products");
 
-    container.innerHTML = "";
+container.innerHTML="";
 
-    if(list.length === 0){
+if(list.length===0){
 
-        container.innerHTML =
-        `<div class="empty">
-            ❌ No products found.
-        </div>`;
+container.innerHTML=
+`<div class="empty">
+❌ Product not found.
+</div>`;
 
-        return;
-    }
-
-    list.forEach(product => {
-
-        container.innerHTML += `
-
-        <div class="product">
-
-            <div class="product-image">
-                ${product.image}
-            </div>
-
-            <div class="product-info">
-
-                <div class="product-name">
-                    ${product.name}
-                </div>
-
-                <div class="price">
-                    ${product.price.toLocaleString()} ETB
-                </div>
-
-                <button onclick="addToCart(${product.id})">
-                    🛒 Add to Cart
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
+return;
 }
 
 
-/* =========================
-   ADD TO CART
-========================= */
+list.forEach(product=>{
+
+container.innerHTML += `
+
+<div class="product">
+
+<div class="product-image">
+${product.image}
+</div>
+
+<div class="product-info">
+
+<div class="product-name">
+${product.name}
+</div>
+
+<div class="price">
+${product.price.toLocaleString()} ETB
+</div>
+
+<button onclick="addToCart(${product.id})">
+🛒 Add to Cart
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
 
 function addToCart(id){
 
-    const product =
-    productsData.find(p => p.id === id);
+const product =
+productsData.find(p=>p.id===id);
 
-    if(!product){
-        return;
-    }
+if(!product)return;
 
-    cart.push(product);
+const existing =
+cart.find(item=>item.id===id);
 
-    saveCart();
+if(existing){
 
-    updateCart();
+existing.quantity++;
 
-    alert(
-        product.name +
-        " added to cart 🛒"
-    );
+}else{
+
+cart.push({
+...product,
+quantity:1
+});
 
 }
 
+saveCart();
 
-/* =========================
-   SAVE CART
-========================= */
+updateCart();
+
+alert(product.name+" added to cart 🛒");
+
+}
+
 
 function saveCart(){
 
-    localStorage.setItem(
-        "abdiiMartCart",
-        JSON.stringify(cart)
-    );
+localStorage.setItem(
+"abdiiMarketCart",
+JSON.stringify(cart)
+);
 
 }
 
-
-/* =========================
-   UPDATE CART
-========================= */
 
 function updateCart(){
 
-    document.getElementById("cartCount").innerText =
-    cart.length;
+const count =
+cart.reduce(
+(sum,item)=>sum+item.quantity,
+0
+);
+
+document.getElementById("cartCount")
+.innerText=count;
 
 }
 
-
-/* =========================
-   OPEN CART
-========================= */
 
 function openCart(){
 
-    document.getElementById("cartModal")
-    .style.display = "flex";
+document.getElementById("cartModal")
+.style.display="flex";
 
-    renderCart();
+renderCart();
 
 }
 
-
-/* =========================
-   CLOSE CART
-========================= */
 
 function closeCart(){
 
-    document.getElementById("cartModal")
-    .style.display = "none";
+document.getElementById("cartModal")
+.style.display="none";
 
 }
 
-
-/* =========================
-   RENDER CART
-========================= */
 
 function renderCart(){
 
-    const container =
-    document.getElementById("cartItems");
+const container =
+document.getElementById("cartItems");
 
-    container.innerHTML = "";
+container.innerHTML="";
 
-    let total = 0;
+if(cart.length===0){
 
-    if(cart.length === 0){
+container.innerHTML=
+`<div class="empty">
+🛒 Your cart is empty.
+</div>`;
 
-        container.innerHTML =
-        `<div class="empty">
-            🛒 Your cart is empty.
-        </div>`;
+document.getElementById("cartTotal")
+.innerText="0";
 
-        document.getElementById("cartTotal")
-        .innerText = "0";
-
-        return;
-    }
+return;
+}
 
 
-    cart.forEach((product,index) => {
-
-        total += Number(product.price);
-
-        container.innerHTML += `
-
-        <div class="cart-item">
-
-            <div>
-
-                <strong>
-                    ${product.image}
-                    ${product.name}
-                </strong>
-
-                <br>
-
-                ${product.price.toLocaleString()} ETB
-
-            </div>
-
-            <button
-                onclick="removeCart(${index})"
-                style="
-                border:none;
-                background:#ff4444;
-                color:white;
-                padding:8px 12px;
-                border-radius:7px;
-                cursor:pointer;
-                ">
-                Remove
-            </button>
-
-        </div>
-
-        `;
-
-    });
+let total=0;
 
 
-    document.getElementById("cartTotal")
-    .innerText =
-    total.toLocaleString();
+cart.forEach((item,index)=>{
+
+const itemTotal =
+item.price * item.quantity;
+
+total += itemTotal;
+
+
+container.innerHTML += `
+
+<div class="cart-item">
+
+<div>
+
+<strong>
+${item.image} ${item.name}
+</strong>
+
+<div style="margin-top:5px;">
+${item.price.toLocaleString()} ETB × ${item.quantity}
+</div>
+
+</div>
+
+<div style="text-align:right;">
+
+<div class="quantity">
+
+<button onclick="changeQuantity(${index},-1)">
+−
+</button>
+
+<strong>${item.quantity}</strong>
+
+<button onclick="changeQuantity(${index},1)">
++
+</button>
+
+</div>
+
+<button
+class="remove"
+style="margin-top:7px;"
+onclick="removeCart(${index})">
+Remove
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("cartTotal")
+.innerText=total.toLocaleString();
 
 }
 
 
-/* =========================
-   REMOVE CART
-========================= */
+function changeQuantity(index,change){
+
+cart[index].quantity += change;
+
+if(cart[index].quantity<=0){
+
+cart.splice(index,1);
+
+}
+
+saveCart();
+
+updateCart();
+
+renderCart();
+
+}
+
 
 function removeCart(index){
 
-    cart.splice(index,1);
+cart.splice(index,1);
 
-    saveCart();
+saveCart();
 
-    updateCart();
+updateCart();
 
-    renderCart();
+renderCart();
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+function getCartTotal(){
+
+return cart.reduce(
+(total,item)=>
+total+(item.price*item.quantity),
+0
+);
+
+}
+
+
+function openCheckout(){
+
+if(cart.length===0){
+
+alert("Your cart is empty 🛒");
+
+return;
+
+}
+
+document.getElementById("checkoutTotal")
+.innerText=
+getCartTotal().toLocaleString();
+
+closeCart();
+
+document.getElementById("checkoutModal")
+.style.display="flex";
+
+}
+
+
+function closeCheckout(){
+
+document.getElementById("checkoutModal")
+.style.display="none";
+
+}
+
+
+function createOrderId(){
+
+return "ABD-" +
+Date.now().toString().slice(-8);
+
+}
+
+
+async function startPayment(){
+
+const firstName =
+document.getElementById("firstName").value.trim();
+
+const lastName =
+document.getElementById("lastName").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const address =
+document.getElementById("address").value.trim();
+
+
+if(!firstName ||
+!lastName ||
+!phone ||
+!address){
+
+alert(
+"Please complete all required fields."
+);
+
+return;
+
+}
+
+
+if(!/^0[79][0-9]{8}$/.test(phone)){
+
+alert(
+"Please enter a valid Ethiopian phone number."
+);
+
+return;
+
+}
+
+
+const orderId =
+createOrderId();
+
+
+const order = {
+
+orderId:orderId,
+
+customer:{
+firstName:firstName,
+lastName:lastName,
+phone:phone,
+email:email,
+address:address
+},
+
+items:cart,
+
+amount:getCartTotal(),
+
+currency:"ETB",
+
+createdAt:new Date().toISOString()
+
+};
+
+
+localStorage.setItem(
+"abdiiLastOrder",
+JSON.stringify(order)
+);
+
+
+/*
+
+IMPORTANT:
+
+This calls YOUR backend.
+
+Your backend must:
+
+1. Receive this order
+2. Create Chapa transaction
+3. Keep secret key on server
+4. Return checkout_url
+
+*/
+
+try{
+
+const response =
+await fetch("/api/create-payment",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(order)
+
+});
+
+
+if(!response.ok){
+
+throw new Error(
+"Payment server error"
+);
+
+}
+
+
+const data =
+await response.json();
+
+
+if(data.checkout_url){
+
+window.location.href =
+data.checkout_url;
+
+}else{
+
+throw new Error(
+"Payment URL not received"
+);
+
+}
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Payment system is not connected yet.\n\n" +
+"Connect the backend and Chapa secret key first."
+);
+
+}
+
+}
+
 
 function searchProducts(){
 
-    const query =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+const query =
+document.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
 
-    const results =
-    productsData.filter(product =>
 
-        product.name
-        .toLowerCase()
-        .includes(query)
+const results =
+productsData.filter(product=>
 
-        ||
+product.name
+.toLowerCase()
+.includes(query)
 
-        product.category
-        .toLowerCase()
-        .includes(query)
+||
 
-    );
+product.category
+.toLowerCase()
+.includes(query)
 
-    displayProducts(results);
+);
+
+displayProducts(results);
 
 }
 
-
-/* =========================
-   CATEGORY FILTER
-========================= */
 
 function filterCategory(category){
 
-    if(category === "All"){
+if(category==="All"){
 
-        displayProducts(productsData);
+displayProducts(productsData);
 
-        return;
-    }
-
-    const results =
-    productsData.filter(product =>
-        product.category === category
-    );
-
-    displayProducts(results);
+return;
 
 }
 
+const results =
+productsData.filter(
+product=>
+product.category===category
+);
 
-/* =========================
-   SCROLL TO PRODUCTS
-========================= */
+displayProducts(results);
+
+}
+
 
 function scrollToProducts(){
 
-    document.getElementById("productsSection")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+document.getElementById(
+"productsSection"
+).scrollIntoView({
+behavior:"smooth"
+});
 
 }
 
-
-/* =========================
-   HOME
-========================= */
 
 function goHome(){
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
-
-/* =========================
-   OPEN TELEGRAM BOT
-========================= */
 
 function openTelegram(){
 
-    const telegramURL =
-    "https://t.me/" +
-    TELEGRAM_USERNAME;
-
-    window.open(
-        telegramURL,
-        "_blank"
-    );
+window.open(
+"https://t.me/"+TELEGRAM_USERNAME,
+"_blank"
+);
 
 }
 
 
-/* =========================
-   CREATE ORDER MESSAGE
-========================= */
+function closeSuccess(){
 
-function createOrderMessage(){
+document.getElementById(
+"successModal"
+).style.display="none";
 
-    let message =
-    "🛒 *New AbdiiMart Order*%0A%0A";
-
-    let total = 0;
-
-    cart.forEach((product,index) => {
-
-        message +=
-        `${index + 1}. ${product.name} — ` +
-        `${product.price.toLocaleString()} ETB%0A`;
-
-        total += Number(product.price);
-
-    });
-
-    message +=
-    `%0A💰 *Total:* ` +
-    `${total.toLocaleString()} ETB%0A%0A`;
-
-    message +=
-    "👤 Please send your name, phone number and delivery address.";
-
-    return message;
+displayProducts(productsData);
 
 }
 
-
-/* =========================
-   CHECKOUT VIA TELEGRAM
-========================= */
-
-function checkout(){
-
-    if(cart.length === 0){
-
-        alert(
-            "Your cart is empty 🛒"
-        );
-
-        return;
-    }
-
-    const message =
-    createOrderMessage();
-
-    /*
-      Telegram bot username.
-      User will open the bot first.
-    */
-
-    const telegramURL =
-    "https://t.me/" +
-    TELEGRAM_USERNAME +
-    "?start=order";
-
-    window.open(
-        telegramURL,
-        "_blank"
-    );
-
-    /*
-      Show order details for the user
-      to copy/send to the bot.
-    */
-
-    setTimeout(() => {
-
-        alert(
-            "Order prepared 🛒\n\n" +
-            decodeURIComponent(
-                message
-            )
-            .replace(/%0A/g,"\n")
-        );
-
-    },500);
-
-}
-
-
-/* =========================
-   START
-========================= */
 
 displayProducts(productsData);
 
