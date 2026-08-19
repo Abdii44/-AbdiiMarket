@@ -5,9 +5,10 @@ const app = express();
 
 const PORT = process.env.PORT || 10000;
 
-const CHAPA_SECRET_KEY =
-  process.env.CHAPA_SECRET_KEY;
+// Chapa Secret Key - NEVER put the key directly in this file
+const CHAPA_SECRET_KEY = process.env.CHAPA_SECRET_KEY;
 
+// Your current Render URL
 const PUBLIC_BASE_URL =
   process.env.PUBLIC_BASE_URL ||
   "https://abdiimarket-089r.onrender.com";
@@ -15,13 +16,13 @@ const PUBLIC_BASE_URL =
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve frontend
+// Serve index.html and other frontend files
 app.use(express.static(__dirname));
 
 
-// ===============================
+// ==================================================
 // HEALTH CHECK
-// ===============================
+// ==================================================
 
 app.get("/api/health", (req, res) => {
   res.json({
@@ -33,21 +34,23 @@ app.get("/api/health", (req, res) => {
 });
 
 
-// ===============================
+// ==================================================
 // CREATE CHAPA PAYMENT
-// ===============================
+// ==================================================
 
 app.post("/api/create-payment", async (req, res) => {
-
   try {
 
-    console.log("Payment request received");
+    console.log("=================================");
+    console.log("NEW PAYMENT REQUEST");
+    console.log("=================================");
 
-    // Check Chapa key
+
+    // Check Secret Key
     if (!CHAPA_SECRET_KEY) {
 
       console.error(
-        "CHAPA_SECRET_KEY is missing"
+        "ERROR: CHAPA_SECRET_KEY is missing"
       );
 
       return res.status(500).json({
@@ -71,11 +74,11 @@ app.post("/api/create-payment", async (req, res) => {
     }
 
 
-    const amount =
-      Number(order.amount);
+    // Amount
+    const amount = Number(order.amount);
 
 
-    if (!amount || amount <= 0) {
+    if (!Number.isFinite(amount) || amount <= 0) {
 
       return res.status(400).json({
         success: false,
@@ -85,6 +88,7 @@ app.post("/api/create-payment", async (req, res) => {
     }
 
 
+    // Customer information
     const customer =
       order.customer || {};
 
@@ -100,7 +104,8 @@ app.post("/api/create-payment", async (req, res) => {
 
 
     const phone =
-      customer.phone || "";
+      customer.phone ||
+      "";
 
 
     const email =
@@ -108,19 +113,23 @@ app.post("/api/create-payment", async (req, res) => {
       "customer@example.com";
 
 
+    // Transaction reference
     const txRef =
       order.orderId ||
       `ABD-${Date.now()}`;
 
 
+    // Callback URL
     const callbackUrl =
       `${PUBLIC_BASE_URL}/api/chapa/callback`;
 
 
+    // Return URL
     const returnUrl =
       `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(txRef)}`;
 
 
+    // Chapa payment data
     const payload = {
 
       amount: String(amount),
@@ -142,75 +151,91 @@ app.post("/api/create-payment", async (req, res) => {
       return_url: returnUrl,
 
       customization: {
+
         title: "Abdii Market",
+
         description:
           "Payment for Abdii Market order"
+
       }
 
     };
 
 
-    console.log(
-      "Initializing Chapa:",
-      {
-        tx_ref: txRef,
-        amount: amount
-      }
-    );
+    console.log("Sending payment to Chapa...");
+
+    console.log({
+      tx_ref: txRef,
+      amount: amount,
+      currency: "ETB"
+    });
 
 
-    const response = await fetch(
+    // Send request to Chapa
+    const chapaResponse = await fetch(
       "https://api.chapa.co/v1/transaction/initialize",
       {
+
         method: "POST",
 
         headers: {
+
           "Authorization":
             `Bearer ${CHAPA_SECRET_KEY}`,
 
           "Content-Type":
             "application/json"
+
         },
 
         body:
           JSON.stringify(payload)
+
       }
     );
 
 
-    const data =
-      await response.json();
+    const chapaData =
+      await chapaResponse.json();
 
 
     console.log(
       "Chapa response:",
-      data
+      chapaData
     );
 
 
-    if (!response.ok) {
+    // Chapa returned an error
+    if (!chapaResponse.ok) {
 
-      return res.status(response.status).json({
+      return res.status(chapaResponse.status).json({
 
         success: false,
 
         message:
-          data?.message ||
+          chapaData?.message ||
           "Chapa payment initialization failed.",
 
         chapa:
-          data
+          chapaData
 
       });
+
     }
 
 
+    // Get checkout URL
     const checkoutUrl =
-      data?.data?.checkout_url ||
-      data?.checkout_url;
+      chapaData?.data?.checkout_url ||
+      chapaData?.checkout_url;
 
 
     if (!checkoutUrl) {
+
+      console.error(
+        "Chapa checkout URL missing:",
+        chapaData
+      );
 
       return res.status(500).json({
 
@@ -220,12 +245,19 @@ app.post("/api/create-payment", async (req, res) => {
           "Chapa did not return checkout URL.",
 
         chapa:
-          data
+          chapaData
 
       });
+
     }
 
 
+    console.log(
+      "Payment initialized successfully."
+    );
+
+
+    // Send checkout URL to frontend
     return res.json({
 
       success: true,
@@ -242,7 +274,7 @@ app.post("/api/create-payment", async (req, res) => {
   } catch (error) {
 
     console.error(
-      "Payment error:",
+      "PAYMENT ERROR:",
       error
     );
 
@@ -264,9 +296,9 @@ app.post("/api/create-payment", async (req, res) => {
 });
 
 
-// ===============================
-// CHAPA CALLBACK
-// ===============================
+// ==================================================
+// CHAPA CALLBACK / VERIFY
+// ==================================================
 
 app.get(
   "/api/chapa/callback",
@@ -276,9 +308,14 @@ app.get(
 
       if (!CHAPA_SECRET_KEY) {
 
+        console.error(
+          "CHAPA_SECRET_KEY missing during callback"
+        );
+
         return res.redirect(
           "/?payment=failed"
         );
+
       }
 
 
@@ -292,6 +329,7 @@ app.get(
         return res.status(400).send(
           "Transaction reference missing."
         );
+
       }
 
 
@@ -301,62 +339,71 @@ app.get(
       );
 
 
-      const response = await fetch(
+      const verifyResponse =
+        await fetch(
 
-        `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(txRef)}`,
+          `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(txRef)}`,
 
-        {
-          method: "GET",
+          {
 
-          headers: {
-            "Authorization":
-              `Bearer ${CHAPA_SECRET_KEY}`,
+            method: "GET",
 
-            "Content-Type":
-              "application/json"
+            headers: {
+
+              "Authorization":
+                `Bearer ${CHAPA_SECRET_KEY}`,
+
+              "Content-Type":
+                "application/json"
+
+            }
+
           }
-        }
 
-      );
+        );
 
 
-      const data =
-        await response.json();
+      const verifyData =
+        await verifyResponse.json();
 
 
       console.log(
-        "Chapa verification:",
-        data
+        "Verification response:",
+        verifyData
       );
 
 
       const status =
-        data?.data?.status ||
-        data?.status;
+        verifyData?.data?.status ||
+        verifyData?.status ||
+        "";
 
 
       if (
-        status &&
-        status.toLowerCase() ===
+        String(status).toLowerCase() ===
         "success"
       ) {
 
         return res.redirect(
+
           `/?payment=success&tx_ref=${encodeURIComponent(txRef)}`
+
         );
 
       }
 
 
       return res.redirect(
+
         `/?payment=failed&tx_ref=${encodeURIComponent(txRef)}`
+
       );
 
 
     } catch (error) {
 
       console.error(
-        "Callback error:",
+        "CALLBACK ERROR:",
         error
       );
 
@@ -371,9 +418,9 @@ app.get(
 );
 
 
-// ===============================
-// ROOT
-// ===============================
+// ==================================================
+// HOME PAGE
+// ==================================================
 
 app.get("/", (req, res) => {
 
@@ -387,9 +434,9 @@ app.get("/", (req, res) => {
 });
 
 
-// ===============================
+// ==================================================
 // START SERVER
-// ===============================
+// ==================================================
 
 app.listen(
   PORT,
@@ -397,15 +444,27 @@ app.listen(
   () => {
 
     console.log(
-      `🚀 Abdii Market server running on port ${PORT}`
+      "================================="
     );
 
     console.log(
-      `🌍 Base URL: ${PUBLIC_BASE_URL}`
+      "🚀 Abdii Market server running"
+    );
+
+    console.log(
+      `🌐 Port: ${PORT}`
+    );
+
+    console.log(
+      `🌍 URL: ${PUBLIC_BASE_URL}`
     );
 
     console.log(
       `🔐 Chapa key loaded: ${Boolean(CHAPA_SECRET_KEY)}`
+    );
+
+    console.log(
+      "================================="
     );
 
   }
