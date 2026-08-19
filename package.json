@@ -1,1 +1,15 @@
-
+{
+  "name": "abdii-market",
+  "version": "1.0.0",
+  "description": "Abdii Market Online Marketplace",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
