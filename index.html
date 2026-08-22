@@ -3,23 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Abdii Market — Online Marketplace</title>
-
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
 body{
     font-family:Arial,Helvetica,sans-serif;
     background:#f5f6f8;
     color:#111;
     padding-bottom:80px;
 }
-
 header{
     background:#111;
     color:white;
@@ -28,33 +24,27 @@ header{
     top:0;
     z-index:1000;
 }
-
 .header{
     max-width:1100px;
     margin:auto;
 }
-
 .header-top{
     display:flex;
     align-items:center;
     justify-content:space-between;
 }
-
 .logo{
     font-size:25px;
     font-weight:800;
 }
-
 .logo span{
     color:#00c853;
 }
-
 .cart{
     position:relative;
     font-size:25px;
     cursor:pointer;
 }
-
 .cart-count{
     position:absolute;
     top:-8px;
@@ -70,11 +60,9 @@ header{
     justify-content:center;
     font-weight:bold;
 }
-
 .search{
     margin-top:15px;
 }
-
 .search input{
     width:100%;
     padding:14px 16px;
@@ -83,7 +71,6 @@ header{
     border-radius:12px;
     font-size:15px;
 }
-
 .hero{
     max-width:1100px;
     margin:20px auto;
@@ -92,18 +79,15 @@ header{
     background:linear-gradient(135deg,#111,#292929);
     color:white;
 }
-
 .hero h1{
     font-size:30px;
     margin-bottom:10px;
 }
-
 .hero p{
     color:#ccc;
     line-height:1.5;
     margin-bottom:20px;
 }
-
 .btn{
     border:none;
     background:#00c853;
@@ -113,7 +97,6 @@ header{
     font-weight:bold;
     cursor:pointer;
 }
-
 .telegram-btn{
     margin-left:8px;
     padding:12px 18px;
@@ -124,30 +107,25 @@ header{
     font-weight:bold;
     cursor:pointer;
 }
-
 .section{
     max-width:1100px;
     margin:25px auto;
     padding:0 20px;
 }
-
 .section-title{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:15px;
 }
-
 .section-title h2{
     font-size:20px;
 }
-
 .categories{
     display:flex;
     gap:12px;
     overflow-x:auto;
 }
-
 .category{
     min-width:95px;
     background:white;
@@ -157,56 +135,54 @@ header{
     box-shadow:0 3px 12px rgba(0,0,0,.06);
     cursor:pointer;
 }
-
 .category-icon{
     font-size:28px;
     margin-bottom:7px;
 }
-
 .category p{
     font-size:13px;
     font-weight:bold;
 }
-
 .products{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
 }
-
 .product{
     background:white;
     border-radius:16px;
     overflow:hidden;
     box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
-
 .product-image{
-    height:150px;
+    height:180px;
     display:flex;
     align-items:center;
     justify-content:center;
     background:#eef0f2;
     font-size:65px;
 }
-
 .product-info{
     padding:13px;
 }
-
 .product-name{
     font-size:15px;
     font-weight:bold;
     margin-bottom:7px;
 }
-
+.product-details{
+    font-size:12px;
+    color:#666;
+    line-height:1.5;
+    margin-bottom:10px;
+    white-space:pre-line;
+}
 .price{
     color:#00a844;
     font-size:17px;
     font-weight:bold;
     margin-bottom:10px;
 }
-
 .product button{
     width:100%;
     padding:10px;
@@ -217,12 +193,10 @@ header{
     font-weight:bold;
     cursor:pointer;
 }
-
 .product button:hover{
     background:#00c853;
     color:#111;
 }
-
 .modal{
     display:none;
     position:fixed;
@@ -232,7 +206,6 @@ header{
     align-items:flex-end;
     justify-content:center;
 }
-
 .modal-content{
     width:100%;
     max-width:600px;
@@ -242,19 +215,16 @@ header{
     max-height:90vh;
     overflow-y:auto;
 }
-
 .modal-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
 }
-
 .close{
     font-size:27px;
     cursor:pointer;
 }
-
 .cart-item{
     display:flex;
     justify-content:space-between;
@@ -263,13 +233,11 @@ header{
     padding:13px 0;
     border-bottom:1px solid #eee;
 }
-
 .quantity{
     display:flex;
     align-items:center;
     gap:8px;
 }
-
 .quantity button{
     width:30px;
     height:30px;
@@ -279,7 +247,6 @@ header{
     color:white;
     cursor:pointer;
 }
-
 .remove{
     border:none;
     background:#ff4444;
@@ -288,13 +255,11 @@ header{
     border-radius:7px;
     cursor:pointer;
 }
-
 .cart-total{
     margin-top:20px;
     font-size:20px;
     font-weight:bold;
 }
-
 .checkout{
     width:100%;
     margin-top:15px;
@@ -307,18 +272,19 @@ header{
     cursor:pointer;
     font-size:16px;
 }
-
+.checkout:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
 .form-group{
     margin-bottom:14px;
 }
-
 .form-group label{
     display:block;
     font-weight:bold;
     margin-bottom:6px;
     font-size:14px;
 }
-
 .form-group input,
 .form-group textarea{
     width:100%;
@@ -328,25 +294,37 @@ header{
     outline:none;
     font-size:15px;
 }
-
 .form-group textarea{
     min-height:80px;
     resize:vertical;
 }
-
 .order-summary{
     background:#f5f6f8;
     border-radius:12px;
     padding:15px;
     margin:15px 0;
 }
-
 .empty{
     text-align:center;
     padding:25px 5px;
     color:#777;
 }
-
+.payment-status{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+    font-weight:bold;
+}
+.payment-success{
+    background:#d8f8e5;
+    color:#087a35;
+}
+.payment-failed{
+    background:#ffe0e0;
+    color:#b00020;
+}
 .bottom-nav{
     position:fixed;
     bottom:0;
@@ -360,59 +338,41 @@ header{
     align-items:center;
     z-index:2000;
 }
-
 .nav-item{
     text-align:center;
     color:#777;
     font-size:12px;
     cursor:pointer;
 }
-
 .nav-item div{
     font-size:23px;
     margin-bottom:3px;
 }
-
 .nav-item.active{
     color:#00a844;
     font-weight:bold;
 }
-
-.loading{
-    text-align:center;
-    padding:20px;
-    color:#666;
-}
-
 @media(min-width:700px){
-
     .products{
         grid-template-columns:repeat(4,1fr);
     }
-
     .bottom-nav{
         display:none;
     }
-
     body{
         padding-bottom:20px;
     }
-
     .modal{
         align-items:center;
     }
-
     .modal-content{
         border-radius:20px;
     }
 }
-
 @media(max-width:600px){
-
     .hero{
         margin:15px;
     }
-
     .telegram-btn{
         margin-left:0;
         margin-top:10px;
@@ -421,1346 +381,823 @@ header{
 }
 </style>
 </head>
-
 <body>
-
 <header>
-
 <div class="header">
-
 <div class="header-top">
-
 <div class="logo">
 Abdii<span>Market</span>
 </div>
-
 <div class="cart" onclick="openCart()">
 🛒
 <span class="cart-count" id="cartCount">0</span>
 </div>
-
 </div>
-
 <div class="search">
-
 <input
 id="searchInput"
 type="text"
 placeholder="Search products..."
 oninput="searchProducts()"
 >
-
 </div>
-
 </div>
-
 </header>
-
-
 <section class="hero">
-
 <h1>Welcome to Abdii Market 🛒</h1>
-
 <p>
 Buy and sell products easily in Ethiopia.
 Choose your product, add it to your cart,
-checkout and pay securely.
+checkout and pay securely with Chapa.
 </p>
-
 <button class="btn" onclick="scrollToProducts()">
 Shop Now
 </button>
-
 <button class="telegram-btn" onclick="openTelegram()">
 ✈️ Telegram
 </button>
-
 </section>
-
-
 <section class="section">
-
 <div class="section-title">
 <h2>Categories</h2>
 </div>
-
 <div class="categories">
-
 <div class="category" onclick="filterCategory('All')">
 <div class="category-icon">🛍️</div>
 <p>All</p>
 </div>
-
 <div class="category" onclick="filterCategory('Electronics')">
 <div class="category-icon">📱</div>
 <p>Electronics</p>
 </div>
-
 <div class="category" onclick="filterCategory('Fashion')">
 <div class="category-icon">👕</div>
 <p>Fashion</p>
 </div>
-
 <div class="category" onclick="filterCategory('Shoes')">
 <div class="category-icon">👟</div>
 <p>Shoes</p>
 </div>
-
 <div class="category" onclick="filterCategory('Home')">
 <div class="category-icon">🏠</div>
 <p>Home</p>
 </div>
-
 <div class="category" onclick="filterCategory('Beauty')">
 <div class="category-icon">💄</div>
 <p>Beauty</p>
 </div>
-
 </div>
-
 </section>
-
-
 <section class="section" id="productsSection">
-
 <div class="section-title">
 <h2>Products</h2>
 </div>
-
 <div class="products" id="products"></div>
-
 </section>
-
-
 <!-- CART -->
-
 <div class="modal" id="cartModal">
-
 <div class="modal-content">
-
 <div class="modal-header">
-
 <h2>Your Cart 🛒</h2>
-
-<div class="close" onclick="closeCart()">
-×
+<div class="close" onclick="closeCart()">×</div>
 </div>
-
-</div>
-
 <div id="cartItems"></div>
-
 <div class="cart-total">
-
 Total:
 <span id="cartTotal">0</span> ETB
-
 </div>
-
 <button
 class="checkout"
 onclick="openCheckout()">
-
 💳 Checkout & Pay
-
 </button>
-
 </div>
-
 </div>
-
-
 <!-- CHECKOUT -->
-
 <div class="modal" id="checkoutModal">
-
 <div class="modal-content">
-
 <div class="modal-header">
-
 <h2>Checkout 📦</h2>
-
-<div
-class="close"
-onclick="closeCheckout()">
-
-×
+<div class="close" onclick="closeCheckout()">×</div>
 </div>
-
-</div>
-
-
 <div class="order-summary">
-
-<strong>
-Order total:
-</strong>
-
-<div
-style="font-size:22px;margin-top:6px;">
-
-<span id="checkoutTotal">
-0
-</span>
-
-ETB
-
+<strong>Order total:</strong>
+<div style="font-size:22px;margin-top:6px;">
+<span id="checkoutTotal">0</span> ETB
 </div>
-
 </div>
-
-
 <div class="form-group">
-
-<label>
-First Name *
-</label>
-
+<label>First Name *</label>
 <input
 id="firstName"
 type="text"
 placeholder="Your first name"
 >
-
 </div>
-
-
 <div class="form-group">
-
-<label>
-Last Name *
-</label>
-
+<label>Last Name *</label>
 <input
 id="lastName"
 type="text"
 placeholder="Your last name"
 >
-
 </div>
-
-
 <div class="form-group">
-
-<label>
-Phone Number *
-</label>
-
+<label>Phone Number *</label>
 <input
 id="phone"
 type="tel"
 placeholder="0912345678"
 >
-
 </div>
-
-
 <div class="form-group">
-
-<label>
-Email
-</label>
-
+<label>Email</label>
 <input
 id="email"
 type="email"
 placeholder="you@example.com"
 >
-
 </div>
-
-
 <div class="form-group">
-
-<label>
-Delivery Address *
-</label>
-
+<label>Delivery Address *</label>
 <textarea
 id="address"
 placeholder="City, area, house number..."
 ></textarea>
-
 </div>
-
-
 <button
 class="checkout"
 id="payButton"
 onclick="startPayment()">
-
 💳 Pay Now
-
 </button>
-
+<div
+id="paymentStatus"
+class="payment-status">
 </div>
-
 </div>
-
-
+</div>
 <!-- BOTTOM NAV -->
-
 <div class="bottom-nav">
-
 <div
 class="nav-item active"
 onclick="goHome()">
-
 <div>🏠</div>
-
 Home
-
 </div>
-
-
 <div
 class="nav-item"
 onclick="scrollToProducts()">
-
 <div>🛒</div>
-
 Shop
-
 </div>
-
-
 <div
 class="nav-item"
 onclick="openCart()">
-
 <div>🛍️</div>
-
 Cart
-
 </div>
-
-
 <div
 class="nav-item"
 onclick="openTelegram()">
-
 <div>💬</div>
-
 Telegram
-
 </div>
-
 </div>
-
-
 <script>
-
 /* =====================================
    ABDII MARKET CONFIGURATION
 ===================================== */
-
 const TELEGRAM_USERNAME =
 "AbdiiMarketBot";
-
-
 /*
-   IMPORTANT:
-
-   Your backend is hosted on Render.
-
-   DO NOT put the Chapa Secret Key here.
-
-   The secret key stays on server.js
-   inside Render Environment Variables.
+   Backend URL
+   Chapa Secret Key is NOT stored here.
+   It stays safely on Render Environment Variables.
 */
-
 const BACKEND_URL =
 "https://abdiimarket.onrender.com";
-
-
 const PAYMENT_ENDPOINT =
 BACKEND_URL +
 "/api/create-payment";
-
-
 /* =====================================
    PRODUCTS
 ===================================== */
-
 const productsData = [
-
 {
 id:1,
-name:"Smart Phone",
-price:12500,
+name:"📱 iPhone 13 Pro Max — 256GB",
+price:102000,
 category:"Electronics",
-image:"📱"
+image:"📱",
+details:
+"🎨 Gold\n" +
+"🔋 Battery: 93% ✅\n" +
+"🔐 Face ID: Working ✅\n" +
+"🌈 True Tone: Working ✅\n" +
+"💾 Storage: 256GB ✅\n" +
+"✨ Condition: New\n" +
+"📍 Addis Ababa"
 },
-
 {
 id:2,
-name:"Wireless Headphones",
+name:"🎧 Wireless Headphones",
 price:1800,
 category:"Electronics",
-image:"🎧"
+image:"🎧",
+details:"Wireless Bluetooth"
 },
-
 {
 id:3,
-name:"Premium T-Shirt",
+name:"👕 Premium T-Shirt",
 price:850,
 category:"Fashion",
-image:"👕"
+image:"👕",
+details:"Quality fashion wear"
 },
-
 {
 id:4,
-name:"Running Shoes",
+name:"👟 Running Shoes",
 price:2200,
 category:"Shoes",
-image:"👟"
+image:"👟",
+details:"Comfortable running shoes"
 },
-
 {
 id:5,
-name:"Smart Watch",
+name:"⌚ Smart Watch",
 price:3200,
 category:"Electronics",
-image:"⌚"
+image:"⌚",
+details:"Smart watch"
 },
-
 {
 id:6,
-name:"Backpack",
+name:"🎒 Backpack",
 price:1400,
 category:"Fashion",
-image:"🎒"
+image:"🎒",
+details:"Fashion backpack"
 },
-
 {
 id:7,
-name:"Home Chair",
+name:"🪑 Home Chair",
 price:2500,
 category:"Home",
-image:"🪑"
+image:"🪑",
+details:"Quality home chair"
 },
-
 {
 id:8,
-name:"Beauty Kit",
+name:"💄 Beauty Kit",
 price:1700,
 category:"Beauty",
-image:"💄"
+image:"💄",
+details:"Beauty kit"
 }
-
 ];
-
-
 /* =====================================
    CART
 ===================================== */
-
 let cart =
 JSON.parse(
 localStorage.getItem(
 "abdiiMarketCart"
 )
 ) || [];
-
-
 /* =====================================
    DISPLAY PRODUCTS
 ===================================== */
-
 function displayProducts(list){
-
 const container =
-document.getElementById(
-"products"
-);
-
+document.getElementById("products");
 container.innerHTML = "";
-
-
 if(list.length === 0){
-
 container.innerHTML = `
-
 <div class="empty">
-
 ❌ Product not found.
-
 </div>
-
 `;
-
 return;
-
 }
-
-
 list.forEach(product => {
-
 container.innerHTML += `
-
 <div class="product">
-
 <div class="product-image">
-
 ${product.image}
-
 </div>
-
 <div class="product-info">
-
 <div class="product-name">
-
 ${product.name}
-
 </div>
-
+<div class="product-details">
+${product.details || ""}
+</div>
 <div class="price">
-
-${product.price.toLocaleString()}
-ETB
-
+${product.price.toLocaleString()} ETB
 </div>
-
-<button
-onclick="addToCart(${product.id})">
-
+<button onclick="addToCart(${product.id})">
 🛒 Add to Cart
-
 </button>
-
 </div>
-
 </div>
-
 `;
-
 });
-
 }
-
-
 /* =====================================
    ADD TO CART
 ===================================== */
-
 function addToCart(id){
-
 const product =
 productsData.find(
 p => p.id === id
 );
-
-
 if(!product){
-
 return;
-
 }
-
-
 const existing =
 cart.find(
 item => item.id === id
 );
-
-
 if(existing){
-
 existing.quantity++;
-
 }else{
-
 cart.push({
-
 ...product,
-
 quantity:1
-
 });
-
 }
-
-
 saveCart();
-
 updateCart();
-
 alert(
 product.name +
 " added to cart 🛒"
 );
-
 }
-
-
 /* =====================================
    SAVE CART
 ===================================== */
-
 function saveCart(){
-
 localStorage.setItem(
-
 "abdiiMarketCart",
-
 JSON.stringify(cart)
-
 );
-
 }
-
-
 /* =====================================
    UPDATE CART
 ===================================== */
-
 function updateCart(){
-
 const count =
 cart.reduce(
-
 (sum,item) =>
 sum + item.quantity,
-
 0
-
 );
-
-
 document.getElementById(
 "cartCount"
 ).innerText = count;
-
 }
-
-
 /* =====================================
    OPEN CART
 ===================================== */
-
 function openCart(){
-
 document.getElementById(
 "cartModal"
-).style.display =
-"flex";
-
-
+).style.display = "flex";
 renderCart();
-
 }
-
-
 /* =====================================
    CLOSE CART
 ===================================== */
-
 function closeCart(){
-
 document.getElementById(
 "cartModal"
-).style.display =
-"none";
-
+).style.display = "none";
 }
-
-
 /* =====================================
    RENDER CART
 ===================================== */
-
 function renderCart(){
-
 const container =
 document.getElementById(
 "cartItems"
 );
-
 container.innerHTML = "";
-
-
 if(cart.length === 0){
-
 container.innerHTML = `
-
 <div class="empty">
-
 🛒 Your cart is empty.
-
 </div>
-
 `;
-
 document.getElementById(
 "cartTotal"
 ).innerText = "0";
-
 return;
-
 }
-
-
 let total = 0;
-
-
 cart.forEach(
 (item,index) => {
-
 const itemTotal =
 item.price *
 item.quantity;
-
-
 total += itemTotal;
-
-
 container.innerHTML += `
-
 <div class="cart-item">
-
 <div>
-
 <strong>
-
 ${item.image}
 ${item.name}
-
 </strong>
-
-<div
-style="margin-top:5px;">
-
-${item.price.toLocaleString()}
-ETB ×
-${item.quantity}
-
+<div style="margin-top:5px;">
+${item.price.toLocaleString()} ETB × ${item.quantity}
 </div>
-
 </div>
-
-
 <div style="text-align:right;">
-
 <div class="quantity">
-
-<button
-onclick="changeQuantity(${index},-1)">
-
+<button onclick="changeQuantity(${index},-1)">
 −
-
 </button>
-
-<strong>
-
-${item.quantity}
-
-</strong>
-
-<button
-onclick="changeQuantity(${index},1)">
-
+<strong>${item.quantity}</strong>
+<button onclick="changeQuantity(${index},1)">
 +
-
 </button>
-
 </div>
-
-
 <button
 class="remove"
 style="margin-top:7px;"
 onclick="removeCart(${index})">
-
 Remove
-
 </button>
-
 </div>
-
 </div>
-
 `;
-
 });
-
-
 document.getElementById(
 "cartTotal"
 ).innerText =
 total.toLocaleString();
-
 }
-
-
 /* =====================================
    CHANGE QUANTITY
 ===================================== */
-
 function changeQuantity(
 index,
 change
 ){
-
 if(!cart[index]){
-
 return;
-
 }
-
-
-cart[index].quantity +=
-change;
-
-
-if(
-cart[index].quantity <= 0
-){
-
+cart[index].quantity += change;
+if(cart[index].quantity <= 0){
 cart.splice(index,1);
-
 }
-
-
 saveCart();
-
 updateCart();
-
 renderCart();
-
 }
-
-
 /* =====================================
    REMOVE CART
 ===================================== */
-
 function removeCart(index){
-
-cart.splice(
-index,
-1
-);
-
+cart.splice(index,1);
 saveCart();
-
 updateCart();
-
 renderCart();
-
 }
-
-
 /* =====================================
    GET TOTAL
 ===================================== */
-
 function getCartTotal(){
-
 return cart.reduce(
-
 (total,item) =>
-
-total +
-(
+total + (
 item.price *
 item.quantity
 ),
-
 0
-
 );
-
 }
-
-
 /* =====================================
    OPEN CHECKOUT
 ===================================== */
-
 function openCheckout(){
-
 if(cart.length === 0){
-
 alert(
 "Your cart is empty 🛒"
 );
-
 return;
-
 }
-
-
 document.getElementById(
 "checkoutTotal"
 ).innerText =
-getCartTotal()
-.toLocaleString();
-
-
+getCartTotal().toLocaleString();
 closeCart();
-
-
 document.getElementById(
 "checkoutModal"
-).style.display =
-"flex";
-
+).style.display = "flex";
 }
-
-
 /* =====================================
    CLOSE CHECKOUT
 ===================================== */
-
 function closeCheckout(){
-
 document.getElementById(
 "checkoutModal"
-).style.display =
-"none";
-
+).style.display = "none";
 }
-
-
 /* =====================================
    CREATE ORDER ID
 ===================================== */
-
 function createOrderId(){
-
 return (
-
 "ABD-" +
-
-Date.now()
-.toString()
-.slice(-8)
-
+Date.now().toString().slice(-8)
 );
-
 }
-
-
+/* =====================================
+   SHOW PAYMENT STATUS
+===================================== */
+function showPaymentStatus(
+message,
+success
+){
+const status =
+document.getElementById(
+"paymentStatus"
+);
+status.style.display = "block";
+status.className =
+"payment-status " +
+(
+success
+? "payment-success"
+: "payment-failed"
+);
+status.innerText =
+message;
+}
 /* =====================================
    START PAYMENT
 ===================================== */
-
 async function startPayment(){
-
 const firstName =
 document.getElementById(
 "firstName"
 ).value.trim();
-
-
 const lastName =
 document.getElementById(
 "lastName"
 ).value.trim();
-
-
 const phone =
 document.getElementById(
 "phone"
 ).value.trim();
-
-
 const email =
 document.getElementById(
 "email"
 ).value.trim();
-
-
 const address =
 document.getElementById(
 "address"
 ).value.trim();
-
-
 /* REQUIRED FIELDS */
-
 if(
 !firstName ||
 !lastName ||
 !phone ||
 !address
 ){
-
 alert(
-
 "Please complete all required fields."
-
 );
-
 return;
-
 }
-
-
 /* ETHIOPIAN PHONE VALIDATION */
-
 if(
-!/^0[79][0-9]{8}$/.test(
-phone
-)
+!/^0[79][0-9]{8}$/.test(phone)
 ){
-
 alert(
-
 "Please enter a valid Ethiopian phone number."
-
 );
-
 return;
-
 }
-
-
 /* CART CHECK */
-
 if(cart.length === 0){
-
 alert(
 "Your cart is empty 🛒"
 );
-
 return;
-
 }
-
-
 /* ORDER ID */
-
 const orderId =
 createOrderId();
-
-
 /* ORDER DATA */
-
 const order = {
-
 orderId:orderId,
-
 customer:{
-
-firstName:
-firstName,
-
-lastName:
-lastName,
-
-phone:
-phone,
-
-email:
-email,
-
-address:
-address
-
+firstName:firstName,
+lastName:lastName,
+phone:phone,
+email:email,
+address:address
 },
-
 items:cart,
-
-amount:
-getCartTotal(),
-
-currency:
-"ETB",
-
-createdAt:
-new Date()
-.toISOString()
-
+amount:getCartTotal(),
+currency:"ETB",
+createdAt:new Date().toISOString()
 };
-
-
 /* SAVE LOCAL ORDER */
-
 localStorage.setItem(
-
 "abdiiLastOrder",
-
 JSON.stringify(order)
-
 );
-
-
 /* DISABLE BUTTON */
-
 const payButton =
 document.getElementById(
 "payButton"
 );
-
 payButton.disabled = true;
-
 payButton.innerText =
 "⏳ Connecting to Chapa...";
-
-
+showPaymentStatus(
+"Chapa waliin wal qunnamaa jira...",
+true
+);
 try{
-
-
-/*
-   SEND ORDER TO RENDER BACKEND
-
-   This is the important fix.
-
-   OLD:
-   /api/create-payment
-
-   NEW:
-   https://abdiimarket.onrender.com/api/create-payment
-*/
-
 const response =
 await fetch(
-
 PAYMENT_ENDPOINT,
-
 {
-
 method:"POST",
-
 headers:{
-
 "Content-Type":
 "application/json"
-
 },
-
 body:
 JSON.stringify(order)
-
 }
-
 );
-
-
-/* CHECK SERVER RESPONSE */
-
+/* RESPONSE */
 const data =
 await response.json();
-
-
 console.log(
 "Payment response:",
 data
 );
-
-
 if(!response.ok){
-
 throw new Error(
-
-data.error ||
 data.message ||
+data.error ||
 "Payment server error"
-
 );
-
 }
-
-
-/* CHAPA CHECKOUT URL */
-
+/* CHECKOUT URL */
 if(
 data.checkout_url
 ){
-
 /*
-   Go directly to Chapa
+   Payment success initialization.
+   Browser moves to Chapa checkout.
 */
-
 window.location.href =
 data.checkout_url;
-
 return;
-
 }
-
-
-/* NO PAYMENT URL */
-
+/* NO URL */
 throw new Error(
-
-"Chapa checkout URL was not returned by the server."
-
+"Chapa checkout URL was not returned."
 );
-
-
 }catch(error){
-
 console.error(
 "Payment error:",
 error
 );
-
-
-alert(
-
-"Payment could not be started.\n\n" +
-
-(error.message ||
-"Please try again.")
-
+showPaymentStatus(
+"❌ Payment jalqabuu hin dandeenye: " +
+(error.message || "Try again."),
+false
 );
-
-
-/* ENABLE BUTTON AGAIN */
-
+alert(
+"Payment could not be started.\n\n" +
+(error.message || "Please try again.")
+);
 payButton.disabled = false;
-
 payButton.innerText =
 "💳 Pay Now";
-
 }
-
 }
-
-
+/* =====================================
+   PAYMENT RETURN
+===================================== */
+function checkPaymentReturn(){
+const params =
+new URLSearchParams(
+window.location.search
+);
+const payment =
+params.get("payment");
+const txRef =
+params.get("tx_ref");
+if(payment === "success"){
+cart = [];
+saveCart();
+updateCart();
+showPaymentStatus(
+"✅ Kaffaltiin milkaa'eera! Galatoomi.",
+true
+);
+alert(
+"✅ Payment successful!\n\nTransaction: " +
+(txRef || "")
+);
+return;
+}
+if(payment === "failed"){
+showPaymentStatus(
+"❌ Kaffaltiin hin milkoofne.",
+false
+);
+alert(
+"❌ Payment failed. Mee irra deebi'ii yaali."
+);
+}
+}
 /* =====================================
    SEARCH
 ===================================== */
-
 function searchProducts(){
-
 const query =
 document.getElementById(
 "searchInput"
 ).value
 .toLowerCase()
 .trim();
-
-
 const results =
 productsData.filter(
 product =>
-
 product.name
 .toLowerCase()
 .includes(query)
-
 ||
-
 product.category
 .toLowerCase()
 .includes(query)
-
+||
+(product.details || "")
+.toLowerCase()
+.includes(query)
 );
-
-
-displayProducts(
-results
-);
-
+displayProducts(results);
 }
-
-
 /* =====================================
    CATEGORY
 ===================================== */
-
-function filterCategory(
-category
-){
-
-if(
-category === "All"
-){
-
-displayProducts(
-productsData
-);
-
+function filterCategory(category){
+if(category === "All"){
+displayProducts(productsData);
 return;
-
 }
-
-
 const results =
 productsData.filter(
-
 product =>
-
-product.category ===
-category
-
+product.category === category
 );
-
-
-displayProducts(
-results
-);
-
+displayProducts(results);
 }
-
-
 /* =====================================
    SCROLL PRODUCTS
 ===================================== */
-
 function scrollToProducts(){
-
 document.getElementById(
 "productsSection"
-)
-.scrollIntoView({
-
+).scrollIntoView({
 behavior:"smooth"
-
 });
-
 }
-
-
 /* =====================================
    HOME
 ===================================== */
-
 function goHome(){
-
 window.scrollTo({
-
 top:0,
-
 behavior:"smooth"
-
 });
-
 }
-
-
 /* =====================================
    TELEGRAM
 ===================================== */
-
 function openTelegram(){
-
 window.open(
-
 "https://t.me/" +
 TELEGRAM_USERNAME,
-
 "_blank"
-
 );
-
 }
-
-
 /* =====================================
    START WEBSITE
 ===================================== */
-
-displayProducts(
-productsData
-);
-
+displayProducts(productsData);
 updateCart();
-
+checkPaymentReturn();
 </script>
-
 </body>
 </html>
