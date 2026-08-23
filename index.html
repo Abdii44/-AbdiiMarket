@@ -3,16 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Abdii Market — Online Marketplace</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f5f6f8;
   color:#111;
-  padding-bottom:80px
+  padding-bottom:80px;
 }
 
 header{
@@ -21,24 +26,33 @@ header{
   padding:16px 20px;
   position:sticky;
   top:0;
-  z-index:1000
+  z-index:1000;
 }
 
-.header{max-width:1100px;margin:auto}
+.header{
+  max-width:1100px;
+  margin:auto;
+}
 
 .header-top{
   display:flex;
   align-items:center;
-  justify-content:space-between
+  justify-content:space-between;
 }
 
-.logo{font-size:25px;font-weight:800}
-.logo span{color:#00c853}
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#00c853;
+}
 
 .cart{
   position:relative;
   font-size:25px;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .cart-count{
@@ -54,10 +68,12 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:bold
+  font-weight:bold;
 }
 
-.search{margin-top:15px}
+.search{
+  margin-top:15px;
+}
 
 .search input{
   width:100%;
@@ -65,7 +81,7 @@ header{
   border:none;
   outline:none;
   border-radius:12px;
-  font-size:15px
+  font-size:15px;
 }
 
 .hero{
@@ -74,47 +90,57 @@ header{
   padding:30px 22px;
   border-radius:20px;
   background:linear-gradient(135deg,#111,#292929);
-  color:#fff
+  color:#fff;
 }
 
-.hero h1{font-size:30px;margin-bottom:10px}
-.hero p{color:#ccc;line-height:1.5;margin-bottom:20px}
+.hero h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
 
-.btn,.telegram-btn{
+.hero p{
+  color:#ccc;
+  line-height:1.5;
+  margin-bottom:20px;
+}
+
+.btn,
+.telegram-btn{
   border:none;
   padding:12px 20px;
   border-radius:10px;
   font-weight:bold;
-  cursor:pointer
+  cursor:pointer;
 }
 
-.btn{background:#00c853;color:#111}
+.btn{
+  background:#00c853;
+  color:#111;
+}
 
 .telegram-btn{
   margin-left:8px;
   background:#229ED9;
-  color:#fff
+  color:#fff;
 }
 
 .section{
   max-width:1100px;
   margin:25px auto;
-  padding:0 20px
+  padding:0 20px;
 }
 
 .section-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:15px
+  margin-bottom:15px;
 }
-
-.section-title h2{font-size:20px}
 
 .categories{
   display:flex;
   gap:12px;
-  overflow-x:auto
+  overflow-x:auto;
 }
 
 .category{
@@ -124,30 +150,30 @@ header{
   padding:15px 10px;
   text-align:center;
   box-shadow:0 3px 12px rgba(0,0,0,.06);
-  cursor:pointer
+  cursor:pointer;
 }
 
 .category-icon{
   font-size:28px;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
 .category p{
   font-size:13px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .products{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px
+  gap:15px;
 }
 
 .product{
   background:#fff;
   border-radius:16px;
   overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.07)
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
 .product-image{
@@ -156,15 +182,17 @@ header{
   align-items:center;
   justify-content:center;
   background:#eef0f2;
-  font-size:65px
+  font-size:65px;
 }
 
-.product-info{padding:13px}
+.product-info{
+  padding:13px;
+}
 
 .product-name{
   font-size:15px;
   font-weight:bold;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
 .product-details{
@@ -172,14 +200,14 @@ header{
   color:#666;
   line-height:1.5;
   margin-bottom:10px;
-  white-space:pre-line
+  white-space:pre-line;
 }
 
 .price{
   color:#00a844;
   font-size:17px;
   font-weight:bold;
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
 .product button{
@@ -190,12 +218,12 @@ header{
   background:#111;
   color:#fff;
   font-weight:bold;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .product button:hover{
   background:#00c853;
-  color:#111
+  color:#111;
 }
 
 .modal{
@@ -205,7 +233,7 @@ header{
   background:rgba(0,0,0,.65);
   z-index:3000;
   align-items:flex-end;
-  justify-content:center
+  justify-content:center;
 }
 
 .modal-content{
@@ -215,17 +243,20 @@ header{
   border-radius:22px 22px 0 0;
   padding:25px;
   max-height:90vh;
-  overflow-y:auto
+  overflow-y:auto;
 }
 
 .modal-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
-.close{font-size:27px;cursor:pointer}
+.close{
+  font-size:27px;
+  cursor:pointer;
+}
 
 .cart-item{
   display:flex;
@@ -233,13 +264,13 @@ header{
   align-items:center;
   gap:10px;
   padding:13px 0;
-  border-bottom:1px solid #eee
+  border-bottom:1px solid #eee;
 }
 
 .quantity{
   display:flex;
   align-items:center;
-  gap:8px
+  gap:8px;
 }
 
 .quantity button{
@@ -249,7 +280,7 @@ header{
   border-radius:7px;
   background:#111;
   color:#fff;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .remove{
@@ -258,13 +289,13 @@ header{
   color:#fff;
   padding:7px 10px;
   border-radius:7px;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .cart-total{
   margin-top:20px;
   font-size:20px;
-  font-weight:bold
+  font-weight:bold;
 }
 
 .checkout{
@@ -277,21 +308,23 @@ header{
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-  font-size:16px
+  font-size:16px;
 }
 
 .checkout:disabled{
   opacity:.6;
-  cursor:not-allowed
+  cursor:not-allowed;
 }
 
-.form-group{margin-bottom:14px}
+.form-group{
+  margin-bottom:14px;
+}
 
 .form-group label{
   display:block;
   font-weight:bold;
   margin-bottom:6px;
-  font-size:14px
+  font-size:14px;
 }
 
 .form-group input,
@@ -301,25 +334,25 @@ header{
   border:1px solid #ddd;
   border-radius:9px;
   outline:none;
-  font-size:15px
+  font-size:15px;
 }
 
 .form-group textarea{
   min-height:80px;
-  resize:vertical
+  resize:vertical;
 }
 
 .order-summary{
   background:#f5f6f8;
   border-radius:12px;
   padding:15px;
-  margin:15px 0
+  margin:15px 0;
 }
 
 .empty{
   text-align:center;
   padding:25px 5px;
-  color:#777
+  color:#777;
 }
 
 .payment-status{
@@ -328,17 +361,18 @@ header{
   padding:12px;
   border-radius:10px;
   text-align:center;
-  font-weight:bold
+  font-weight:bold;
+  word-break:break-word;
 }
 
 .payment-success{
   background:#d8f8e5;
-  color:#087a35
+  color:#087a35;
 }
 
 .payment-failed{
   background:#ffe0e0;
-  color:#b00020
+  color:#b00020;
 }
 
 .bottom-nav{
@@ -352,40 +386,57 @@ header{
   display:flex;
   justify-content:space-around;
   align-items:center;
-  z-index:2000
+  z-index:2000;
 }
 
 .nav-item{
   text-align:center;
   color:#777;
   font-size:12px;
-  cursor:pointer
+  cursor:pointer;
 }
 
 .nav-item div{
   font-size:23px;
-  margin-bottom:3px
+  margin-bottom:3px;
 }
 
 .nav-item.active{
   color:#00a844;
-  font-weight:bold
+  font-weight:bold;
 }
 
 @media(min-width:700px){
-  .products{grid-template-columns:repeat(4,1fr)}
-  .bottom-nav{display:none}
-  body{padding-bottom:20px}
-  .modal{align-items:center}
-  .modal-content{border-radius:20px}
+  .products{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .bottom-nav{
+    display:none;
+  }
+
+  body{
+    padding-bottom:20px;
+  }
+
+  .modal{
+    align-items:center;
+  }
+
+  .modal-content{
+    border-radius:20px;
+  }
 }
 
 @media(max-width:600px){
-  .hero{margin:15px}
+  .hero{
+    margin:15px;
+  }
+
   .telegram-btn{
     margin-left:0;
     margin-top:10px;
-    width:100%
+    width:100%;
   }
 }
 </style>
@@ -503,9 +554,11 @@ Shop Now
 <div class="modal-content">
 
 <div class="modal-header">
+
 <h2>Your Cart 🛒</h2>
 
 <div class="close" onclick="closeCart()">×</div>
+
 </div>
 
 <div id="cartItems"></div>
@@ -516,7 +569,10 @@ Total:
 ETB
 </div>
 
-<button class="checkout" onclick="openCheckout()">
+<button
+class="checkout"
+onclick="openCheckout()"
+>
 💳 Checkout & Pay
 </button>
 
@@ -531,9 +587,11 @@ ETB
 <div class="modal-content">
 
 <div class="modal-header">
+
 <h2>Checkout 📦</h2>
 
 <div class="close" onclick="closeCheckout()">×</div>
+
 </div>
 
 <div class="order-summary">
@@ -547,40 +605,82 @@ ETB
 
 </div>
 
+
 <div class="form-group">
 <label>First Name *</label>
-<input id="firstName" type="text" placeholder="Your first name">
+
+<input
+id="firstName"
+type="text"
+placeholder="Your first name"
+>
 </div>
+
 
 <div class="form-group">
 <label>Last Name *</label>
-<input id="lastName" type="text" placeholder="Your last name">
+
+<input
+id="lastName"
+type="text"
+placeholder="Your last name"
+>
 </div>
+
 
 <div class="form-group">
 <label>Phone Number *</label>
-<input id="phone" type="tel" placeholder="0912345678">
+
+<input
+id="phone"
+type="tel"
+inputmode="numeric"
+placeholder="0912345678"
+>
 </div>
+
 
 <div class="form-group">
 <label>Email</label>
-<input id="email" type="email" placeholder="you@example.com">
+
+<input
+id="email"
+type="email"
+placeholder="you@example.com"
+>
 </div>
+
 
 <div class="form-group">
 <label>Delivery Address *</label>
-<textarea id="address" placeholder="City, area, house number..."></textarea>
+
+<textarea
+id="address"
+placeholder="City, area, house number..."
+></textarea>
+
 </div>
 
-<button class="checkout" id="payButton" onclick="startPayment()">
+
+<button
+class="checkout"
+id="payButton"
+onclick="startPayment()"
+>
 💳 Pay Now
 </button>
 
-<div id="paymentStatus" class="payment-status"></div>
+
+<div
+id="paymentStatus"
+class="payment-status"
+></div>
 
 </div>
 </div>
 
+
+<!-- BOTTOM NAV -->
 
 <div class="bottom-nav">
 
@@ -610,25 +710,26 @@ Telegram
 <script>
 
 /* ==================================================
-CONFIG
+   CONFIG
 ================================================== */
 
 const TELEGRAM_USERNAME = "AbdiiMarketBot";
 
 /*
- IMPORTANT:
- Same Render backend as your health check.
+IMPORTANT:
+The website and backend are on the same Render service.
+Using relative URL avoids "Load failed" caused by
+wrong domain / CORS / old Render URL.
 */
 
-const BACKEND_URL =
-  "https://abdii-market-f3os.onrender.com";
+const BACKEND_URL = window.location.origin;
 
 const PAYMENT_ENDPOINT =
   BACKEND_URL + "/api/create-payment";
 
 
 /* ==================================================
-PRODUCTS
+   PRODUCTS
 ================================================== */
 
 const productsData = [
@@ -651,191 +752,72 @@ details:
 
 {
 id:2,
-name:"👟 Jordan 4",
-price:8500,
-category:"Shoes",
-image:"👟",
-details:
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: 37 hanga 42\n" +
-"✨ Quality: Brand / Quality"
+name:"🎧 Wireless Headphones",
+price:1800,
+category:"Electronics",
+image:"🎧",
+details:"Wireless Bluetooth"
 },
 
 {
 id:3,
-name:"👟 Jordan 5",
-price:10000,
-category:"Shoes",
-image:"👟",
-details:
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: 37 hanga 42\n" +
-"✨ Quality: Original Quality"
+name:"👕 Premium T-Shirt",
+price:850,
+category:"Fashion",
+image:"👕",
+details:"Quality fashion wear"
 },
 
 {
 id:4,
-name:"👟 Air Force",
-price:7500,
+name:"👟 Running Shoes",
+price:2200,
 category:"Shoes",
 image:"👟",
-details:
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: 35 hanga 42\n" +
-"✨ Quality: Original Quality"
+details:"Comfortable running shoes"
 },
 
 {
 id:5,
-name:"⚽👕 Maliya Football Jersey",
-price:5000,
-category:"Fashion",
-image:"⚽",
-details:
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"✨ Quality: Original Quality\n" +
-"⚽ Manchester United\n" +
-"⚽ Arsenal\n" +
-"⚽ Manchester City\n" +
-"⚽ Chelsea\n" +
-"⚽ Liverpool\n" +
-"⚽ Barcelona\n" +
-"⚽ Real Madrid"
+name:"⌚ Smart Watch",
+price:3200,
+category:"Electronics",
+image:"⌚",
+details:"Smart watch"
 },
 
 {
 id:6,
-name:"⌚ Men's New Fashion Watch",
-price:30000,
+name:"🎒 Backpack",
+price:1400,
 category:"Fashion",
-image:"⌚",
-details:
-"✨ Quality: Brand / Quality\n" +
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"🧩 Design: Design garaagaraa qaba"
+image:"🎒",
+details:"Fashion backpack"
 },
 
 {
 id:7,
-name:"🎧 Lenovo Bluetooth Earbuds",
-price:4500,
-category:"Electronics",
-image:"🎧",
-details:
-"🏷️ Brand: Lenovo\n" +
-"📡 Bluetooth: Wireless Bluetooth\n" +
-"✨ Quality: Original"
+name:"🪑 Home Chair",
+price:2500,
+category:"Home",
+image:"🪑",
+details:"Quality home chair"
 },
 
 {
 id:8,
-name:"🎧 I13 Wireless Bluetooth Earphones",
-price:1500,
-category:"Electronics",
-image:"🎧",
-details:
-"📡 Wireless Bluetooth\n" +
-"🎨 Color: Adii fi Gurraacha"
-},
-
-{
-id:9,
-name:"👖 Jeans Suure Gorone",
-price:5500,
-category:"Fashion",
-image:"👖",
-details:
-"🏷️ Style: American\n" +
-"✨ Quality: Original Quality\n" +
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: S, M, L"
-},
-
-{
-id:10,
-name:"👖 Brand New Baggy Jeans",
-price:6999,
-category:"Fashion",
-image:"👖",
-details:
-"✨ Quality: Original Quality / Brand\n" +
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: S, M, L"
-},
-
-{
-id:11,
-name:"👖 Brand New Baggy Tuta",
-price:3999,
-category:"Fashion",
-image:"👖",
-details:
-"✨ Quality: Original Quality\n" +
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Size: S, M, L"
-},
-
-{
-id:12,
-name:"🎒 Bag Fashion",
-price:5000,
-category:"Fashion",
-image:"🎒",
-details:
-"💻 Kan laptop\n" +
-"📱 Kan tablet\n" +
-"👕 Kan uffataa\n" +
-"✨ Quality: Original\n" +
-"🎨 Color: Halluu garaagaraa qaba"
-},
-
-{
-id:13,
-name:"📱 Samsung S22 Ultra 5G",
-price:75000,
-category:"Electronics",
-image:"📱",
-details:
-"✨ Condition: New Open Box\n" +
-"💾 Storage: 128GB / 256GB\n" +
-"🧠 RAM: 12GB\n" +
-"📶 Network: 5G\n" +
-"📲 SIM: Dual SIM\n" +
-"🔋 Battery: 5000mAh"
-},
-
-{
-id:14,
-name:"🎧 JBL Live Beam 3 Earbuds",
-price:5999,
-category:"Electronics",
-image:"🎧",
-details:
-"📦 Condition: Packed / New\n" +
-"🏷️ Brand: JBL Live Beam 3\n" +
-"📡 Wireless Bluetooth Earbuds\n" +
-"🎨 Color: Halluu garaagaraa qaba"
-},
-
-{
-id:15,
-name:"⛓️ Cuban Chain",
-price:3000,
-category:"Fashion",
-image:"⛓️",
-details:
-"✨ Quality: Original Quality\n" +
-"🎨 Color: Halluu garaagaraa qaba\n" +
-"📏 Dheeraa fi gabaabaa qaba\n" +
-"💪 Furdaa fi qal'aa qaba\n" +
-"📿 Kan mormaaf qaba"
+name:"💄 Beauty Kit",
+price:1700,
+category:"Beauty",
+image:"💄",
+details:"Beauty kit"
 }
 
 ];
 
 
 /* ==================================================
-CART
+   CART
 ================================================== */
 
 let cart =
@@ -844,33 +826,8 @@ localStorage.getItem("abdiiMarketCart")
 ) || [];
 
 
-function saveCart(){
-
-localStorage.setItem(
-"abdiiMarketCart",
-JSON.stringify(cart)
-);
-
-}
-
-
-function updateCart(){
-
-const count =
-cart.reduce(
-(sum,item)=>sum + item.quantity,
-0
-);
-
-document.getElementById(
-"cartCount"
-).innerText=count;
-
-}
-
-
 /* ==================================================
-PRODUCT DISPLAY
+   DISPLAY PRODUCTS
 ================================================== */
 
 function displayProducts(list){
@@ -878,21 +835,20 @@ function displayProducts(list){
 const container =
 document.getElementById("products");
 
-container.innerHTML="";
+container.innerHTML = "";
 
-if(list.length===0){
+if(!list.length){
 
-container.innerHTML=`
+container.innerHTML = `
 <div class="empty">
 ❌ Product not found.
 </div>
 `;
 
 return;
-
 }
 
-list.forEach(product=>{
+list.forEach(product => {
 
 container.innerHTML += `
 
@@ -909,7 +865,7 @@ ${product.name}
 </div>
 
 <div class="product-details">
-${product.details}
+${product.details || ""}
 </div>
 
 <div class="price">
@@ -932,21 +888,21 @@ ${product.price.toLocaleString()} ETB
 
 
 /* ==================================================
-ADD CART
+   CART
 ================================================== */
 
 function addToCart(id){
 
 const product =
 productsData.find(
-p=>p.id===id
+p => p.id === id
 );
 
-if(!product)return;
+if(!product) return;
 
 const existing =
 cart.find(
-item=>item.id===id
+item => item.id === id
 );
 
 if(existing){
@@ -966,9 +922,35 @@ saveCart();
 updateCart();
 
 alert(
-product.name+
+product.name +
 " added to cart 🛒"
 );
+
+}
+
+
+function saveCart(){
+
+localStorage.setItem(
+"abdiiMarketCart",
+JSON.stringify(cart)
+);
+
+}
+
+
+function updateCart(){
+
+const count =
+cart.reduce(
+(sum,item) =>
+sum + item.quantity,
+0
+);
+
+document.getElementById(
+"cartCount"
+).innerText = count;
 
 }
 
@@ -977,7 +959,7 @@ function openCart(){
 
 document.getElementById(
 "cartModal"
-).style.display="flex";
+).style.display = "flex";
 
 renderCart();
 
@@ -988,7 +970,7 @@ function closeCart(){
 
 document.getElementById(
 "cartModal"
-).style.display="none";
+).style.display = "none";
 
 }
 
@@ -1000,11 +982,11 @@ document.getElementById(
 "cartItems"
 );
 
-container.innerHTML="";
+container.innerHTML = "";
 
-if(cart.length===0){
+if(cart.length === 0){
 
-container.innerHTML=`
+container.innerHTML = `
 <div class="empty">
 🛒 Your cart is empty.
 </div>
@@ -1012,23 +994,23 @@ container.innerHTML=`
 
 document.getElementById(
 "cartTotal"
-).innerText="0";
+).innerText = "0";
 
 return;
 
 }
 
-let total=0;
+let total = 0;
 
 cart.forEach(
-(item,index)=>{
+(item,index) => {
 
 const itemTotal =
-item.price*item.quantity;
+item.price * item.quantity;
 
-total+=itemTotal;
+total += itemTotal;
 
-container.innerHTML+=`
+container.innerHTML += `
 
 <div class="cart-item">
 
@@ -1050,9 +1032,7 @@ ETB × ${item.quantity}
 
 <div class="quantity">
 
-<button
-onclick="changeQuantity(${index},-1)"
->
+<button onclick="changeQuantity(${index},-1)">
 −
 </button>
 
@@ -1060,9 +1040,7 @@ onclick="changeQuantity(${index},-1)"
 ${item.quantity}
 </strong>
 
-<button
-onclick="changeQuantity(${index},1)"
->
+<button onclick="changeQuantity(${index},1)">
 +
 </button>
 
@@ -1082,11 +1060,12 @@ Remove
 
 `;
 
-});
+}
+);
 
 document.getElementById(
 "cartTotal"
-).innerText=
+).innerText =
 total.toLocaleString();
 
 }
@@ -1094,11 +1073,11 @@ total.toLocaleString();
 
 function changeQuantity(index,change){
 
-if(!cart[index])return;
+if(!cart[index]) return;
 
-cart[index].quantity+=change;
+cart[index].quantity += change;
 
-if(cart[index].quantity<=0){
+if(cart[index].quantity <= 0){
 
 cart.splice(index,1);
 
@@ -1125,9 +1104,9 @@ renderCart();
 function getCartTotal(){
 
 return cart.reduce(
-(total,item)=>
-total+
-item.price*item.quantity,
+(total,item) =>
+total +
+item.price * item.quantity,
 0
 );
 
@@ -1135,31 +1114,32 @@ item.price*item.quantity,
 
 
 /* ==================================================
-CHECKOUT
+   CHECKOUT
 ================================================== */
 
 function openCheckout(){
 
-if(cart.length===0){
+if(cart.length === 0){
 
-alert(
-"Your cart is empty 🛒"
-);
+alert("Your cart is empty 🛒");
 
 return;
-
 }
 
 document.getElementById(
 "checkoutTotal"
-).innerText=
+).innerText =
 getCartTotal().toLocaleString();
 
 closeCart();
 
 document.getElementById(
+"paymentStatus"
+).style.display = "none";
+
+document.getElementById(
 "checkoutModal"
-).style.display="flex";
+).style.display = "flex";
 
 }
 
@@ -1168,45 +1148,42 @@ function closeCheckout(){
 
 document.getElementById(
 "checkoutModal"
-).style.display="none";
+).style.display = "none";
 
 }
 
 
 function createOrderId(){
 
-return "ABD-"+Date.now();
+return "ABD-" + Date.now();
 
 }
 
 
-function showPaymentStatus(
-message,
-success
-){
+function showPaymentStatus(message,success){
 
 const status =
 document.getElementById(
 "paymentStatus"
 );
 
-status.style.display="block";
+status.style.display = "block";
 
-status.className=
-"payment-status "+
+status.className =
+"payment-status " +
 (
 success
-?"payment-success"
-:"payment-failed"
+? "payment-success"
+: "payment-failed"
 );
 
-status.innerText=message;
+status.innerText = message;
 
 }
 
 
 /* ==================================================
-PAYMENT
+   START PAYMENT
 ================================================== */
 
 async function startPayment(){
@@ -1238,9 +1215,9 @@ document.getElementById(
 
 
 if(
-!firstName||
-!lastName||
-!phone||
+!firstName ||
+!lastName ||
+!phone ||
 !address
 ){
 
@@ -1266,7 +1243,7 @@ return;
 }
 
 
-if(cart.length===0){
+if(cart.length === 0){
 
 alert(
 "Your cart is empty 🛒"
@@ -1277,27 +1254,30 @@ return;
 }
 
 
+const amount =
+getCartTotal();
+
 const orderId =
 createOrderId();
 
 
-const order={
+const order = {
 
 orderId,
 
 customer:{
+
 firstName,
 lastName,
 phone,
-email:
-email||
-"customer@example.com",
+email,
 address
+
 },
 
 items:cart,
 
-amount:getCartTotal(),
+amount,
 
 currency:"ETB",
 
@@ -1318,31 +1298,51 @@ document.getElementById(
 "payButton"
 );
 
-payButton.disabled=true;
+payButton.disabled = true;
 
-payButton.innerText=
-"⏳ Payment loading...";
+payButton.innerText =
+"⏳ Connecting...";
 
 
 showPaymentStatus(
-"Chapa waliin wal qunnamamaa jira...",
+"⏳ Kaffaltii jalqabaa jira...",
 true
 );
 
 
 try{
 
+console.log(
+"Payment endpoint:",
+PAYMENT_ENDPOINT
+);
+
+console.log(
+"Payment order:",
+order
+);
+
+
+/*
+IMPORTANT:
+AbortController prevents infinite loading.
+*/
+
 const controller =
 new AbortController();
 
 const timeout =
 setTimeout(
-()=>controller.abort(),
-20000
+() => controller.abort(),
+30000
 );
 
 
-const response =
+let response;
+
+try{
+
+response =
 await fetch(
 PAYMENT_ENDPOINT,
 {
@@ -1363,43 +1363,50 @@ controller.signal
 }
 );
 
+}finally{
 
 clearTimeout(timeout);
+
+}
 
 
 const raw =
 await response.text();
 
-let data={};
+console.log(
+"Backend HTTP:",
+response.status
+);
+
+console.log(
+"Backend response:",
+raw
+);
+
+
+let data = {};
 
 try{
 
 data =
 raw
-?JSON.parse(raw)
-:{};
+? JSON.parse(raw)
+: {};
 
-}catch{
+}catch(error){
 
 throw new Error(
-"Server JSON deebisuu dadhabe."
+"Backend JSON deebii sirrii hin deebifne."
 );
 
 }
 
 
-console.log(
-"PAYMENT RESPONSE:",
-response.status,
-data
-);
-
-
 if(!response.ok){
 
 throw new Error(
-data.message||
-data.error||
+data.message ||
+data.error ||
 `Server error: ${response.status}`
 );
 
@@ -1407,17 +1414,23 @@ data.error||
 
 
 if(
-data.success&&
+data.success &&
 data.checkout_url
 ){
 
 showPaymentStatus(
-"✅ Chapa payment banamaa jira...",
+"✅ Chapa payment page banamaa jira...",
 true
 );
 
-window.location.href =
-data.checkout_url;
+
+/*
+Use checkout URL returned by backend.
+*/
+
+window.location.assign(
+data.checkout_url
+);
 
 return;
 
@@ -1425,7 +1438,7 @@ return;
 
 
 throw new Error(
-data.message||
+data.message ||
 "Chapa checkout URL hin argamne."
 );
 
@@ -1437,42 +1450,41 @@ console.error(
 error
 );
 
-
 let message =
-error.message||
+error.message ||
 "Unknown error";
 
 
 if(
-error.name==="AbortError"
+error.name === "AbortError"
 ){
 
-message=
-"Server yeroo dheeraa fudhate. Mee irra deebi'ii yaali.";
+message =
+"Serveriin yeroo dheeraa fudhate. Mee irra deebi'ii yaali.";
 
 }
 
 
 if(
-message==="Failed to fetch"
+message === "Failed to fetch"
 ){
 
-message=
-"Backend waliin wal qunnamtiin hin jiru. Render server kee ilaali.";
+message =
+"Backend waliin wal qunnamuun dadhabame. Mee Render service kee akka RUNNING ta'e mirkaneessi.";
 
 }
 
 
 showPaymentStatus(
-"❌ Payment jalqabuu hin dandeenye: "+
+"❌ Payment hin jalqabamne:\n" +
 message,
 false
 );
 
 
-payButton.disabled=false;
+payButton.disabled = false;
 
-payButton.innerText=
+payButton.innerText =
 "💳 Pay Now";
 
 }
@@ -1481,7 +1493,7 @@ payButton.innerText=
 
 
 /* ==================================================
-PAYMENT RETURN
+   PAYMENT RETURN
 ================================================== */
 
 function checkPaymentReturn(){
@@ -1498,16 +1510,23 @@ const txRef =
 params.get("tx_ref");
 
 
-if(payment==="success"){
+if(payment === "success"){
 
-cart=[];
+cart = [];
 
 saveCart();
 updateCart();
 
 alert(
-"✅ Payment successful!\n\nTransaction: "+
-(txRef||"")
+"✅ Payment successful!\n\n" +
+"Transaction: " +
+(txRef || "")
+);
+
+window.history.replaceState(
+{},
+document.title,
+window.location.pathname
 );
 
 return;
@@ -1515,10 +1534,21 @@ return;
 }
 
 
-if(payment==="failed"){
+if(payment === "failed"){
+
+showPaymentStatus(
+"❌ Kaffaltiin hin milkoofne.",
+false
+);
 
 alert(
 "❌ Payment failed. Mee irra deebi'ii yaali."
+);
+
+window.history.replaceState(
+{},
+document.title,
+window.location.pathname
 );
 
 }
@@ -1527,7 +1557,7 @@ alert(
 
 
 /* ==================================================
-SEARCH
+   SEARCH
 ================================================== */
 
 function searchProducts(){
@@ -1542,7 +1572,7 @@ document.getElementById(
 
 const results =
 productsData.filter(
-product=>
+product =>
 
 product.name
 .toLowerCase()
@@ -1556,13 +1586,12 @@ product.category
 
 ||
 
-(
-product.details||""
-)
+(product.details || "")
 .toLowerCase()
 .includes(query)
 
 );
+
 
 displayProducts(results);
 
@@ -1570,12 +1599,12 @@ displayProducts(results);
 
 
 /* ==================================================
-CATEGORY
+   CATEGORY
 ================================================== */
 
 function filterCategory(category){
 
-if(category==="All"){
+if(category === "All"){
 
 displayProducts(
 productsData
@@ -1585,18 +1614,20 @@ return;
 
 }
 
-displayProducts(
+
+const results =
 productsData.filter(
-product=>
-product.category===category
-)
+product =>
+product.category === category
 );
+
+displayProducts(results);
 
 }
 
 
 /* ==================================================
-NAVIGATION
+   NAVIGATION
 ================================================== */
 
 function scrollToProducts(){
@@ -1623,7 +1654,7 @@ behavior:"smooth"
 function openTelegram(){
 
 window.open(
-"https://t.me/"+
+"https://t.me/" +
 TELEGRAM_USERNAME,
 "_blank"
 );
@@ -1632,7 +1663,7 @@ TELEGRAM_USERNAME,
 
 
 /* ==================================================
-START
+   START
 ================================================== */
 
 displayProducts(
