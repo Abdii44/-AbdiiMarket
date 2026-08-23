@@ -3,11 +3,8 @@ const path = require("path");
 const TelegramBot = require("node-telegram-bot-api");
 
 const app = express();
-const PORT = process.env.PORT || 10000;
 
-// ==================================================
-// ENVIRONMENT VARIABLES
-// ==================================================
+const PORT = process.env.PORT || 10000;
 
 const CHAPA_SECRET_KEY =
   process.env.CHAPA_SECRET_KEY || "";
@@ -21,7 +18,7 @@ const PUBLIC_BASE_URL =
 
 const WEBSITE_URL =
   process.env.WEBSITE_URL ||
-  PUBLIC_BASE_URL;
+  "https://abdii-market-f3os.onrender.com";
 
 const CONTACT_PHONE =
   process.env.CONTACT_PHONE ||
@@ -31,23 +28,54 @@ const ADMIN_CHAT_ID =
   process.env.ADMIN_CHAT_ID || "";
 
 
-// ==================================================
-// EXPRESS
-// ==================================================
+/* ==================================================
+   EXPRESS
+================================================== */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+/* CORS */
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "*"
+  );
+
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,DELETE,OPTIONS"
+  );
+
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
+
 app.use(express.static(__dirname));
 
 
-// ==================================================
-// PRODUCTS
-// ==================================================
+/* ==================================================
+   PRODUCTS
+================================================== */
 
 const PRODUCTS = [
+
   {
+    id: 1,
     name: "📱 iPhone 13 Pro Max",
-    search: ["iphone 13 pro max", "iphone 13", "iphone"],
+    search: [
+      "iphone 13 pro max",
+      "iphone 13",
+      "iphone"
+    ],
     details:
       "🎨 Color: Gold\n" +
       "🔋 Battery: 93% ✅\n" +
@@ -55,40 +83,53 @@ const PRODUCTS = [
       "🌈 True Tone: Working ✅\n" +
       "💾 Storage: 256GB ✅\n" +
       "✨ Condition: New",
-    price: "102,000 ETB"
+    price: 102000
   },
 
   {
+    id: 2,
     name: "👟 Jordan 4",
-    search: ["jordan 4", "jordan4"],
+    search: [
+      "jordan 4",
+      "jordan4"
+    ],
     details:
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: 37 hanga 42\n" +
       "✨ Quality: Brand / Quality",
-    price: "8,500 ETB / 5,500 ETB"
+    price: 8500
   },
 
   {
+    id: 3,
     name: "👟 Jordan 5",
-    search: ["jordan 5", "jordan5"],
+    search: [
+      "jordan 5",
+      "jordan5"
+    ],
     details:
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: 37 hanga 42\n" +
       "✨ Quality: Original Quality",
-    price: "10,000 ETB"
+    price: 10000
   },
 
   {
+    id: 4,
     name: "👟 Air Force",
-    search: ["air force", "airforce"],
+    search: [
+      "air force",
+      "airforce"
+    ],
     details:
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: 35 hanga 42\n" +
       "✨ Quality: Original Quality",
-    price: "7,500 ETB / 5,500 ETB"
+    price: 7500
   },
 
   {
+    id: 5,
     name: "⚽👕 Maliya Football Jersey",
     search: [
       "maliya",
@@ -118,10 +159,11 @@ const PRODUCTS = [
       "Newcastle United\n" +
       "Barcelona\n" +
       "Real Madrid",
-    price: "5,000 ETB / 3,000 ETB"
+    price: 5000
   },
 
   {
+    id: 6,
     name: "⌚ Men's New Fashion Watch",
     search: [
       "watch",
@@ -133,11 +175,11 @@ const PRODUCTS = [
       "✨ Quality: Brand / Quality\n" +
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "🧩 Design: Design garaagaraa qaba",
-    price:
-      "30,000 / 15,000 / 10,000 / 8,000 / 5,500 / 5,000 / 3,499 / 2,999 ETB"
+    price: 3000
   },
 
   {
+    id: 7,
     name: "🎧 Lenovo Bluetooth Earbuds",
     search: [
       "lenovo earbuds",
@@ -148,10 +190,11 @@ const PRODUCTS = [
       "🏷️ Brand: Lenovo\n" +
       "📡 Bluetooth: Wireless Bluetooth\n" +
       "✨ Quality: Original",
-    price: "4,500 ETB"
+    price: 4500
   },
 
   {
+    id: 8,
     name: "🎧 I13 Wireless Bluetooth Earphones",
     search: [
       "i13",
@@ -162,10 +205,11 @@ const PRODUCTS = [
     details:
       "📡 Wireless Bluetooth\n" +
       "🎨 Color: Adii fi Gurraacha",
-    price: "1,500 ETB"
+    price: 1500
   },
 
   {
+    id: 9,
     name: "👖 Jeans Suure Gorone",
     search: [
       "jeans",
@@ -177,10 +221,11 @@ const PRODUCTS = [
       "✨ Quality: Original Quality\n" +
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: S, M, L",
-    price: "5,500 ETB"
+    price: 5500
   },
 
   {
+    id: 10,
     name: "👖 Brand New Baggy Jeans",
     search: [
       "baggy jeans",
@@ -190,20 +235,25 @@ const PRODUCTS = [
       "✨ Quality: Original Quality / Brand\n" +
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: S, M, L",
-    price: "6,999 ETB"
+    price: 6999
   },
 
   {
+    id: 11,
     name: "👖 Brand New Baggy Tuta",
-    search: ["baggy tuta", "tuta"],
+    search: [
+      "baggy tuta",
+      "tuta"
+    ],
     details:
       "✨ Quality: Original Quality\n" +
       "🎨 Color: Halluu garaagaraa qaba\n" +
       "📏 Size: S, M, L",
-    price: "3,999 ETB"
+    price: 3999
   },
 
   {
+    id: 12,
     name: "🎒 Bag Fashion",
     search: [
       "bag",
@@ -216,12 +266,12 @@ const PRODUCTS = [
       "📱 Kan tablet\n" +
       "👕 Kan uffataa\n" +
       "✨ Quality: Original\n" +
-      "🎨 Color: Halluu garaagaraa qaba\n" +
-      "🧩 Design: Design bareedaa garaagaraa qaba",
-    price: "5,000 / 4,599 / 3,000 ETB"
+      "🎨 Color: Halluu garaagaraa qaba",
+    price: 5000
   },
 
   {
+    id: 13,
     name: "📱 Samsung S22 Ultra 5G",
     search: [
       "samsung s22 ultra",
@@ -236,10 +286,11 @@ const PRODUCTS = [
       "📲 SIM: Dual SIM\n" +
       "🔋 Battery: 5000mAh\n" +
       "🌍 Origin: Ireland",
-    price: "75,000 ETB"
+    price: 75000
   },
 
   {
+    id: 14,
     name: "🎧 JBL Live Beam 3 Earbuds",
     search: [
       "jbl",
@@ -251,12 +302,12 @@ const PRODUCTS = [
       "📦 Condition: Packed / New\n" +
       "🏷️ Brand: JBL Live Beam 3\n" +
       "📡 Type: Wireless Bluetooth Earbuds\n" +
-      "🧠 Smart Features: Smart\n" +
       "🎨 Color: Halluu garaagaraa qaba",
-    price: "5,999 ETB"
+    price: 5999
   },
 
   {
+    id: 15,
     name: "⛓️ Cuban Chain",
     search: [
       "cuban chain",
@@ -271,33 +322,39 @@ const PRODUCTS = [
       "💪 Furdaa fi qal'aa qaba\n" +
       "🤲 Kan harkaaf qaba\n" +
       "📿 Kan mormaaf qaba",
-    price: "3,000 / 2,000 / 1,500 ETB"
+    price: 3000
   }
+
 ];
 
 
-// ==================================================
-// TELEGRAM
-// ==================================================
+/* ==================================================
+   TELEGRAM
+================================================== */
 
 let bot = null;
+
 const userOrders = new Map();
 
 
-// ==================================================
-// MENU
-// ==================================================
+function formatPrice(amount) {
+  return Number(amount).toLocaleString() + " ETB";
+}
+
 
 function mainMenu() {
+
   return {
     reply_markup: {
       inline_keyboard: [
+
         [
           {
             text: "🛍️ Meeshaalee Ilaali",
             callback_data: "products"
           }
         ],
+
         [
           {
             text: "💰 Gatii Gaafadhu",
@@ -308,6 +365,7 @@ function mainMenu() {
             callback_data: "order"
           }
         ],
+
         [
           {
             text: "🛒 Cart",
@@ -318,25 +376,33 @@ function mainMenu() {
             callback_data: "contact"
           }
         ],
+
         [
           {
             text: "🌐 Website",
             url: WEBSITE_URL
           }
         ]
+
       ]
     }
   };
+
 }
 
 
 function productMenu() {
-  const buttons = PRODUCTS.map((product, index) => [
-    {
-      text: product.name,
-      callback_data: `product_${index}`
-    }
-  ]);
+
+  const buttons =
+    PRODUCTS.map((product, index) => [
+
+      {
+        text: product.name,
+        callback_data:
+          `product_${index}`
+      }
+
+    ]);
 
   buttons.push([
     {
@@ -350,12 +416,13 @@ function productMenu() {
       inline_keyboard: buttons
     }
   };
+
 }
 
 
-// ==================================================
-// TELEGRAM BOT
-// ==================================================
+/* ==================================================
+   TELEGRAM BOT
+================================================== */
 
 if (TELEGRAM_BOT_TOKEN) {
 
@@ -366,19 +433,25 @@ if (TELEGRAM_BOT_TOKEN) {
     }
   );
 
-  console.log("🤖 Telegram bot started");
+  console.log(
+    "🤖 Telegram bot started"
+  );
 
 
-  bot.onText(/^\/start$/, async (msg) => {
+  bot.onText(
+    /^\/start$/,
+    async (msg) => {
 
-    const chatId = msg.chat.id;
+      const chatId =
+        msg.chat.id;
 
-    userOrders.delete(chatId);
+      userOrders.delete(chatId);
 
-    await bot.sendMessage(
-      chatId,
+      await bot.sendMessage(
 
-      `👋 *Baga gara Abdii Market dhuftan!*
+        chatId,
+
+        `👋 *Baga gara Abdii Market dhuftan!*
 
 🛍️ Meeshaalee qulqullina qaban bakka tokkotti argadhaa.
 
@@ -389,187 +462,254 @@ if (TELEGRAM_BOT_TOKEN) {
 
 👇 Maal gochuu barbaadda?`,
 
-      {
-        parse_mode: "Markdown",
-        ...mainMenu()
-      }
-    );
-  });
+        {
+          parse_mode: "Markdown",
+          ...mainMenu()
+        }
+
+      );
+
+    }
+  );
 
 
-  bot.on("callback_query", async (query) => {
+  bot.on(
+    "callback_query",
+    async (query) => {
 
-    const chatId = query.message.chat.id;
-    const action = query.data;
+      const chatId =
+        query.message.chat.id;
 
-    try {
+      const action =
+        query.data;
 
-      await bot.answerCallbackQuery(query.id);
+      try {
+
+        await bot.answerCallbackQuery(
+          query.id
+        );
 
 
-      if (action === "products") {
+        if (
+          action === "products"
+        ) {
 
-        await bot.sendMessage(
-          chatId,
+          await bot.sendMessage(
 
-          `🛍️ *Meeshaalee Abdii Market*
+            chatId,
+
+            `🛍️ *Meeshaalee Abdii Market*
 
 Meeshaa barbaaddu keessaa tokko filadhu 👇`,
 
-          {
-            parse_mode: "Markdown",
-            ...productMenu()
-          }
-        );
+            {
+              parse_mode: "Markdown",
+              ...productMenu()
+            }
 
-        return;
-      }
-
-
-      if (action.startsWith("product_")) {
-
-        const index =
-          Number(
-            action.replace(
-              "product_",
-              ""
-            )
           );
 
-        const product = PRODUCTS[index];
-
-        if (!product) {
-          await bot.sendMessage(
-            chatId,
-            "❌ Product hin argamne."
-          );
           return;
         }
 
-        await bot.sendMessage(
 
-          chatId,
+        if (
+          action.startsWith(
+            "product_"
+          )
+        ) {
 
-          `🛍️ *${product.name}*
+          const index =
+            Number(
+              action.replace(
+                "product_",
+                ""
+              )
+            );
+
+          const product =
+            PRODUCTS[index];
+
+          if (!product) {
+
+            await bot.sendMessage(
+              chatId,
+              "❌ Product hin argamne."
+            );
+
+            return;
+          }
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `🛍️ *${product.name}*
 
 ${product.details}
 
-💰 *Gatii:* ${product.price}
+💰 *Gatii:* ${formatPrice(product.price)}
 
 📞 *Bilbila:* ${CONTACT_PHONE}
 📍 *Location:* Addis Ababa`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "📦 Meeshaa kana Order godhi",
-                    callback_data:
-                      `buy_${index}`
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "🛍️ Meeshaalee biroo",
-                    callback_data:
-                      "products"
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "⬅️ Menu",
-                    callback_data:
-                      "menu"
-                  }
+            {
+              parse_mode: "Markdown",
+
+              reply_markup: {
+
+                inline_keyboard: [
+
+                  [
+                    {
+                      text:
+                        "📦 Meeshaa kana Order godhi",
+
+                      callback_data:
+                        `buy_${index}`
+                    }
+                  ],
+
+                  [
+                    {
+                      text:
+                        "🛍️ Meeshaalee biroo",
+
+                      callback_data:
+                        "products"
+                    }
+                  ],
+
+                  [
+                    {
+                      text:
+                        "⬅️ Menu",
+
+                      callback_data:
+                        "menu"
+                    }
+                  ]
+
                 ]
-              ]
+
+              }
+
             }
-          }
-        );
 
-        return;
-      }
-
-
-      if (action.startsWith("buy_")) {
-
-        const index =
-          Number(
-            action.replace(
-              "buy_",
-              ""
-            )
           );
 
-        const product = PRODUCTS[index];
-
-        if (!product) {
-          await bot.sendMessage(
-            chatId,
-            "❌ Product hin argamne."
-          );
           return;
         }
 
-        userOrders.set(
-          chatId,
-          {
-            step: "name",
-            product: product.name,
-            price: product.price,
-            name: "",
-            phone: "",
-            address: ""
+
+        if (
+          action.startsWith(
+            "buy_"
+          )
+        ) {
+
+          const index =
+            Number(
+              action.replace(
+                "buy_",
+                ""
+              )
+            );
+
+          const product =
+            PRODUCTS[index];
+
+          if (!product) {
+
+            await bot.sendMessage(
+              chatId,
+              "❌ Product hin argamne."
+            );
+
+            return;
           }
-        );
 
-        await bot.sendMessage(
 
-          chatId,
+          userOrders.set(
+            chatId,
+            {
 
-          `📦 *Order jalqabame*
+              step:
+                "name",
+
+              product:
+                product.name,
+
+              price:
+                product.price,
+
+              name:
+                "",
+
+              phone:
+                "",
+
+              address:
+                ""
+
+            }
+          );
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `📦 *Order jalqabame*
 
 🛍️ Meeshaa:
 ${product.name}
 
 💰 Gatii:
-${product.price}
+${formatPrice(product.price)}
 
 Amma maqaa guutuu kee barreessi.`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "❌ Cancel",
-                    callback_data:
-                      "cancel_order"
-                  }
+            {
+              parse_mode:
+                "Markdown",
+
+              reply_markup: {
+
+                inline_keyboard: [
+
+                  [
+                    {
+                      text:
+                        "❌ Cancel",
+
+                      callback_data:
+                        "cancel_order"
+                    }
+                  ]
+
                 ]
-              ]
+
+              }
+
             }
-          }
-        );
 
-        return;
-      }
+          );
+
+          return;
+        }
 
 
-      if (action === "price") {
+        if (
+          action === "price"
+        ) {
 
-        await bot.sendMessage(
+          await bot.sendMessage(
 
-          chatId,
+            chatId,
 
-          `💰 *Gatii Gaafadhu*
+            `💰 *Gatii Gaafadhu*
 
 Maqaa meeshaa barbaaddu naaf barreessi.
 
@@ -581,346 +721,381 @@ ykn
 
 *Jordan 4*`,
 
-          {
-            parse_mode: "Markdown",
-            ...mainMenu()
-          }
-        );
+            {
+              parse_mode:
+                "Markdown",
 
-        return;
-      }
+              ...mainMenu()
+            }
+
+          );
+
+          return;
+        }
 
 
-      if (action === "order") {
+        if (
+          action === "order"
+        ) {
 
-        userOrders.set(
-          chatId,
-          {
-            step: "product",
-            product: "",
-            price: "",
-            name: "",
-            phone: "",
-            address: ""
-          }
-        );
+          userOrders.set(
 
-        await bot.sendMessage(
+            chatId,
 
-          chatId,
+            {
+              step:
+                "product",
 
-          `📦 *Order Haaraa*
+              product:
+                "",
+
+              price:
+                "",
+
+              name:
+                "",
+
+              phone:
+                "",
+
+              address:
+                ""
+            }
+
+          );
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `📦 *Order Haaraa*
 
 Mee maqaa meeshaa ati bituu barbaaddu barreessi.`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "❌ Cancel",
-                    callback_data:
-                      "cancel_order"
-                  }
-                ]
-              ]
+            {
+              parse_mode:
+                "Markdown"
             }
-          }
-        );
 
-        return;
-      }
+          );
+
+          return;
+        }
 
 
-      if (action === "contact") {
+        if (
+          action === "contact"
+        ) {
 
-        await bot.sendMessage(
+          await bot.sendMessage(
 
-          chatId,
+            chatId,
 
-          `📞 *Nu Qunnami*
+            `📞 *Nu Qunnami*
 
 ☎️ Bilbila: ${CONTACT_PHONE}
 
 📍 Location: Addis Ababa
 
-🛍️ Abdii Market
-🌐 ${WEBSITE_URL}`,
+🛍️ Abdii Market`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "📞 Bilbila",
-                    url:
-                      `tel:${CONTACT_PHONE}`
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "🌐 Website",
-                    url:
-                      WEBSITE_URL
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "⬅️ Menu",
-                    callback_data:
-                      "menu"
-                  }
-                ]
-              ]
+            {
+              parse_mode:
+                "Markdown",
+
+              ...mainMenu()
             }
-          }
-        );
 
-        return;
-      }
+          );
+
+          return;
+        }
 
 
-      if (action === "cart") {
+        if (
+          action === "cart"
+        ) {
 
-        await bot.sendMessage(
+          await bot.sendMessage(
 
-          chatId,
+            chatId,
 
-          `🛒 *Cart*
+            `🛒 *Cart*
 
 Meeshaa tokko filadhu; achiis *Order* godhi.`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "🛍️ Meeshaalee Ilaali",
-                    callback_data:
-                      "products"
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "📦 Order Godhi",
-                    callback_data:
-                      "order"
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "⬅️ Menu",
-                    callback_data:
-                      "menu"
-                  }
-                ]
-              ]
+            {
+              parse_mode:
+                "Markdown",
+
+              ...mainMenu()
             }
-          }
-        );
 
-        return;
-      }
+          );
+
+          return;
+        }
 
 
-      if (action === "menu") {
+        if (
+          action === "menu"
+        ) {
 
-        await bot.sendMessage(
+          await bot.sendMessage(
 
-          chatId,
+            chatId,
 
-          `🏠 *Abdii Market Menu*
+            `🏠 *Abdii Market Menu*
 
 👇 Waan barbaaddu filadhu:`,
 
-          {
-            parse_mode: "Markdown",
-            ...mainMenu()
-          }
-        );
+            {
+              parse_mode:
+                "Markdown",
 
-        return;
-      }
+              ...mainMenu()
+            }
 
-
-      if (action === "cancel_order") {
-
-        userOrders.delete(chatId);
-
-        await bot.sendMessage(
-          chatId,
-          "❌ Order haqameera.",
-          mainMenu()
-        );
-
-        return;
-      }
-
-    } catch (error) {
-
-      console.error(
-        "BUTTON ERROR:",
-        error
-      );
-
-    }
-  });
-
-
-  bot.on("message", async (msg) => {
-
-    const chatId =
-      msg.chat.id;
-
-    const text =
-      String(msg.text || "").trim();
-
-    if (!text || text === "/start") {
-      return;
-    }
-
-    const order =
-      userOrders.get(chatId);
-
-
-    if (order) {
-
-      if (order.step === "product") {
-
-        const searchText =
-          text.toLowerCase();
-
-        const product =
-          PRODUCTS.find((p) =>
-            p.search.some((keyword) =>
-              searchText.includes(
-                keyword.toLowerCase()
-              )
-            )
           );
 
-        if (product) {
+          return;
+        }
 
-          order.product =
-            product.name;
 
-          order.price =
-            product.price;
+        if (
+          action === "cancel_order"
+        ) {
 
-          order.step =
-            "name";
-
-          userOrders.set(
-            chatId,
-            order
+          userOrders.delete(
+            chatId
           );
 
           await bot.sendMessage(
 
             chatId,
 
-            `✅ Meeshaa argame:
+            "❌ Order haqameera.",
 
-🛍️ *${product.name}*
-💰 Gatii: *${product.price}*
-
-Amma maqaa guutuu kee barreessi.`,
-
-            {
-              parse_mode: "Markdown"
-            }
+            mainMenu()
           );
 
           return;
         }
 
-        await bot.sendMessage(
-          chatId,
-          `❌ Meeshaa ati barreessite hin argamne.`,
-          productMenu()
+      } catch (error) {
+
+        console.error(
+          "BUTTON ERROR:",
+          error
         );
 
+      }
+
+    }
+  );
+
+
+  bot.on(
+    "message",
+    async (msg) => {
+
+      const chatId =
+        msg.chat.id;
+
+      const text =
+        String(
+          msg.text || ""
+        ).trim();
+
+      if (
+        !text ||
+        text === "/start"
+      ) {
         return;
       }
 
 
-      if (order.step === "name") {
-
-        order.name = text;
-        order.step = "phone";
-
-        userOrders.set(
-          chatId,
-          order
+      const order =
+        userOrders.get(
+          chatId
         );
 
-        await bot.sendMessage(
-          chatId,
-          `👤 Galatoomi *${text}*.
 
-Amma lakkoofsa bilbila kee barreessi.`,
-          {
-            parse_mode: "Markdown"
-          }
-        );
+      /* ORDER FLOW */
 
-        return;
-      }
+      if (order) {
 
 
-      if (order.step === "phone") {
+        if (
+          order.step ===
+          "product"
+        ) {
 
-        order.phone = text;
-        order.step = "address";
+          const searchText =
+            text.toLowerCase();
 
-        userOrders.set(
-          chatId,
-          order
-        );
-
-        await bot.sendMessage(
-          chatId,
-          `📞 Lakkoofsa kee galmeessineerra.
-
-Amma *teessoo/geejjiba* ittiin argachuu barbaaddu barreessi.`,
-          {
-            parse_mode: "Markdown"
-          }
-        );
-
-        return;
-      }
+          const product =
+            PRODUCTS.find(
+              (p) =>
+                p.search.some(
+                  (keyword) =>
+                    searchText.includes(
+                      keyword.toLowerCase()
+                    )
+                )
+            );
 
 
-      if (order.step === "address") {
+          if (product) {
 
-        order.address = text;
+            order.product =
+              product.name;
 
-        if (ADMIN_CHAT_ID) {
+            order.price =
+              product.price;
 
-          try {
+            order.step =
+              "name";
+
+            userOrders.set(
+              chatId,
+              order
+            );
+
 
             await bot.sendMessage(
 
-              ADMIN_CHAT_ID,
+              chatId,
 
-              `🚨 *ORDER HAARAA*
+              `✅ Meeshaa argame:
+
+🛍️ *${product.name}*
+💰 Gatii: *${formatPrice(product.price)}*
+
+Amma maqaa guutuu kee barreessi.`,
+
+              {
+                parse_mode:
+                  "Markdown"
+              }
+
+            );
+
+            return;
+          }
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `❌ Meeshaa ati barreessite hin argamne.`,
+
+            productMenu()
+
+          );
+
+          return;
+        }
+
+
+        if (
+          order.step ===
+          "name"
+        ) {
+
+          order.name =
+            text;
+
+          order.step =
+            "phone";
+
+          userOrders.set(
+            chatId,
+            order
+          );
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `👤 Galatoomi *${text}*.
+
+Amma lakkoofsa bilbila kee barreessi.`,
+
+            {
+              parse_mode:
+                "Markdown"
+            }
+
+          );
+
+          return;
+        }
+
+
+        if (
+          order.step ===
+          "phone"
+        ) {
+
+          order.phone =
+            text;
+
+          order.step =
+            "address";
+
+          userOrders.set(
+            chatId,
+            order
+          );
+
+
+          await bot.sendMessage(
+
+            chatId,
+
+            `📞 Lakkoofsa kee galmeessineerra.
+
+Amma *teessoo/geejjiba* ittiin argachuu barbaaddu barreessi.`,
+
+            {
+              parse_mode:
+                "Markdown"
+            }
+
+          );
+
+          return;
+        }
+
+
+        if (
+          order.step ===
+          "address"
+        ) {
+
+          order.address =
+            text;
+
+
+          if (ADMIN_CHAT_ID) {
+
+            try {
+
+              await bot.sendMessage(
+
+                ADMIN_CHAT_ID,
+
+                `🚨 *ORDER HAARAA*
 
 🛍️ Meeshaa:
 ${order.product}
 
 💰 Gatii:
-${order.price}
+${formatPrice(order.price)}
 
 👤 Maqaa:
 ${order.name}
@@ -937,34 +1112,41 @@ ${order.address}
 🆔 Chat ID:
 ${chatId}`,
 
-              {
-                parse_mode: "Markdown"
-              }
-            );
+                {
+                  parse_mode:
+                    "Markdown"
+                }
 
-          } catch (error) {
+              );
 
-            console.error(
-              "ADMIN ORDER ERROR:",
-              error
-            );
+            } catch (error) {
+
+              console.error(
+                "ADMIN ORDER ERROR:",
+                error
+              );
+
+            }
 
           }
-        }
 
-        userOrders.delete(chatId);
 
-        await bot.sendMessage(
+          userOrders.delete(
+            chatId
+          );
 
-          chatId,
 
-          `🎉 *Order kee fudhanneerra!*
+          await bot.sendMessage(
+
+            chatId,
+
+            `🎉 *Order kee fudhanneerra!*
 
 🛍️ Meeshaa:
 ${order.product}
 
 💰 Gatii:
-${order.price}
+${formatPrice(order.price)}
 
 👤 Maqaa:
 ${order.name}
@@ -977,217 +1159,252 @@ ${order.address}
 
 🙏 Galatoomi Abdii Market filachuu keetiif.`,
 
-          {
-            parse_mode: "Markdown",
-            reply_markup: {
-              inline_keyboard: [
-                [
-                  {
-                    text:
-                      "🛍️ Meeshaalee Ilaali",
-                    callback_data:
-                      "products"
-                  }
-                ],
-                [
-                  {
-                    text:
-                      "🏠 Menu",
-                    callback_data:
-                      "menu"
-                  }
-                ]
-              ]
+            {
+              parse_mode:
+                "Markdown",
+
+              ...mainMenu()
             }
-          }
-        );
 
-        return;
+          );
+
+          return;
+        }
+
       }
-    }
 
 
-    const lower =
-      text.toLowerCase();
+      /* PRODUCT SEARCH */
 
-    const foundProduct =
-      PRODUCTS.find((product) =>
-        product.search.some((keyword) =>
-          lower.includes(
-            keyword.toLowerCase()
-          )
-        )
-      );
+      const lower =
+        text.toLowerCase();
 
-    if (foundProduct) {
 
-      const index =
-        PRODUCTS.indexOf(
-          foundProduct
+      const foundProduct =
+        PRODUCTS.find(
+          (product) =>
+            product.search.some(
+              (keyword) =>
+                lower.includes(
+                  keyword.toLowerCase()
+                )
+            )
         );
 
-      await bot.sendMessage(
 
-        chatId,
+      if (foundProduct) {
 
-        `🛍️ *${foundProduct.name}*
+        const index =
+          PRODUCTS.indexOf(
+            foundProduct
+          );
+
+
+        await bot.sendMessage(
+
+          chatId,
+
+          `🛍️ *${foundProduct.name}*
 
 ${foundProduct.details}
 
-💰 *Gatii:* ${foundProduct.price}
+💰 *Gatii:* ${formatPrice(foundProduct.price)}
 
 📞 *Bilbila:* ${CONTACT_PHONE}
 📍 *Location:* Addis Ababa`,
 
-        {
-          parse_mode: "Markdown",
-          reply_markup: {
-            inline_keyboard: [
-              [
-                {
-                  text:
-                    "📦 Order godhi",
-                  callback_data:
-                    `buy_${index}`
-                }
-              ],
-              [
-                {
-                  text:
-                    "🛍️ Meeshaalee biroo",
-                  callback_data:
-                    "products"
-                }
-              ],
-              [
-                {
-                  text:
-                    "🏠 Menu",
-                  callback_data:
-                    "menu"
-                }
+          {
+            parse_mode:
+              "Markdown",
+
+            reply_markup: {
+
+              inline_keyboard: [
+
+                [
+                  {
+                    text:
+                      "📦 Order godhi",
+
+                    callback_data:
+                      `buy_${index}`
+                  }
+                ],
+
+                [
+                  {
+                    text:
+                      "🛍️ Meeshaalee biroo",
+
+                    callback_data:
+                      "products"
+                  }
+                ],
+
+                [
+                  {
+                    text:
+                      "🏠 Menu",
+
+                    callback_data:
+                      "menu"
+                  }
+                ]
+
               ]
-            ]
+
+            }
+
           }
-        }
-      );
 
-      return;
-    }
+        );
+
+        return;
+      }
 
 
-    if (
-      lower.includes("akkam") ||
-      lower.includes("hello") ||
-      lower === "hi" ||
-      lower.includes("salam") ||
-      lower.includes("selam")
-    ) {
+      /* GREETING */
 
-      await bot.sendMessage(
+      if (
+        lower.includes("akkam") ||
+        lower.includes("hello") ||
+        lower === "hi" ||
+        lower.includes("salam") ||
+        lower.includes("selam")
+      ) {
 
-        chatId,
+        await bot.sendMessage(
 
-        `👋 Akkam ${msg.from?.first_name || ""}!
+          chatId,
+
+          `👋 Akkam ${msg.from?.first_name || ""}!
 
 Baga gara *Abdii Market* dhuftan. 🛍️
 
 Maal isin gargaaruu danda'a?`,
 
-        {
-          parse_mode: "Markdown",
-          ...mainMenu()
-        }
-      );
+          {
+            parse_mode:
+              "Markdown",
 
-      return;
-    }
+            ...mainMenu()
+          }
 
+        );
 
-    if (
-      lower.includes("gatii") ||
-      lower.includes("meeqa") ||
-      lower.includes("price")
-    ) {
-
-      await bot.sendMessage(
-
-        chatId,
-
-        `💰 Gatii meeshaa barbaaddu baruuf maqaa meeshaa sana naaf barreessi.
-
-Fakkeenyaaf:
-
-*iPhone 13 Pro Max*
-*Jordan 4*
-*Samsung S22 Ultra*`,
-
-        {
-          parse_mode: "Markdown",
-          ...mainMenu()
-        }
-      );
-
-      return;
-    }
+        return;
+      }
 
 
-    if (
-      lower.includes("order") ||
-      lower.includes("bituu") ||
-      lower.includes("bitaa") ||
-      lower.includes("ajaja")
-    ) {
+      /* PRICE */
 
-      userOrders.set(
-        chatId,
-        {
-          step: "product",
-          product: "",
-          price: "",
-          name: "",
-          phone: "",
-          address: ""
-        }
-      );
+      if (
+        lower.includes("gatii") ||
+        lower.includes("meeqa") ||
+        lower.includes("price")
+      ) {
 
-      await bot.sendMessage(
-        chatId,
-        `📦 *Order jalqabuuf*
+        await bot.sendMessage(
+
+          chatId,
+
+          `💰 Gatii meeshaa barbaaddu baruuf maqaa meeshaa sana naaf barreessi.`,
+
+          {
+            parse_mode:
+              "Markdown",
+
+            ...mainMenu()
+          }
+
+        );
+
+        return;
+      }
+
+
+      /* ORDER */
+
+      if (
+        lower.includes("order") ||
+        lower.includes("bituu") ||
+        lower.includes("bitaa") ||
+        lower.includes("ajaja")
+      ) {
+
+        userOrders.set(
+
+          chatId,
+
+          {
+            step:
+              "product",
+
+            product:
+              "",
+
+            price:
+              "",
+
+            name:
+              "",
+
+            phone:
+              "",
+
+            address:
+              ""
+          }
+
+        );
+
+
+        await bot.sendMessage(
+
+          chatId,
+
+          `📦 *Order jalqabuuf*
 
 Maqaa meeshaa ati barbaaddu barreessi.`,
-        {
-          parse_mode: "Markdown"
-        }
-      );
 
-      return;
-    }
+          {
+            parse_mode:
+              "Markdown"
+          }
+
+        );
+
+        return;
+      }
 
 
-    await bot.sendMessage(
+      await bot.sendMessage(
 
-      chatId,
+        chatId,
 
-      `👋 Galatoomi nu qunnamuu keetiif!
+        `👋 Galatoomi nu qunnamuu keetiif!
 
 Abdii Market keessatti maal barbaadda?
 
 👇 Menu keessaa filadhu:`,
 
-      mainMenu()
-    );
+        mainMenu()
 
-  });
+      );
+
+    }
+  );
 
 
   bot.on(
     "polling_error",
     (error) => {
+
       console.error(
         "TELEGRAM POLLING ERROR:",
         error.message
       );
+
     }
   );
 
@@ -1200,35 +1417,47 @@ Abdii Market keessatti maal barbaadda?
 }
 
 
-// ==================================================
-// HEALTH CHECK
-// ==================================================
+/* ==================================================
+   HEALTH
+================================================== */
 
 app.get(
   "/api/health",
   (req, res) => {
 
     res.json({
-      success: true,
+
+      success:
+        true,
+
       message:
         "Abdii Market backend is running 🚀",
+
       chapa_key_loaded:
-        Boolean(CHAPA_SECRET_KEY),
+        Boolean(
+          CHAPA_SECRET_KEY
+        ),
+
       telegram_bot_loaded:
-        Boolean(TELEGRAM_BOT_TOKEN),
+        Boolean(
+          TELEGRAM_BOT_TOKEN
+        ),
+
       products:
         PRODUCTS.length,
+
       base_url:
         PUBLIC_BASE_URL
+
     });
 
   }
 );
 
 
-// ==================================================
-// CREATE CHAPA PAYMENT
-// ==================================================
+/* ==================================================
+   CREATE CHAPA PAYMENT
+================================================== */
 
 app.post(
   "/api/create-payment",
@@ -1237,24 +1466,42 @@ app.post(
     try {
 
       console.log(
-        "💳 Payment request received"
+        "💳 PAYMENT REQUEST RECEIVED"
       );
+
+      console.log(
+        JSON.stringify(
+          req.body,
+          null,
+          2
+        )
+      );
+
 
       if (!CHAPA_SECRET_KEY) {
 
         return res.status(500).json({
-          success: false,
+
+          success:
+            false,
+
           message:
             "CHAPA_SECRET_KEY is missing on Render."
+
         });
 
       }
 
+
       const order =
         req.body || {};
 
+
       const amount =
-        Number(order.amount);
+        Number(
+          order.amount
+        );
+
 
       if (
         !Number.isFinite(amount) ||
@@ -1262,15 +1509,21 @@ app.post(
       ) {
 
         return res.status(400).json({
-          success: false,
+
+          success:
+            false,
+
           message:
             "Invalid payment amount."
+
         });
 
       }
 
+
       const customer =
         order.customer || {};
+
 
       const firstName =
         String(
@@ -1278,11 +1531,13 @@ app.post(
           "Customer"
         ).trim();
 
+
       const lastName =
         String(
           customer.lastName ||
           "Abdii"
         ).trim();
+
 
       const phone =
         String(
@@ -1290,32 +1545,18 @@ app.post(
           ""
         ).trim();
 
+
       const email =
         String(
           customer.email ||
           "customer@example.com"
         ).trim();
 
+
       const txRef =
-        String(
-          order.orderId ||
-          `ABD-${Date.now()}`
-        ).trim();
-
-
-      if (
-        !/^[0-9A-Za-z_-]+$/.test(
-          txRef
-        )
-      ) {
-
-        return res.status(400).json({
-          success: false,
-          message:
-            "Invalid transaction reference."
-        });
-
-      }
+        `ABD-${Date.now()}-${Math.floor(
+          Math.random() * 100000
+        )}`;
 
 
       if (
@@ -1326,9 +1567,13 @@ app.post(
       ) {
 
         return res.status(400).json({
-          success: false,
+
+          success:
+            false,
+
           message:
-            "Invalid Ethiopian phone number."
+            "Invalid Ethiopian phone number. Use 09xxxxxxxx or 07xxxxxxxx."
+
         });
 
       }
@@ -1337,8 +1582,11 @@ app.post(
       const callbackUrl =
         `${PUBLIC_BASE_URL}/api/chapa/callback`;
 
+
       const returnUrl =
-        `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(txRef)}`;
+        `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(
+          txRef
+        )}`;
 
 
       const payload = {
@@ -1391,15 +1639,8 @@ app.post(
 
 
       console.log(
-        "📤 Sending request to Chapa..."
+        "📤 Sending to Chapa..."
       );
-
-      console.log({
-        amount,
-        txRef,
-        callbackUrl,
-        returnUrl
-      });
 
 
       const chapaResponse =
@@ -1408,18 +1649,19 @@ app.post(
           "https://api.chapa.co/v1/transaction/initialize",
 
           {
+
             method:
               "POST",
 
             headers: {
 
-              "Authorization":
+              Authorization:
                 `Bearer ${CHAPA_SECRET_KEY}`,
 
               "Content-Type":
                 "application/json",
 
-              "Accept":
+              Accept:
                 "application/json"
 
             },
@@ -1439,12 +1681,13 @@ app.post(
 
 
       console.log(
-        "📥 Chapa HTTP status:",
+        "📥 CHAPA HTTP STATUS:",
         chapaResponse.status
       );
 
+
       console.log(
-        "📥 Chapa raw response:",
+        "📥 CHAPA RAW:",
         raw
       );
 
@@ -1459,13 +1702,15 @@ app.post(
       } catch {
 
         chapaData = {
-          raw: raw
+          raw
         };
 
       }
 
 
-      if (!chapaResponse.ok) {
+      if (
+        !chapaResponse.ok
+      ) {
 
         return res.status(
           chapaResponse.status
@@ -1476,8 +1721,7 @@ app.post(
 
           message:
             chapaData?.message ||
-            chapaData?.error ||
-            "Chapa payment initialization failed.",
+            "Chapa rejected the payment request.",
 
           chapa:
             chapaData
@@ -1500,7 +1744,7 @@ app.post(
             false,
 
           message:
-            "Chapa did not return checkout URL.",
+            "Chapa did not return checkout_url.",
 
           chapa:
             chapaData
@@ -1511,7 +1755,8 @@ app.post(
 
 
       console.log(
-        "✅ Checkout URL received"
+        "✅ CHECKOUT URL:",
+        checkoutUrl
       );
 
 
@@ -1532,7 +1777,7 @@ app.post(
     } catch (error) {
 
       console.error(
-        "❌ PAYMENT ERROR:",
+        "🔥 PAYMENT ERROR:",
         error
       );
 
@@ -1543,12 +1788,10 @@ app.post(
           false,
 
         message:
-          error.message ||
           "Payment could not be started.",
 
         error:
-          error.message ||
-          "Unknown error"
+          error.message
 
       });
 
@@ -1558,9 +1801,9 @@ app.post(
 );
 
 
-// ==================================================
-// CHAPA CALLBACK
-// ==================================================
+/* ==================================================
+   CHAPA CALLBACK
+================================================== */
 
 app.get(
   "/api/chapa/callback",
@@ -1572,8 +1815,8 @@ app.get(
 
 
     console.log(
-      "🔔 Chapa callback:",
-      txRef
+      "🔔 CHAPA CALLBACK:",
+      req.query
     );
 
 
@@ -1588,10 +1831,12 @@ app.get(
 
     try {
 
-      if (!CHAPA_SECRET_KEY) {
+      if (
+        !CHAPA_SECRET_KEY
+      ) {
 
         return res.redirect(
-          `${PUBLIC_BASE_URL}/?payment=failed&reason=server_key_missing`
+          `${PUBLIC_BASE_URL}/?payment=failed`
         );
 
       }
@@ -1600,7 +1845,9 @@ app.get(
       const verifyResponse =
         await fetch(
 
-          `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(txRef)}`,
+          `https://api.chapa.co/v1/transaction/verify/${encodeURIComponent(
+            txRef
+          )}`,
 
           {
 
@@ -1609,10 +1856,10 @@ app.get(
 
             headers: {
 
-              "Authorization":
+              Authorization:
                 `Bearer ${CHAPA_SECRET_KEY}`,
 
-              "Accept":
+              Accept:
                 "application/json"
 
             }
@@ -1626,32 +1873,36 @@ app.get(
         await verifyResponse.text();
 
 
-      let verifyData;
+      console.log(
+        "VERIFY STATUS:",
+        verifyResponse.status
+      );
+
+
+      console.log(
+        "VERIFY RESPONSE:",
+        raw
+      );
+
+
+      let data;
 
       try {
 
-        verifyData =
+        data =
           JSON.parse(raw);
 
       } catch {
 
-        verifyData = {
-          raw
-        };
+        data = {};
 
       }
 
 
-      console.log(
-        "🔍 Chapa verification:",
-        verifyData
-      );
-
-
       const status =
         String(
-          verifyData?.data?.status ||
-          verifyData?.status ||
+          data?.data?.status ||
+          data?.status ||
           ""
         ).toLowerCase();
 
@@ -1663,7 +1914,9 @@ app.get(
 
         return res.redirect(
 
-          `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(txRef)}`
+          `${PUBLIC_BASE_URL}/?payment=success&tx_ref=${encodeURIComponent(
+            txRef
+          )}`
 
         );
 
@@ -1672,7 +1925,9 @@ app.get(
 
       return res.redirect(
 
-        `${PUBLIC_BASE_URL}/?payment=failed&tx_ref=${encodeURIComponent(txRef)}`
+        `${PUBLIC_BASE_URL}/?payment=failed&tx_ref=${encodeURIComponent(
+          txRef
+        )}`
 
       );
 
@@ -1680,14 +1935,14 @@ app.get(
     } catch (error) {
 
       console.error(
-        "❌ CALLBACK ERROR:",
+        "CALLBACK ERROR:",
         error
       );
 
 
       return res.redirect(
 
-        `${PUBLIC_BASE_URL}/?payment=failed&tx_ref=${encodeURIComponent(txRef)}`
+        `${PUBLIC_BASE_URL}/?payment=failed`
 
       );
 
@@ -1697,9 +1952,9 @@ app.get(
 );
 
 
-// ==================================================
-// HOME
-// ==================================================
+/* ==================================================
+   HOME
+================================================== */
 
 app.get(
   "/",
@@ -1716,31 +1971,9 @@ app.get(
 );
 
 
-// ==================================================
-// 404 API
-// ==================================================
-
-app.use(
-  "/api",
-  (req, res) => {
-
-    res.status(404).json({
-
-      success:
-        false,
-
-      message:
-        "API endpoint not found."
-
-    });
-
-  }
-);
-
-
-// ==================================================
-// START SERVER
-// ==================================================
+/* ==================================================
+   START
+================================================== */
 
 app.listen(
   PORT,
@@ -1764,11 +1997,15 @@ app.listen(
     );
 
     console.log(
-      `🔐 Chapa key loaded: ${Boolean(CHAPA_SECRET_KEY)}`
+      `🔐 Chapa key loaded: ${Boolean(
+        CHAPA_SECRET_KEY
+      )}`
     );
 
     console.log(
-      `🤖 Telegram bot loaded: ${Boolean(TELEGRAM_BOT_TOKEN)}`
+      `🤖 Telegram bot loaded: ${Boolean(
+        TELEGRAM_BOT_TOKEN
+      )}`
     );
 
     console.log(
