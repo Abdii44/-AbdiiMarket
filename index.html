@@ -242,6 +242,7 @@ header{
   width:28px;
   height:28px;
   border-radius:6px;
+  cursor:pointer;
 }
 
 .remove{
@@ -393,6 +394,7 @@ footer{
   class="telegram"
   href="https://t.me/AbdiiMarketBot"
   target="_blank"
+  rel="noopener noreferrer"
 >
   ✈️
 </a>
@@ -407,6 +409,8 @@ footer{
 
 /* =========================
    PRODUCTS
+   Product 67 REMOVED
+   Total = 71 products
 ========================= */
 
 const imageBase =
@@ -934,87 +938,51 @@ const products = [
  image:"IMG_8899.jpeg"
 },
 
+/* Product 66 */
 {
  id:66,
  name:"Product 66",
- price:27900,
+ price:300000,
  category:"Clothes",
  image:"IMG_8900.jpeg"
 },
 
-{
- id:67,
- name:"Product 67",
- price:3363,
- category:"Shoes",
- image:"IMG_8901.jpeg"
-},
+/* Product 67 REMOVED */
 
+/* Product 68 */
 {
  id:68,
  name:"Product 68",
- price:3933,
+ price:2999,
  category:"Shoes",
  image:"IMG_8902.jpeg"
 },
 
+/* Product 69 */
 {
  id:69,
  name:"Product 69",
- price:1203,
+ price:2998,
  category:"Accessories",
  image:"IMG_8903.jpeg"
 },
 
+/* Product 70 */
 {
  id:70,
  name:"Product 70",
- price:2000,
+ price:300000,
  category:"Shoes",
  image:"IMG_8904.jpeg"
 },
 
+/* Product 71 */
 {
  id:71,
  name:"Product 71",
- price:4000,
+ price:3590,
  category:"Clothes",
  image:"IMG_8905.jpeg"
-},
-
-/* Product 72 */
-{
- id:72,
- name:"Product 72",
- price:7000,
- category:"Shoes",
- image:"IMG_8906.jpeg"
-},
-
-/* Product 73–75:
-   suuraa jiran keessaa fayyadamu */
-{
- id:73,
- name:"Product 73",
- price:7493,
- category:"Other",
- image:"IMG_8904.jpeg"
-},
-
-{
- id:74,
- name:"Product 74",
- price:49847,
- category:"Other",
- image:"IMG_8905.jpeg"
-},
-
-{
- id:75,
- name:"Product 75",
- price:27900,
- category:"Other",
- image:"IMG_8906.jpeg"
 }
 
 ];
@@ -1024,7 +992,9 @@ const products = [
 ========================= */
 
 let cart =
-JSON.parse(localStorage.getItem("abdiiMarketCart") || "[]");
+JSON.parse(
+  localStorage.getItem("abdiiMarketCart") || "[]"
+);
 
 let currentCategory = "All";
 
@@ -1071,7 +1041,8 @@ function renderProducts(){
     document.getElementById("products");
 
   const search =
-    document.getElementById("search")
+    document
+      .getElementById("search")
       .value
       .toLowerCase()
       .trim();
@@ -1084,8 +1055,9 @@ function renderProducts(){
         product.category === currentCategory;
 
       const searchOK =
-        product.name.toLowerCase()
-        .includes(search);
+        product.name
+          .toLowerCase()
+          .includes(search);
 
       return categoryOK && searchOK;
 
@@ -1094,10 +1066,12 @@ function renderProducts(){
   if(filtered.length === 0){
 
     container.innerHTML =
-      `<div class="empty">
+      `
+      <div class="empty">
         <h3>Meeshaan hin argamne</h3>
         <p>Search kee jijjiiri.</p>
-      </div>`;
+      </div>
+      `;
 
     return;
 
@@ -1148,7 +1122,9 @@ function setCategory(category, button){
 
   document
     .querySelectorAll(".categories button")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
 
   button.classList.add("active");
 
@@ -1201,7 +1177,8 @@ function updateCartCount(){
 
   const count =
     cart.reduce(
-      (sum,item) => sum + item.qty,
+      (sum,item) =>
+        sum + item.qty,
       0
     );
 
@@ -1249,10 +1226,12 @@ function renderCart(){
   if(cart.length === 0){
 
     container.innerHTML =
-      `<div class="empty">
+      `
+      <div class="empty">
         <h3>Cart kee duwwaa dha</h3>
         <p>Meeshaa barbaadde cart keessa galchi.</p>
-      </div>`;
+      </div>
+      `;
 
     document.getElementById(
       "cartTotal"
@@ -1405,17 +1384,20 @@ async function checkout(){
   const name =
     document
       .getElementById("customerName")
-      .value.trim();
+      .value
+      .trim();
 
   const phone =
     document
       .getElementById("customerPhone")
-      .value.trim();
+      .value
+      .trim();
 
   const address =
     document
       .getElementById("customerAddress")
-      .value.trim();
+      .value
+      .trim();
 
   if(!name || !phone || !address){
 
@@ -1437,6 +1419,8 @@ async function checkout(){
           p => p.id === item.id
         );
 
+      if(!product) return null;
+
       const subtotal =
         product.price * item.qty;
 
@@ -1450,7 +1434,7 @@ async function checkout(){
         subtotal:subtotal
       };
 
-    });
+    }).filter(Boolean);
 
   const order = {
 
@@ -1485,19 +1469,20 @@ async function checkout(){
   try{
 
     const response =
-      await fetch(API_URL,{
+      await fetch(
+        API_URL,
+        {
+          method:"POST",
 
-        method:"POST",
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-        headers:{
-          "Content-Type":
-            "application/json"
-        },
-
-        body:
-          JSON.stringify(order)
-
-      });
+          body:
+            JSON.stringify(order)
+        }
+      );
 
     const data =
       await response.json();
@@ -1535,36 +1520,27 @@ async function checkout(){
 
     console.error(error);
 
-    /*
-      Backend hin jira yoo ta'e,
-      order information Telegram irratti
-      erguuf fallback.
-    */
-
     const message =
       `🛒 ABDII MARKET ORDER%0A%0A` +
 
-      `👤 Maqaa: ${name}%0A` +
+      `👤 Maqaa: ${encodeURIComponent(name)}%0A` +
 
-      `📞 Bilbila: ${phone}%0A` +
+      `📞 Bilbila: ${encodeURIComponent(phone)}%0A` +
 
-      `📍 Teessoo: ${address}%0A%0A` +
+      `📍 Teessoo: ${encodeURIComponent(address)}%0A%0A` +
 
       items.map(item =>
-        `• ${item.name} x${item.quantity} = ${formatPrice(item.subtotal)} ETB`
+        `• ${encodeURIComponent(item.name)} x${item.quantity} = ${formatPrice(item.subtotal)} ETB`
       ).join("%0A") +
 
       `%0A%0A💰 Total: ${formatPrice(total)} ETB`;
-
-    const telegram =
-      "https://t.me/AbdiiMarketBot";
 
     alert(
       "Chapa backend waliin wal qunnamuun dadhabe. Telegram irratti order ergi."
     );
 
     window.open(
-      telegram,
+      "https://t.me/AbdiiMarketBot",
       "_blank"
     );
 
@@ -1596,7 +1572,6 @@ document
 ========================= */
 
 renderProducts();
-
 updateCartCount();
 
 </script>
