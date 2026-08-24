@@ -7,214 +7,468 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
+
 body{
 font-family:Arial,Helvetica,sans-serif;
-background:#f5f5f5;color:#111
+background:#f5f5f5;
+color:#111;
 }
+
 header{
-position:sticky;top:0;z-index:100;
-background:#111;color:white;padding:14px
+position:sticky;
+top:0;
+z-index:100;
+background:#111;
+color:#fff;
+padding:14px;
+box-shadow:0 2px 15px #0003;
 }
+
 .nav{
-max-width:1250px;margin:auto;
-display:flex;align-items:center;
-justify-content:space-between;gap:10px
+max-width:1250px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
 }
-.logo{font-size:24px;font-weight:900}
-.logo span{color:#d4af37}
+
+.logo{
+font-size:24px;
+font-weight:900;
+}
+
+.logo span{
+color:#d4af37;
+}
+
 .cartBtn{
-background:#d4af37;border:0;
-padding:11px 16px;border-radius:12px;
-font-weight:bold;cursor:pointer
+background:#d4af37;
+border:0;
+padding:11px 16px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
 }
+
 .hero{
-background:linear-gradient(135deg,#050505,#252525);
-color:white;text-align:center;
-padding:45px 15px
+background:
+linear-gradient(#0009,#0009),
+linear-gradient(135deg,#050505,#333);
+color:#fff;
+text-align:center;
+padding:55px 15px;
 }
-.hero h1{font-size:38px;margin-bottom:8px}
-.hero p{color:#ccc;margin-bottom:20px}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#ddd;
+margin-bottom:22px;
+}
+
 .search{
-max-width:750px;margin:auto;
-background:white;border-radius:15px;
-display:flex;overflow:hidden
+max-width:800px;
+margin:auto;
+background:#fff;
+border-radius:15px;
+display:flex;
+overflow:hidden;
 }
+
 .search input{
-flex:1;border:0;outline:0;
-padding:16px;font-size:16px
+flex:1;
+border:0;
+outline:0;
+padding:16px;
+font-size:16px;
 }
+
 .search button{
-width:58px;border:0;
-background:#d4af37;font-size:20px
+width:60px;
+border:0;
+background:#d4af37;
+font-size:21px;
+cursor:pointer;
 }
+
 .filters{
-max-width:1250px;margin:18px auto;
+max-width:1250px;
+margin:18px auto;
 padding:0 15px;
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:9px
+gap:9px;
 }
+
 select{
-width:100%;padding:12px;
+width:100%;
+padding:12px;
 border:1px solid #ddd;
-border-radius:10px;background:white
+border-radius:10px;
+background:#fff;
+outline:none;
 }
+
 .container{
-max-width:1250px;margin:auto;
-padding:10px 15px 50px
+max-width:1250px;
+margin:auto;
+padding:10px 15px 50px;
 }
+
 .top{
-display:flex;justify-content:space-between;
-align-items:center;margin:20px 0
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:20px 0;
 }
+
 .products{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:16px
+gap:16px;
 }
+
 .card{
-background:white;border-radius:17px;
+background:#fff;
+border-radius:17px;
 overflow:hidden;
 box-shadow:0 3px 15px #00000012;
-transition:.2s
+transition:.25s;
 }
-.card:hover{transform:translateY(-4px)}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 25px #0002;
+}
+
 .pic{
-height:245px;background:#eee;
-position:relative;overflow:hidden;
-cursor:zoom-in
+height:280px;
+background:#eee;
+position:relative;
+overflow:hidden;
+cursor:zoom-in;
 }
-.pic svg{
-width:100%;height:100%;
-transition:.3s
+
+.pic img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+transition:.35s;
 }
-.pic:hover svg{transform:scale(1.08)}
+
+.pic:hover img{
+transform:scale(1.08);
+}
+
 .badge{
-position:absolute;top:9px;left:9px;
-background:#111;color:white;
-padding:6px 8px;border-radius:7px;
-font-size:10px;font-weight:bold;z-index:2
+position:absolute;
+top:9px;
+left:9px;
+background:#111;
+color:#fff;
+padding:6px 9px;
+border-radius:7px;
+font-size:10px;
+font-weight:bold;
+z-index:2;
 }
-.info{padding:13px}
-.cat{font-size:11px;color:#888;margin-bottom:5px}
-.name{font-weight:bold;font-size:15px;margin-bottom:7px}
+
+.info{
+padding:13px;
+}
+
+.cat{
+font-size:11px;
+color:#888;
+margin-bottom:5px;
+}
+
+.name{
+font-weight:bold;
+font-size:15px;
+margin-bottom:7px;
+}
+
 .price{
-font-size:18px;font-weight:900;
-color:#a27800;margin-bottom:8px
+font-size:18px;
+font-weight:900;
+color:#a27800;
+margin-bottom:8px;
 }
-.tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px}
+
+.tags{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+margin-bottom:11px;
+}
+
 .tag{
-font-size:10px;background:#f0f0f0;
-padding:5px 7px;border-radius:6px
+font-size:10px;
+background:#f0f0f0;
+padding:5px 7px;
+border-radius:6px;
 }
+
 .add{
-width:100%;padding:11px;
-border:0;border-radius:10px;
-background:#111;color:white;
-font-weight:bold;cursor:pointer
+width:100%;
+padding:11px;
+border:0;
+border-radius:10px;
+background:#111;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
 }
-.add:hover{background:#d4af37;color:#111}
+
+.add:hover{
+background:#d4af37;
+color:#111;
+}
 
 /* CART */
+
 .cart{
-position:fixed;right:-430px;top:0;
-width:420px;max-width:100%;
-height:100%;background:white;
-z-index:500;transition:.3s;
+position:fixed;
+right:-430px;
+top:0;
+width:420px;
+max-width:100%;
+height:100%;
+background:#fff;
+z-index:500;
+transition:.3s;
 box-shadow:-5px 0 25px #0004;
-display:flex;flex-direction:column
+display:flex;
+flex-direction:column;
 }
-.cart.open{right:0}
+
+.cart.open{
+right:0;
+}
+
 .cartHead{
-background:#111;color:white;
+background:#111;
+color:#fff;
 padding:17px;
-display:flex;justify-content:space-between;
-align-items:center
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
+
 .close{
-width:34px;height:34px;
-border:0;border-radius:50%;
-background:#333;color:white;
-font-size:20px;cursor:pointer
+width:34px;
+height:34px;
+border:0;
+border-radius:50%;
+background:#333;
+color:#fff;
+font-size:20px;
+cursor:pointer;
 }
-.cartList{flex:1;overflow:auto;padding:15px}
+
+.cartList{
+flex:1;
+overflow:auto;
+padding:15px;
+}
+
 .cartItem{
-display:flex;gap:10px;
+display:flex;
+gap:10px;
 padding:12px 0;
-border-bottom:1px solid #eee
+border-bottom:1px solid #eee;
 }
-.cartImg{width:65px;height:65px}
-.cartImg svg{width:100%;height:100%}
-.cartInfo{flex:1}
+
+.cartImg{
+width:65px;
+height:65px;
+flex-shrink:0;
+overflow:hidden;
+border-radius:8px;
+background:#eee;
+}
+
+.cartImg img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.cartInfo{
+flex:1;
+}
+
 .qty{
-display:flex;align-items:center;
-gap:8px;margin-top:7px
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:7px;
 }
+
 .qty button{
-width:27px;height:27px;
-border:0;background:#111;
-color:white;border-radius:6px
+width:27px;
+height:27px;
+border:0;
+background:#111;
+color:#fff;
+border-radius:6px;
+cursor:pointer;
 }
+
 .remove{
-border:0;background:none;
-color:red;margin-left:5px
+border:0;
+background:none;
+color:red;
+margin-left:5px;
+cursor:pointer;
 }
+
 .cartFoot{
-padding:17px;border-top:1px solid #ddd
+padding:17px;
+border-top:1px solid #ddd;
 }
+
 .total{
-display:flex;justify-content:space-between;
-font-size:20px;font-weight:bold;
-margin-bottom:14px
+display:flex;
+justify-content:space-between;
+font-size:20px;
+font-weight:bold;
+margin-bottom:14px;
 }
+
 .checkout{
-width:100%;padding:14px;
-border:0;border-radius:11px;
-background:#d4af37;font-weight:bold;
-cursor:pointer
+width:100%;
+padding:14px;
+border:0;
+border-radius:11px;
+background:#d4af37;
+font-weight:bold;
+cursor:pointer;
 }
 
 /* ZOOM */
+
 .zoom{
-position:fixed;inset:0;
-background:#000d;z-index:1000;
-display:none;align-items:center;
-justify-content:center;padding:15px
-}
-.zoom.show{display:flex}
-.zoomBox{
-background:white;max-width:600px;
-width:100%;border-radius:18px;
-padding:15px;position:relative
-}
-.zoomBox svg{width:100%;height:500px}
-.zoomClose{
-position:absolute;right:10px;top:10px;
-width:36px;height:36px;
-border:0;border-radius:50%;
-background:#111;color:white;font-size:20px
-}
-footer{
-background:#111;color:white;
-text-align:center;padding:35px
+position:fixed;
+inset:0;
+background:#000d;
+z-index:1000;
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
 }
 
-@media(max-width:1000px){
-.products{grid-template-columns:repeat(3,1fr)}
-.filters{grid-template-columns:repeat(3,1fr)}
+.zoom.show{
+display:flex;
 }
+
+.zoomBox{
+background:#fff;
+max-width:650px;
+width:100%;
+border-radius:18px;
+padding:15px;
+position:relative;
+}
+
+.zoomBox img{
+width:100%;
+max-height:520px;
+object-fit:contain;
+display:block;
+border-radius:12px;
+}
+
+.zoomClose{
+position:absolute;
+right:10px;
+top:10px;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+background:#111;
+color:#fff;
+font-size:20px;
+z-index:3;
+cursor:pointer;
+}
+
+footer{
+background:#111;
+color:#fff;
+text-align:center;
+padding:35px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+.products{
+grid-template-columns:repeat(3,1fr);
+}
+
+.filters{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
 @media(max-width:650px){
-.hero h1{font-size:28px}
-.filters{grid-template-columns:1fr 1fr}
+
+.hero h1{
+font-size:28px;
+}
+
+.filters{
+grid-template-columns:1fr 1fr;
+}
+
 .products{
 grid-template-columns:repeat(2,1fr);
-gap:9px
+gap:9px;
 }
-.pic{height:185px}
-.info{padding:9px}
-.name{font-size:13px}
-.price{font-size:15px}
-.cart{width:100%}
+
+.pic{
+height:210px;
+}
+
+.info{
+padding:9px;
+}
+
+.name{
+font-size:13px;
+}
+
+.price{
+font-size:15px;
+}
+
+.cart{
+width:100%;
+}
+
+}
+
+@media(max-width:380px){
+
+.products{
+grid-template-columns:1fr 1fr;
+}
+
+.pic{
+height:180px;
+}
+
 }
 </style>
 </head>
@@ -222,14 +476,21 @@ gap:9px
 <body>
 
 <header>
+
 <div class="nav">
-<div class="logo">Abdii <span>Market</span></div>
+
+<div class="logo">
+Abdii <span>Market</span>
+</div>
 
 <button class="cartBtn" onclick="openCart()">
 🛒 Cart (<span id="cartCount">0</span>)
 </button>
+
 </div>
+
 </header>
+
 
 <section class="hero">
 
@@ -240,19 +501,25 @@ Fashion • Shoes • Kufiya • Watches • Jewelry • Bags
 </p>
 
 <div class="search">
+
 <input
 id="search"
 type="search"
 placeholder="Search Jordan 4, Kufiya, Black, Dhiira, Size 42..."
-oninput="render()">
-<button>🔎</button>
+oninput="render()"
+>
+
+<button onclick="render()">🔎</button>
+
 </div>
 
 </section>
 
+
 <div class="filters">
 
 <select id="category" onchange="render()">
+
 <option value="all">🛍️ All Products</option>
 <option value="clothes">👕 Uffata</option>
 <option value="kufiya">🧢 Kufiya</option>
@@ -261,22 +528,30 @@ oninput="render()">
 <option value="watch">⌚ Watch</option>
 <option value="necklace">💎 Necklace</option>
 <option value="bag">👜 Borsa</option>
+
 </select>
 
+
 <select id="gender" onchange="render()">
+
 <option value="all">👥 Gender Hunda</option>
 <option value="male">👨 Dhiira</option>
 <option value="female">👩 Durba</option>
+
 </select>
 
+
 <select id="size" onchange="render()">
+
 <option value="all">📏 Size Hunda</option>
+
 <option>XS</option>
 <option>S</option>
 <option>M</option>
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
+
 <option>38</option>
 <option>39</option>
 <option>40</option>
@@ -285,10 +560,14 @@ oninput="render()">
 <option>43</option>
 <option>44</option>
 <option>45</option>
+
 </select>
 
+
 <select id="color" onchange="render()">
+
 <option value="all">🎨 Color Hunda</option>
+
 <option>Black</option>
 <option>White</option>
 <option>Red</option>
@@ -309,21 +588,29 @@ oninput="render()">
 <option>Khaki</option>
 <option>Sky Blue</option>
 <option>Dark Green</option>
+
 </select>
 
+
 <select id="sort" onchange="render()">
+
 <option value="default">↕️ Sort</option>
 <option value="low">Gatii xiqqaa → guddaa</option>
 <option value="high">Gatii guddaa → xiqqaa</option>
+
 </select>
 
 </div>
 
+
 <main class="container">
 
 <div class="top">
+
 <h2>🛍️ Products</h2>
+
 <span id="count"></span>
+
 </div>
 
 <div class="products" id="products"></div>
@@ -348,12 +635,17 @@ oninput="render()">
 <div class="cartFoot">
 
 <div class="total">
+
 <span>Total</span>
+
 <span id="total">0 ETB</span>
+
 </div>
 
 <button class="checkout" onclick="checkout()">
+
 💳 Chapa Checkout
+
 </button>
 
 </div>
@@ -367,7 +659,9 @@ oninput="render()">
 
 <div class="zoomBox" onclick="event.stopPropagation()">
 
-<button class="zoomClose" onclick="closeZoom()">×</button>
+<button class="zoomClose" onclick="closeZoom()">
+×
+</button>
 
 <div id="zoomImage"></div>
 
@@ -400,336 +694,134 @@ Your Fashion Marketplace
 
 <script>
 
-/* =========================
+/* ================================
    COLORS
-========================= */
+================================ */
 
-const COLORS=[
-"Black","White","Red","Blue","Green",
-"Brown","Grey","Pink","Purple","Yellow",
-"Orange","Beige","Cream","Navy","Maroon",
-"Gold","Silver","Khaki","Sky Blue","Dark Green"
+const COLORS = [
+"Black",
+"White",
+"Red",
+"Blue",
+"Green",
+"Brown",
+"Grey",
+"Pink",
+"Purple",
+"Yellow",
+"Orange",
+"Beige",
+"Cream",
+"Navy",
+"Maroon",
+"Gold",
+"Silver",
+"Khaki",
+"Sky Blue",
+"Dark Green"
 ];
 
-const COLOR_CODE={
-Black:"#111",
-White:"#eee",
-Red:"#c62828",
-Blue:"#1565c0",
-Green:"#16833b",
-Brown:"#704214",
-Grey:"#777",
-Pink:"#e91e63",
-Purple:"#7b1fa2",
-Yellow:"#f2c500",
-Orange:"#ef6c00",
-Beige:"#d9c3a5",
-Cream:"#fff4d6",
-Navy:"#14213d",
-Maroon:"#6d071a",
-Gold:"#d4af37",
-Silver:"#aaa",
-Khaki:"#8b8b5a",
-"Sky Blue":"#5dade2",
-"Dark Green":"#075e36"
-};
-
-const SIZES=[
+const SIZES = [
 "XS","S","M","L","XL","XXL",
 "38","39","40","41","42","43","44","45"
 ];
 
 
-/* =========================
-   PRODUCT SVG
-========================= */
-
-function svg(type,color,number){
-
-let c=COLOR_CODE[color]||"#111";
-
-if(type==="clothes"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<ellipse cx="200" cy="345"
-rx="105" ry="15" fill="#0002"/>
-
-<path
-d="M145 75L85 120L115 180L145 160V310H255V160L285 180L315 120L255 75L225 60H175Z"
-fill="${c}"
-stroke="#222"
-stroke-width="4"/>
-
-<path
-d="M175 60Q200 100 225 60"
-fill="none"
-stroke="#222"
-stroke-width="5"/>
-
-<text x="200" y="280"
-text-anchor="middle"
-font-family="Arial"
-font-size="18"
-font-weight="bold"
-fill="${color==="White"?"#222":"#fff"}">
-ABDII
-</text>
-</svg>`;
-}
-
-if(type==="kufiya"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<path
-d="M95 180L120 85H280L305 180L270 160L250 210H150L130 160Z"
-fill="${c}"
-stroke="#222"
-stroke-width="4"/>
-
-<path
-d="M125 110L275 180M105 145L260 215M275 110L125 180M295 145L140 215"
-stroke="#fff8"
-stroke-width="8"/>
-
-<path
-d="M145 210L130 300M175 210L165 310M205 210L200 315M235 210L245 310M265 210L280 300"
-stroke="${c}"
-stroke-width="14"/>
-
-<text x="200" y="350"
-text-anchor="middle"
-font-size="17"
-font-weight="bold">
-ABDII KUFIYA
-</text>
-</svg>`;
-}
-
-if(type==="pants"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<path
-d="M125 65H275L255 190L300 330H225L200 205L175 330H100L145 190Z"
-fill="${c}"
-stroke="#222"
-stroke-width="4"/>
-
-<path
-d="M200 70V205"
-stroke="#fff7"
-stroke-width="5"/>
-
-<text x="200" y="365"
-text-anchor="middle"
-font-size="18"
-font-weight="bold">
-ABDII PANTS
-</text>
-</svg>`;
-}
-
-if(type==="glasses"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<circle cx="130" cy="190"
-r="58" fill="${c}" opacity=".75"
-stroke="#111" stroke-width="10"/>
-
-<circle cx="270" cy="190"
-r="58" fill="${c}" opacity=".75"
-stroke="#111" stroke-width="10"/>
-
-<path d="M188 188Q200 175 212 188"
-stroke="#111" stroke-width="10"/>
-
-<path d="M70 170L35 155M330 170L365 155"
-stroke="#111" stroke-width="10"/>
-
-<text x="200" y="330"
-text-anchor="middle"
-font-size="18"
-font-weight="bold">
-ABDII EYEGLASS
-</text>
-</svg>`;
-}
-
-if(type==="watch"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<rect x="145" y="40"
-width="110" height="320"
-rx="50"
-fill="${c}"/>
-
-<circle cx="200" cy="200"
-r="82" fill="#eee"
-stroke="#111" stroke-width="10"/>
-
-<circle cx="200" cy="200"
-r="67" fill="#fff"
-stroke="${c}" stroke-width="7"/>
-
-<path d="M200 200V150M200 200L238 220"
-stroke="#111" stroke-width="7"/>
-
-<circle cx="200" cy="200" r="7"/>
-
-<text x="200" y="330"
-text-anchor="middle"
-font-size="18"
-font-weight="bold">
-ABDII WATCH
-</text>
-</svg>`;
-}
-
-if(type==="necklace"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<path
-d="M80 75Q200 280 320 75"
-fill="none"
-stroke="${c}"
-stroke-width="18"/>
-
-<circle cx="200" cy="270"
-r="38" fill="${c}"
-stroke="#222" stroke-width="5"/>
-
-<text x="200" y="350"
-text-anchor="middle"
-font-size="18"
-font-weight="bold">
-ABDII JEWELRY
-</text>
-</svg>`;
-}
-
-if(type==="bag"){
-
-return `
-<svg viewBox="0 0 400 400">
-<rect width="400" height="400" fill="#f2f2f2"/>
-
-<path
-d="M90 140H310L325 320H75Z"
-fill="${c}"
-stroke="#222"
-stroke-width="5"/>
-
-<path
-d="M140 140Q140 55 200 55Q260 55 260 140"
-fill="none"
-stroke="${c}"
-stroke-width="18"/>
-
-<rect x="145" y="205"
-width="110" height="60"
-rx="8"
-fill="#fff4"
-stroke="#fff6"/>
-
-<text x="200" y="245"
-text-anchor="middle"
-font-size="22"
-font-weight="bold">
-A
-</text>
-
-<text x="200" y="355"
-text-anchor="middle"
-font-size="18"
-font-weight="bold">
-ABDII BAG
-</text>
-</svg>`;
-}
-
-}
-
-
-/* =========================
+/* ================================
    PRODUCTS
-========================= */
+================================ */
 
-const products=[];
-let ID=1;
+const products = [];
 
-function add(
-name,category,gender,color,
-size,price,type,keywords=[]
-){
+let ID = 1;
 
-products.push({
-id:ID++,
+
+function addProduct(
 name,
 category,
 gender,
 color,
 size,
 price,
-type,
-keywords
+keywords=[]
+){
+
+products.push({
+
+id:ID++,
+
+name:name,
+
+category:category,
+
+gender:gender,
+
+color:color,
+
+size:size,
+
+price:price,
+
+keywords:keywords
+
 });
 
 }
 
 
-/* 80 UFFATA */
+/* 80 CLOTHES */
 
 for(let i=1;i<=80;i++){
 
-let gender=i<=40?"male":"female";
+const gender =
+i <= 40 ? "male" : "female";
 
-let color=COLORS[(i-1)%20];
+const color =
+COLORS[(i-1)%20];
 
-let size=SIZES[(i-1)%SIZES.length];
+const size =
+SIZES[(i-1)%SIZES.length];
 
 let name;
 
-if(i===1)
-name="Jordan 4 Inspired Fashion Shirt";
+if(i===1){
 
-else
-name=gender==="male"
+name="Jordan 4 Fashion Shirt";
+
+}else{
+
+name =
+gender==="male"
 ?`Men Fashion Shirt ${i}`
 :`Women Fashion Dress ${i}`;
 
-add(
+}
+
+addProduct(
+
 name,
+
 "clothes",
+
 gender,
+
 color,
+
 size,
-3000+(i%15)*500,
-"clothes",
+
+3000 + (i%15)*500,
+
 [
 "fashion",
 "uffata",
-gender==="male"?"dhiira":"durba",
+"shirt",
+"dress",
+"jordan 4",
 color,
 size,
-"Jordan 4"
+gender==="male"?"dhiira":"durba"
 ]
+
 );
 
 }
@@ -739,18 +831,33 @@ size,
 
 for(let i=1;i<=20;i++){
 
-let gender=i<=10?"male":"female";
-let color=COLORS[(i+5)%20];
+const gender =
+i<=10 ? "male" : "female";
 
-add(
+const color =
+COLORS[(i+5)%20];
+
+addProduct(
+
 `Kufiya Fashion ${i}`,
+
 "kufiya",
+
 gender,
+
 color,
+
 "Free",
+
 2000+(i%8)*500,
+
+[
 "kufiya",
-["kufiya","headwear",color]
+"headwear",
+color,
+gender==="male"?"dhiira":"durba"
+]
+
 );
 
 }
@@ -760,21 +867,39 @@ color,
 
 for(let i=1;i<=20;i++){
 
-let gender=i<=10?"male":"female";
-let color=COLORS[(i+3)%20];
-let size=SIZES[(i+2)%SIZES.length];
+const gender =
+i<=10 ? "male" : "female";
 
-add(
+const color =
+COLORS[(i+3)%20];
+
+const size =
+SIZES[(i+2)%SIZES.length];
+
+addProduct(
+
 gender==="male"
 ?`Men Pant ${i}`
 :`Women Pant ${i}`,
+
 "pants",
+
 gender,
+
+color,
+
+size,
+
+5000+(i%8)*500,
+
+[
+"pant",
+"pants",
 color,
 size,
-5000+(i%8)*500,
-"pants",
-["pant","pants",color,size]
+gender==="male"?"dhiira":"durba"
+]
+
 );
 
 }
@@ -782,33 +907,51 @@ size,
 
 /* 20 EYEGLASS */
 
-for(let i=1;i<=20;i++){
-
-let gender=i<=10?"male":"female";
-
-let glassColors=[
-"Black","Brown","Clear","Gold","Silver",
-"Black","Brown","Clear","Gold","Silver"
+const glassColors=[
+"Black",
+"Brown",
+"Clear",
+"Gold",
+"Silver",
+"Black",
+"Brown",
+"Clear",
+"Gold",
+"Silver"
 ];
 
-let color=glassColors[(i-1)%10];
+for(let i=1;i<=20;i++){
 
-add(
+const gender =
+i<=10 ? "male" : "female";
+
+const color =
+glassColors[(i-1)%10];
+
+addProduct(
+
 gender==="male"
 ?`Men Eyeglass ${i}`
 :`Women Eyeglass ${i}`,
+
 "glasses",
+
 gender,
+
 color,
+
 "Free",
+
 2500+(i%7)*500,
-"glasses",
+
 [
 "eyeglass",
 "eye glass",
 "glasses",
-color
+color,
+gender==="male"?"dhiira":"durba"
 ]
+
 );
 
 }
@@ -818,20 +961,35 @@ color
 
 for(let i=1;i<=20;i++){
 
-let gender=i<=10?"male":"female";
-let color=COLORS[(i+8)%20];
+const gender =
+i<=10 ? "male" : "female";
 
-add(
+const color =
+COLORS[(i+8)%20];
+
+addProduct(
+
 gender==="male"
 ?`Men Watch ${i}`
 :`Women Watch ${i}`,
+
 "watch",
+
 gender,
+
 color,
+
 "Free",
+
 7000+(i%8)*1000,
+
+[
 "watch",
-["watch","sa'aatii",color]
+"sa'aatii",
+"wrist watch",
+color
+]
+
 );
 
 }
@@ -841,196 +999,373 @@ color,
 
 for(let i=1;i<=10;i++){
 
-let gender=i<=5?"male":"female";
+const gender =
+i<=5 ? "male" : "female";
 
-add(
-`Gold Necklace ${i}`,
+const color =
+i%2 ? "Gold" : "Silver";
+
+addProduct(
+
+`Necklace ${i}`,
+
 "necklace",
+
 gender,
-i%2?"Gold":"Silver",
+
+color,
+
 "Free",
+
 6000+(i%5)*1000,
+
+[
 "necklace",
-["necklace","warqee","morma","gold"]
+"warqee",
+"morma",
+"gold",
+color
+]
+
 );
 
 }
 
 
-/* 10 BAG */
+/* 10 BAGS */
 
 for(let i=1;i<=10;i++){
 
-let gender=i<=5?"male":"female";
-let color=COLORS[(i+11)%20];
+const gender =
+i<=5 ? "male" : "female";
 
-add(
+const color =
+COLORS[(i+11)%20];
+
+addProduct(
+
 gender==="male"
 ?`Men Bag ${i}`
 :`Women Bag ${i}`,
+
 "bag",
+
 gender,
+
 color,
+
 "Free",
+
 4500+(i%7)*1000,
+
+[
 "bag",
-["bag","borsa",color]
+"borsa",
+color,
+gender==="male"?"dhiira":"durba"
+]
+
 );
 
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* ================================
+   IMAGE SYSTEM
+================================ */
 
-let cart=
-JSON.parse(
-localStorage.getItem("abdiiMarketCart")
-)||[];
+/*
+IMPORTANT:
 
+Your real product photos must be here:
+
+images/product-1.jpg
+images/product-2.jpg
+...
+images/product-180.jpg
+
+If a product image is missing,
+no-image.jpg will be shown.
+*/
+
+const IMAGE_FOLDER = "images/";
+
+
+function imageURL(id){
+
+return IMAGE_FOLDER +
+"product-" +
+id +
+".jpg";
+
+}
+
+
+function fallbackImage(){
+
+return IMAGE_FOLDER +
+"no-image.jpg";
+
+}
+
+
+function productImage(product){
+
+return `
+
+<img
+src="${imageURL(product.id)}"
+alt="${product.name}"
+loading="lazy"
+onerror="this.onerror=null;this.src='${fallbackImage()}'"
+>
+
+`;
+
+}
+
+
+/* ================================
+   SEARCH / FILTER
+================================ */
 
 function render(){
 
-const q=
-document.getElementById("search")
+const q =
+document
+.getElementById("search")
 .value
 .toLowerCase()
 .trim();
 
-const category=
-document.getElementById("category").value;
+const category =
+document.getElementById("category")
+.value;
 
-const gender=
-document.getElementById("gender").value;
+const gender =
+document.getElementById("gender")
+.value;
 
-const size=
-document.getElementById("size").value;
+const size =
+document.getElementById("size")
+.value;
 
-const color=
-document.getElementById("color").value;
+const color =
+document.getElementById("color")
+.value;
 
-const sort=
-document.getElementById("sort").value;
+const sort =
+document.getElementById("sort")
+.value;
 
-let list=products.filter(p=>{
 
-let text=[
-p.name,
-p.category,
-p.gender,
-p.gender==="male"?"dhiira":"durba",
-p.color,
-p.size,
-...p.keywords
-].join(" ").toLowerCase();
+let list =
+products.filter(product=>{
 
-return(
-(!q||text.includes(q))
+const text = [
+
+product.name,
+product.category,
+product.gender,
+product.gender==="male"
+?"dhiira"
+:"durba",
+product.color,
+product.size,
+...product.keywords
+
+]
+.join(" ")
+.toLowerCase();
+
+
+return (
+
+(!q || text.includes(q))
+
 &&
-(category==="all"||p.category===category)
+
+(
+category==="all"
+||
+product.category===category
+)
+
 &&
-(gender==="all"||p.gender===gender)
+
+(
+gender==="all"
+||
+product.gender===gender
+)
+
 &&
-(size==="all"||p.size===size)
+
+(
+size==="all"
+||
+product.size===size
+)
+
 &&
-(color==="all"||p.color===color)
+
+(
+color==="all"
+||
+product.color===color
+)
+
 );
 
 });
 
 
-if(sort==="low")
-list.sort((a,b)=>a.price-b.price);
+if(sort==="low"){
 
-if(sort==="high")
-list.sort((a,b)=>b.price-a.price);
+list.sort(
+(a,b)=>a.price-b.price
+);
+
+}
 
 
-document.getElementById("count")
-.textContent=list.length+" products";
+if(sort==="high"){
 
-const box=
+list.sort(
+(a,b)=>b.price-a.price
+);
+
+}
+
+
+document
+.getElementById("count")
+.textContent =
+list.length +
+" products";
+
+
+const box =
 document.getElementById("products");
 
-box.innerHTML="";
+box.innerHTML = "";
 
 
 if(!list.length){
 
-box.innerHTML=`
+box.innerHTML = `
+
 <div style="
 grid-column:1/-1;
 text-align:center;
-padding:60px;
+padding:70px;
 color:#777">
-😔 Product hin argamne.
-</div>`;
+
+<h2>😔</h2>
+
+<p style="margin-top:10px">
+Product hin argamne.
+</p>
+
+</div>
+
+`;
 
 return;
 
 }
 
 
-list.forEach(p=>{
+list.forEach(product=>{
 
-const card=
+const card =
 document.createElement("div");
 
 card.className="card";
 
-card.innerHTML=`
+
+card.innerHTML = `
 
 <div
 class="pic"
-onclick="zoomProduct(${p.id})">
+onclick="zoomProduct(${product.id})"
+>
 
 <div class="badge">
-${p.gender==="male"?"DHIIRA":"DURBA"}
+
+${
+product.gender==="male"
+?"👨 DHIIRA"
+:"👩 DURBA"
+}
+
 </div>
 
-${svg(p.type,p.color,p.id)}
+${productImage(product)}
 
 </div>
+
 
 <div class="info">
 
 <div class="cat">
-${p.category.toUpperCase()}
+
+${product.category.toUpperCase()}
+
 </div>
+
 
 <div class="name">
-${p.name}
+
+${product.name}
+
 </div>
 
+
 <div class="price">
-${p.price.toLocaleString()} ETB
+
+${product.price.toLocaleString()}
+ETB
+
 </div>
+
 
 <div class="tags">
 
 <span class="tag">
-🎨 ${p.color}
+🎨 ${product.color}
 </span>
 
 <span class="tag">
-📏 ${p.size}
+📏 ${product.size}
 </span>
 
 <span class="tag">
-${p.gender==="male"?"👨 Dhiira":"👩 Durba"}
+
+${
+product.gender==="male"
+?"👨 Dhiira"
+:"👩 Durba"
+}
+
 </span>
 
 </div>
+
 
 <button
 class="add"
-onclick="addCart(${p.id})">
+onclick="addCart(${product.id})"
+>
+
 🛒 Add to Cart
+
 </button>
 
 </div>
+
 `;
+
 
 box.appendChild(card);
 
@@ -1039,104 +1374,170 @@ box.appendChild(card);
 }
 
 
-/* =========================
+/* ================================
    CART
-========================= */
+================================ */
 
-function addCart(id){
+let cart =
+JSON.parse(
+localStorage.getItem(
+"abdiiMarketCart"
+)
+) || [];
 
-let p=
-products.find(x=>x.id===id);
-
-let old=
-cart.find(x=>x.id===id);
-
-if(old)
-old.qty++;
-
-else
-cart.push({
-id:p.id,
-name:p.name,
-price:p.price,
-type:p.type,
-color:p.color,
-qty:1
-});
-
-saveCart();
-updateCart();
-openCart();
-
-}
 
 function saveCart(){
 
 localStorage.setItem(
+
 "abdiiMarketCart",
+
 JSON.stringify(cart)
+
 );
 
 }
 
+
+function addCart(id){
+
+const product =
+products.find(
+p=>p.id===id
+);
+
+if(!product)return;
+
+
+const old =
+cart.find(
+p=>p.id===id
+);
+
+
+if(old){
+
+old.qty++;
+
+}else{
+
+cart.push({
+
+id:product.id,
+
+name:product.name,
+
+price:product.price,
+
+qty:1
+
+});
+
+}
+
+
+saveCart();
+
+updateCart();
+
+openCart();
+
+}
+
+
 function updateCart(){
 
-let box=
+const box =
 document.getElementById("cartList");
 
 box.innerHTML="";
 
+
 let total=0;
+
 let count=0;
+
 
 cart.forEach(item=>{
 
-total+=item.price*item.qty;
-count+=item.qty;
+total +=
+item.price *
+item.qty;
 
-let div=
+count +=
+item.qty;
+
+
+const product =
+products.find(
+p=>p.id===item.id
+);
+
+
+const div =
 document.createElement("div");
 
 div.className="cartItem";
 
-div.innerHTML=`
+
+div.innerHTML = `
 
 <div class="cartImg">
-${svg(item.type,item.color,item.id)}
+
+${
+product
+?productImage(product)
+:""
+}
+
 </div>
+
 
 <div class="cartInfo">
 
-<strong>${item.name}</strong>
+<strong>
+${item.name}
+</strong>
 
-<div>
-${item.price.toLocaleString()} ETB
+<div style="margin-top:4px">
+
+${item.price.toLocaleString()}
+ETB
+
 </div>
+
 
 <div class="qty">
 
 <button
-onclick="changeQty(${item.id},-1)">
+onclick="changeQty(${item.id},-1)"
+>
 −
 </button>
 
-<span>${item.qty}</span>
+<span>
+${item.qty}
+</span>
 
 <button
-onclick="changeQty(${item.id},1)">
+onclick="changeQty(${item.id},1)"
+>
 +
 </button>
 
 <button
 class="remove"
-onclick="removeItem(${item.id})">
+onclick="removeItem(${item.id})"
+>
 Remove
 </button>
 
 </div>
 
 </div>
+
 `;
+
 
 box.appendChild(div);
 
@@ -1145,60 +1546,89 @@ box.appendChild(div);
 
 if(!cart.length){
 
-box.innerHTML=`
+box.innerHTML = `
+
 <div style="
 text-align:center;
 padding:60px;
 color:#777">
-🛒 Cart kee duwwaa dha.
-</div>`;
+
+<div style="font-size:40px">
+🛒
+</div>
+
+<p style="margin-top:10px">
+Cart kee duwwaa dha.
+</p>
+
+</div>
+
+`;
 
 }
 
-document.getElementById("cartCount")
+
+document
+.getElementById("cartCount")
 .textContent=count;
 
-document.getElementById("total")
-.textContent=
-total.toLocaleString()+" ETB";
+
+document
+.getElementById("total")
+.textContent =
+total.toLocaleString() +
+" ETB";
 
 }
 
-function changeQty(id,n){
 
-let item=
-cart.find(x=>x.id===id);
+function changeQty(id,number){
+
+const item =
+cart.find(
+p=>p.id===id
+);
 
 if(!item)return;
 
-item.qty+=n;
+
+item.qty += number;
+
 
 if(item.qty<=0){
 
-cart=
-cart.filter(x=>x.id!==id);
+cart =
+cart.filter(
+p=>p.id!==id
+);
 
 }
 
+
 saveCart();
+
 updateCart();
 
 }
+
 
 function removeItem(id){
 
-cart=
-cart.filter(x=>x.id!==id);
+cart =
+cart.filter(
+p=>p.id!==id
+);
 
 saveCart();
+
 updateCart();
 
 }
 
 
-/* =========================
-   CART OPEN
-========================= */
+/* ================================
+   CART OPEN / CLOSE
+================================ */
 
 function openCart(){
 
@@ -1207,6 +1637,7 @@ document
 .classList.add("open");
 
 }
+
 
 function closeCart(){
 
@@ -1217,31 +1648,45 @@ document
 }
 
 
-/* =========================
-   ZOOM
-========================= */
+/* ================================
+   PRODUCT ZOOM
+================================ */
 
 function zoomProduct(id){
 
-let p=
-products.find(x=>x.id===id);
+const product =
+products.find(
+p=>p.id===id
+);
 
-document.getElementById("zoomImage")
-.innerHTML=
-svg(p.type,p.color,p.id);
+if(!product)return;
 
-document.getElementById("zoomName")
-.textContent=p.name;
 
-document.getElementById("zoomPrice")
-.textContent=
-p.price.toLocaleString()+" ETB";
+document
+.getElementById("zoomImage")
+.innerHTML =
+productImage(product);
+
+
+document
+.getElementById("zoomName")
+.textContent =
+product.name;
+
+
+document
+.getElementById("zoomPrice")
+.textContent =
+product.price.toLocaleString() +
+" ETB";
+
 
 document
 .getElementById("zoom")
 .classList.add("show");
 
 }
+
 
 function closeZoom(){
 
@@ -1252,60 +1697,138 @@ document
 }
 
 
-/* =========================
+/* ================================
    CHAPA
-========================= */
+================================ */
 
 function checkout(){
 
 if(!cart.length){
 
-alert("Cart kee duwwaa dha.");
+alert(
+"Cart kee duwwaa dha."
+);
+
 return;
 
 }
 
-let total=
+
+const total =
 cart.reduce(
+
 (sum,item)=>
-sum+item.price*item.qty,
+sum +
+item.price *
+item.qty,
+
 0
+
 );
 
+
 /*
-CHAPA BACKEND:
+----------------------------------
+CHAPA BACKEND
+----------------------------------
 
 fetch("/api/checkout",{
+
 method:"POST",
+
 headers:{
-"Content-Type":"application/json"
+"Content-Type":
+"application/json"
 },
+
 body:JSON.stringify({
+
 amount:total,
+
 currency:"ETB",
+
 items:cart
+
 })
+
 })
-.then(r=>r.json())
+
+.then(response =>
+response.json()
+)
+
 .then(data=>{
-window.location.href=data.checkout_url;
+
+if(data.checkout_url){
+
+window.location.href =
+data.checkout_url;
+
+}
+
 });
+
+----------------------------------
 */
 
+
 alert(
-"Chapa checkout qophaa'eera.\n\n"+
-"Total: "+
-total.toLocaleString()+
+
+"Chapa checkout qophaa'eera.\n\n" +
+
+"Total: " +
+
+total.toLocaleString() +
+
 " ETB"
+
 );
 
 }
 
 
-/* START */
+/* ================================
+   START
+================================ */
 
 render();
+
 updateCart();
+
+
+/* SEARCH ENTER */
+
+document
+.getElementById("search")
+.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Enter"){
+
+render();
+
+}
+
+});
+
+
+/* ESC CLOSE */
+
+document
+.addEventListener(
+"keydown",
+function(e){
+
+if(e.key==="Escape"){
+
+closeZoom();
+
+closeCart();
+
+}
+
+});
 
 </script>
 
