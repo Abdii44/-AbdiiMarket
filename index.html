@@ -15,16 +15,16 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
+  background:#f4f4f4;
   color:#111;
 }
 
 header{
-  background:#111;
-  color:#fff;
   position:sticky;
   top:0;
   z-index:1000;
+  background:#111;
+  color:white;
   padding:14px;
 }
 
@@ -34,11 +34,10 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
 }
 
 .logo{
-  font-size:22px;
+  font-size:21px;
   font-weight:bold;
 }
 
@@ -53,33 +52,39 @@ header{
 }
 
 .hero{
-  background:linear-gradient(135deg,#111,#333);
-  color:white;
-  padding:40px 15px;
+  padding:45px 15px;
   text-align:center;
+  color:white;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,0,0,.88),
+      rgba(40,40,40,.75)
+    ),
+    radial-gradient(circle at top,#555,#111);
 }
 
 .hero h1{
-  font-size:35px;
+  font-size:36px;
   margin-bottom:10px;
 }
 
 .hero p{
   opacity:.9;
+  font-size:16px;
 }
 
 .search-box{
   max-width:700px;
-  margin:20px auto;
-  display:flex;
-  gap:8px;
+  margin:22px auto 0;
 }
 
 .search-box input{
   width:100%;
-  padding:14px;
+  padding:15px;
   border:0;
-  border-radius:10px;
+  outline:none;
+  border-radius:12px;
   font-size:16px;
 }
 
@@ -95,10 +100,11 @@ header{
 .categories button{
   border:0;
   background:white;
-  padding:10px 16px;
+  padding:11px 17px;
   border-radius:20px;
-  cursor:pointer;
   white-space:nowrap;
+  cursor:pointer;
+  box-shadow:0 2px 7px rgba(0,0,0,.07);
 }
 
 .categories button.active{
@@ -114,38 +120,45 @@ header{
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:16px;
 }
 
 .product{
   background:white;
-  border-radius:14px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  box-shadow:0 3px 14px rgba(0,0,0,.09);
+  transition:.2s;
 }
 
-.product img{
+.product:hover{
+  transform:translateY(-3px);
+}
+
+.product-image{
   width:100%;
-  height:190px;
+  height:220px;
   object-fit:cover;
+  display:block;
   background:#eee;
+  cursor:zoom-in;
 }
 
 .product-info{
-  padding:12px;
+  padding:13px;
 }
 
 .product h3{
-  font-size:16px;
-  margin-bottom:7px;
+  font-size:17px;
+  margin-bottom:8px;
 }
 
 .price{
-  color:#e69500;
+  color:#df8c00;
   font-size:18px;
   font-weight:bold;
-  margin-bottom:10px;
+  margin-bottom:11px;
 }
 
 .add{
@@ -153,9 +166,10 @@ header{
   border:0;
   background:#111;
   color:white;
-  padding:11px;
-  border-radius:9px;
+  padding:12px;
+  border-radius:10px;
   cursor:pointer;
+  font-weight:bold;
 }
 
 .add:hover{
@@ -164,15 +178,55 @@ header{
 
 .empty{
   text-align:center;
-  padding:40px;
+  padding:45px;
   color:#777;
 }
+
+/* IMAGE VIEWER */
+
+.image-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  background:rgba(0,0,0,.9);
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.image-modal.show{
+  display:flex;
+}
+
+.image-modal img{
+  max-width:95%;
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+.image-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  color:#111;
+  font-size:24px;
+  cursor:pointer;
+}
+
+/* CART */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.68);
   z-index:2000;
   align-items:center;
   justify-content:center;
@@ -186,10 +240,10 @@ header{
 .modal-box{
   background:white;
   width:100%;
-  max-width:500px;
+  max-width:520px;
   max-height:90vh;
   overflow:auto;
-  border-radius:15px;
+  border-radius:16px;
   padding:20px;
 }
 
@@ -203,25 +257,26 @@ header{
 .close{
   border:0;
   background:#eee;
-  width:35px;
-  height:35px;
+  width:36px;
+  height:36px;
   border-radius:50%;
   cursor:pointer;
+  font-size:18px;
 }
 
 .cart-item{
   display:flex;
   align-items:center;
   gap:10px;
+  padding:12px 0;
   border-bottom:1px solid #eee;
-  padding:10px 0;
 }
 
 .cart-item img{
   width:65px;
   height:65px;
   object-fit:cover;
-  border-radius:8px;
+  border-radius:9px;
 }
 
 .cart-details{
@@ -231,31 +286,40 @@ header{
 .qty{
   display:flex;
   align-items:center;
-  gap:7px;
-  margin-top:5px;
+  gap:8px;
+  margin-top:7px;
 }
 
 .qty button{
   border:0;
   background:#111;
   color:white;
-  width:28px;
-  height:28px;
+  width:29px;
+  height:29px;
   border-radius:6px;
   cursor:pointer;
 }
 
 .remove{
-  color:red;
   border:0;
   background:none;
+  color:red;
   cursor:pointer;
 }
 
 .total{
-  font-size:20px;
+  font-size:21px;
   font-weight:bold;
   margin:20px 0;
+}
+
+.form input{
+  width:100%;
+  padding:13px;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  outline:none;
 }
 
 .checkout{
@@ -267,53 +331,56 @@ header{
   border-radius:10px;
   font-weight:bold;
   cursor:pointer;
-}
-
-.form{
-  margin-top:15px;
-}
-
-.form input{
-  width:100%;
-  padding:13px;
-  margin-bottom:10px;
-  border:1px solid #ddd;
-  border-radius:8px;
+  font-size:16px;
 }
 
 .telegram{
   position:fixed;
   right:18px;
   bottom:18px;
+  z-index:1500;
+  width:56px;
+  height:56px;
+  border-radius:50%;
   background:#229ed9;
   color:white;
-  width:55px;
-  height:55px;
-  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
   text-decoration:none;
-  font-size:25px;
-  z-index:1500;
+  font-size:26px;
+  box-shadow:0 4px 15px rgba(0,0,0,.25);
 }
 
 footer{
+  margin-top:45px;
+  padding:28px 15px;
+  text-align:center;
   background:#111;
   color:white;
-  text-align:center;
-  padding:25px 15px;
-  margin-top:40px;
 }
 
 @media(max-width:500px){
+
   .products{
     grid-template-columns:repeat(2,1fr);
     gap:10px;
   }
 
-  .product img{
-    height:160px;
+  .product-image{
+    height:170px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product h3{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:16px;
   }
 
   .hero h1{
@@ -336,667 +403,278 @@ footer{
 </header>
 
 <section class="hero">
+
   <h1>🛍️ Abdii Market</h1>
-  <p>Meeshaalee barbaadde salphaatti bitadhu</p>
+
+  <p>
+    Meeshaalee barbaadde salphaatti bitadhu
+  </p>
 
   <div class="search-box">
+
     <input
       id="search"
       type="text"
       placeholder="🔎 Maqaa meeshaa barbaadi..."
       oninput="renderProducts()"
     >
+
   </div>
+
 </section>
 
 <div class="categories">
-  <button class="active" onclick="setCategory('All',this)">Hunda</button>
-  <button onclick="setCategory('Shoes',this)">👟 Shoes</button>
-  <button onclick="setCategory('Clothes',this)">👕 Clothes</button>
-  <button onclick="setCategory('Bags',this)">🎒 Bags</button>
-  <button onclick="setCategory('Accessories',this)">⌚ Accessories</button>
-  <button onclick="setCategory('Other',this)">📦 Other</button>
+
+  <button
+    class="active"
+    onclick="setCategory('All',this)"
+  >
+    Hunda
+  </button>
+
+  <button onclick="setCategory('Shoes',this)">
+    👟 Shoes
+  </button>
+
+  <button onclick="setCategory('Clothes',this)">
+    👕 Clothes
+  </button>
+
+  <button onclick="setCategory('Electronics',this)">
+    📱 Electronics
+  </button>
+
 </div>
 
 <main class="container">
-  <div id="products" class="products"></div>
+
+  <div
+    id="products"
+    class="products"
+  ></div>
+
 </main>
 
+
+<!-- IMAGE FULLSCREEN -->
+
+<div
+  id="imageModal"
+  class="image-modal"
+  onclick="closeImage(event)"
+>
+
+  <button
+    class="image-close"
+    onclick="closeImage()"
+  >
+    ✕
+  </button>
+
+  <img
+    id="largeImage"
+    src=""
+    alt="Product"
+  >
+
+</div>
+
+
 <!-- CART -->
-<div id="cartModal" class="modal">
+
+<div
+  id="cartModal"
+  class="modal"
+>
+
   <div class="modal-box">
 
     <div class="modal-head">
+
       <h2>🛒 Cart Kee</h2>
-      <button class="close" onclick="closeCart()">✕</button>
+
+      <button
+        class="close"
+        onclick="closeCart()"
+      >
+        ✕
+      </button>
+
     </div>
 
     <div id="cartItems"></div>
 
     <div class="total">
-      Total: <span id="cartTotal">0</span> ETB
+
+      Total:
+      <span id="cartTotal">0</span>
+      ETB
+
     </div>
 
     <div class="form">
-      <input id="customerName" placeholder="Maqaa kee">
-      <input id="customerPhone" placeholder="Lakkoofsa bilbilaa">
-      <input id="customerAddress" placeholder="Teessoo / bakka geejjibaa">
+
+      <input
+        id="customerName"
+        placeholder="Maqaa kee"
+      >
+
+      <input
+        id="customerPhone"
+        placeholder="Lakkoofsa bilbilaa"
+      >
+
+      <input
+        id="customerAddress"
+        placeholder="Teessoo / bakka geejjibaa"
+      >
+
     </div>
 
-    <button class="checkout" onclick="checkout()">
+    <button
+      class="checkout"
+      onclick="checkout()"
+    >
       💳 Chapa irratti kaffali
     </button>
 
   </div>
+
 </div>
+
 
 <a
   class="telegram"
   href="https://t.me/AbdiiMarketBot"
   target="_blank"
-  rel="noopener noreferrer"
 >
   ✈️
 </a>
 
+
 <footer>
+
   <h3>🛒 Abdii Market</h3>
+
   <p>Online Marketplace</p>
+
   <p>© 2026 Abdii Market</p>
+
 </footer>
+
 
 <script>
 
 /* =========================
-   PRODUCTS
-   Product 67 REMOVED
-   Total = 71 products
+   IMAGE BASE
 ========================= */
 
 const imageBase =
 "https://raw.githubusercontent.com/Abdii44/-AbdiiMarket/main/";
 
+
+/* =========================
+   PRODUCTS 10
+========================= */
+
 const products = [
 
-{
- id:1,
- name:"Product 1",
- price:2000,
- category:"Shoes",
- image:"IMG_8835.jpeg"
-},
-
-{
- id:2,
- name:"Product 2",
- price:4000,
- category:"Shoes",
- image:"IMG_8836.jpeg"
-},
-
-{
- id:3,
- name:"Product 3",
- price:7000,
- category:"Shoes",
- image:"IMG_8837.jpeg"
-},
-
-{
- id:4,
- name:"Product 4",
- price:100,
- category:"Accessories",
- image:"IMG_8838.jpeg"
-},
-
-{
- id:5,
- name:"Product 5",
- price:7493,
- category:"Shoes",
- image:"IMG_8839.jpeg"
-},
-
-{
- id:6,
- name:"Product 6",
- price:49847,
- category:"Shoes",
- image:"IMG_8840.jpeg"
-},
-
-{
- id:7,
- name:"Product 7",
- price:272,
- category:"Accessories",
- image:"IMG_8841.jpeg"
-},
-
-{
- id:8,
- name:"Product 8",
- price:377,
- category:"Accessories",
- image:"IMG_8842.jpeg"
-},
-
-{
- id:9,
- name:"Product 9",
- price:22983,
- category:"Clothes",
- image:"IMG_8843.jpeg"
-},
-
-{
- id:10,
- name:"Product 10",
- price:37373,
- category:"Clothes",
- image:"IMG_8844.jpeg"
-},
-
-{
- id:11,
- name:"Product 11",
- price:2737,
- category:"Shoes",
- image:"IMG_8845.jpeg"
-},
-
-{
- id:12,
- name:"Product 12",
- price:1272,
- category:"Accessories",
- image:"IMG_8846.jpeg"
-},
-
-{
- id:13,
- name:"Product 13",
- price:7494,
- category:"Shoes",
- image:"IMG_8847.jpeg"
-},
-
-{
- id:14,
- name:"Product 14",
- price:1123,
- category:"Bags",
- image:"IMG_8848.jpeg"
-},
-
-{
- id:15,
- name:"Product 15",
- price:1111,
- category:"Accessories",
- image:"IMG_8849.jpeg"
-},
-
-{
- id:16,
- name:"Product 16",
- price:8904,
- category:"Shoes",
- image:"IMG_8850.jpeg"
-},
-
-{
- id:17,
- name:"Product 17",
- price:11111,
- category:"Clothes",
- image:"IMG_8851.jpeg"
-},
-
-{
- id:18,
- name:"Product 18",
- price:40886,
- category:"Shoes",
- image:"IMG_8852.jpeg"
-},
-
-{
- id:19,
- name:"Product 19",
- price:4755,
- category:"Bags",
- image:"IMG_8853.jpeg"
-},
-
-{
- id:20,
- name:"Product 20",
- price:27900,
- category:"Clothes",
- image:"IMG_8854.jpeg"
-},
-
-{
- id:21,
- name:"Product 21",
- price:3363,
- category:"Shoes",
- image:"IMG_8855.jpeg"
-},
-
-{
- id:22,
- name:"Product 22",
- price:3933,
- category:"Shoes",
- image:"IMG_8856.jpeg"
-},
-
-{
- id:23,
- name:"Product 23",
- price:1203,
- category:"Accessories",
- image:"IMG_8857.jpeg"
-},
-
-{
- id:24,
- name:"Product 24",
- price:2000,
- category:"Shoes",
- image:"IMG_8858.jpeg"
-},
-
-{
- id:25,
- name:"Product 25",
- price:4000,
- category:"Clothes",
- image:"IMG_8859.jpeg"
-},
-
-{
- id:26,
- name:"Product 26",
- price:7000,
- category:"Shoes",
- image:"IMG_8860.jpeg"
-},
-
-{
- id:27,
- name:"Product 27",
- price:100,
- category:"Accessories",
- image:"IMG_8861.jpeg"
-},
-
-{
- id:28,
- name:"Product 28",
- price:7493,
- category:"Shoes",
- image:"IMG_8862.jpeg"
-},
-
-{
- id:29,
- name:"Product 29",
- price:49847,
- category:"Shoes",
- image:"IMG_8863.jpeg"
-},
-
-{
- id:30,
- name:"Product 30",
- price:272,
- category:"Accessories",
- image:"IMG_8864.jpeg"
-},
-
-{
- id:31,
- name:"Product 31",
- price:377,
- category:"Bags",
- image:"IMG_8865.jpeg"
-},
-
-{
- id:32,
- name:"Product 32",
- price:22983,
- category:"Clothes",
- image:"IMG_8866.jpeg"
-},
-
-{
- id:33,
- name:"Product 33",
- price:37373,
- category:"Clothes",
- image:"IMG_8867.jpeg"
-},
-
-{
- id:34,
- name:"Product 34",
- price:2737,
- category:"Shoes",
- image:"IMG_8868.jpeg"
-},
-
-{
- id:35,
- name:"Product 35",
- price:1272,
- category:"Accessories",
- image:"IMG_8869.jpeg"
-},
-
-{
- id:36,
- name:"Product 36",
- price:7494,
- category:"Shoes",
- image:"IMG_8870.jpeg"
-},
-
-{
- id:37,
- name:"Product 37",
- price:1123,
- category:"Bags",
- image:"IMG_8871.jpeg"
-},
-
-{
- id:38,
- name:"Product 38",
- price:1111,
- category:"Accessories",
- image:"IMG_8872.jpeg"
-},
-
-{
- id:39,
- name:"Product 39",
- price:8904,
- category:"Shoes",
- image:"IMG_8873.jpeg"
-},
-
-{
- id:40,
- name:"Product 40",
- price:11111,
- category:"Clothes",
- image:"IMG_8874.jpeg"
-},
-
-{
- id:41,
- name:"Product 41",
- price:40886,
- category:"Shoes",
- image:"IMG_8875.jpeg"
-},
-
-{
- id:42,
- name:"Product 42",
- price:4755,
- category:"Bags",
- image:"IMG_8876.jpeg"
-},
-
-{
- id:43,
- name:"Product 43",
- price:27900,
- category:"Clothes",
- image:"IMG_8877.jpeg"
-},
-
-{
- id:44,
- name:"Product 44",
- price:3363,
- category:"Shoes",
- image:"IMG_8878.jpeg"
-},
-
-{
- id:45,
- name:"Product 45",
- price:3933,
- category:"Shoes",
- image:"IMG_8879.jpeg"
-},
-
-{
- id:46,
- name:"Product 46",
- price:1203,
- category:"Accessories",
- image:"IMG_8880.jpeg"
-},
-
-{
- id:47,
- name:"Product 47",
- price:2000,
- category:"Shoes",
- image:"IMG_8881.jpeg"
-},
-
-{
- id:48,
- name:"Product 48",
- price:4000,
- category:"Clothes",
- image:"IMG_8882.jpeg"
-},
-
-{
- id:49,
- name:"Product 49",
- price:7000,
- category:"Shoes",
- image:"IMG_8883.jpeg"
-},
-
-{
- id:50,
- name:"Product 50",
- price:100,
- category:"Accessories",
- image:"IMG_8884.jpeg"
-},
-
-{
- id:51,
- name:"Product 51",
- price:7493,
- category:"Shoes",
- image:"IMG_8885.jpeg"
-},
-
-{
- id:52,
- name:"Product 52",
- price:49847,
- category:"Shoes",
- image:"IMG_8886.jpeg"
-},
-
-{
- id:53,
- name:"Product 53",
- price:272,
- category:"Accessories",
- image:"IMG_8887.jpeg"
-},
-
-{
- id:54,
- name:"Product 54",
- price:377,
- category:"Bags",
- image:"IMG_8888.jpeg"
-},
-
-{
- id:55,
- name:"Product 55",
- price:22983,
- category:"Clothes",
- image:"IMG_8889.jpeg"
-},
-
-{
- id:56,
- name:"Product 56",
- price:37373,
- category:"Clothes",
- image:"IMG_8890.jpeg"
-},
-
-{
- id:57,
- name:"Product 57",
- price:2737,
- category:"Shoes",
- image:"IMG_8891.jpeg"
-},
-
-{
- id:58,
- name:"Product 58",
- price:1272,
- category:"Accessories",
- image:"IMG_8892.jpeg"
-},
-
-{
- id:59,
- name:"Product 59",
- price:7494,
- category:"Shoes",
- image:"IMG_8893.jpeg"
-},
-
-{
- id:60,
- name:"Product 60",
- price:1123,
- category:"Bags",
- image:"IMG_8894.jpeg"
-},
-
-{
- id:61,
- name:"Product 61",
- price:1111,
- category:"Accessories",
- image:"IMG_8895.jpeg"
-},
-
-{
- id:62,
- name:"Product 62",
- price:8904,
- category:"Shoes",
- image:"IMG_8896.jpeg"
-},
-
-{
- id:63,
- name:"Product 63",
- price:11111,
- category:"Clothes",
- image:"IMG_8897.jpeg"
-},
-
-{
- id:64,
- name:"Product 64",
- price:40886,
- category:"Shoes",
- image:"IMG_8898.jpeg"
-},
-
-{
- id:65,
- name:"Product 65",
- price:4755,
- category:"Bags",
- image:"IMG_8899.jpeg"
-},
-
-/* Product 66 */
-{
- id:66,
- name:"Product 66",
- price:300000,
- category:"Clothes",
- image:"IMG_8900.jpeg"
-},
-
-/* Product 67 REMOVED */
-
-/* Product 68 */
-{
- id:68,
- name:"Product 68",
- price:2999,
- category:"Shoes",
- image:"IMG_8902.jpeg"
-},
-
-/* Product 69 */
-{
- id:69,
- name:"Product 69",
- price:2998,
- category:"Accessories",
- image:"IMG_8903.jpeg"
-},
-
-/* Product 70 */
-{
- id:70,
- name:"Product 70",
- price:300000,
- category:"Shoes",
- image:"IMG_8904.jpeg"
-},
-
-/* Product 71 */
-{
- id:71,
- name:"Product 71",
- price:3590,
- category:"Clothes",
- image:"IMG_8905.jpeg"
-}
+  {
+    id:1,
+    name:"Jordan 4",
+    price:5500,
+    category:"Shoes",
+    image:"IMG_8978.jpeg"
+  },
+
+  {
+    id:2,
+    name:"Jordan 7",
+    price:8600,
+    category:"Shoes",
+    image:"IMG_8984.jpeg"
+  },
+
+  {
+    id:3,
+    name:"T-Shirt",
+    price:3000,
+    category:"Clothes",
+    image:"IMG_8989.jpeg"
+  },
+
+  {
+    id:4,
+    name:"Jeans",
+    price:4500,
+    category:"Clothes",
+    image:"IMG_8993.jpeg"
+  },
+
+  {
+    id:5,
+    name:"Tuta",
+    price:3999,
+    category:"Clothes",
+    image:"IMG_9032.jpeg"
+  },
+
+  {
+    id:6,
+    name:"iPhone 17 Pro Max",
+    price:299999,
+    category:"Electronics",
+    image:"IMG_9033.jpeg"
+  },
+
+  {
+    id:7,
+    name:"Mayik",
+    price:8999,
+    category:"Clothes",
+    image:"IMG_9034.jpeg"
+  },
+
+  {
+    id:8,
+    name:"Earphone",
+    price:2000,
+    category:"Electronics",
+    image:"IMG_9035.jpeg"
+  },
+
+  {
+    id:9,
+    name:"Power Bank",
+    price:4999,
+    category:"Electronics",
+    image:"IMG_9036.jpeg"
+  },
+
+  {
+    id:10,
+    name:"Mulu Sure Shoes",
+    price:12000,
+    category:"Shoes",
+    image:"IMG_9037.jpeg"
+  }
 
 ];
+
 
 /* =========================
    STATE
 ========================= */
 
 let cart =
-JSON.parse(
-  localStorage.getItem("abdiiMarketCart") || "[]"
-);
+  JSON.parse(
+    localStorage.getItem(
+      "abdiiMarketCart"
+    ) || "[]"
+  );
 
 let currentCategory = "All";
+
 
 /* =========================
    SAVE CART
@@ -1011,8 +689,9 @@ function saveCart(){
 
 }
 
+
 /* =========================
-   IMAGE
+   IMAGE URL
 ========================= */
 
 function getImage(product){
@@ -1021,15 +700,18 @@ function getImage(product){
 
 }
 
+
 /* =========================
-   FORMAT PRICE
+   PRICE FORMAT
 ========================= */
 
 function formatPrice(price){
 
-  return Number(price).toLocaleString("en-US");
+  return Number(price)
+    .toLocaleString("en-US");
 
 }
+
 
 /* =========================
    RENDER PRODUCTS
@@ -1038,7 +720,9 @@ function formatPrice(price){
 function renderProducts(){
 
   const container =
-    document.getElementById("products");
+    document.getElementById(
+      "products"
+    );
 
   const search =
     document
@@ -1052,30 +736,44 @@ function renderProducts(){
 
       const categoryOK =
         currentCategory === "All" ||
-        product.category === currentCategory;
+        product.category ===
+        currentCategory;
 
       const searchOK =
         product.name
           .toLowerCase()
           .includes(search);
 
-      return categoryOK && searchOK;
+      return (
+        categoryOK &&
+        searchOK
+      );
 
     });
 
+
   if(filtered.length === 0){
 
-    container.innerHTML =
-      `
+    container.innerHTML = `
+
       <div class="empty">
-        <h3>Meeshaan hin argamne</h3>
-        <p>Search kee jijjiiri.</p>
+
+        <h3>
+          Meeshaan hin argamne
+        </h3>
+
+        <p>
+          Search kee jijjiiri.
+        </p>
+
       </div>
-      `;
+
+    `;
 
     return;
 
   }
+
 
   container.innerHTML =
     filtered.map(product => `
@@ -1083,18 +781,25 @@ function renderProducts(){
       <div class="product">
 
         <img
+          class="product-image"
           src="${getImage(product)}"
           alt="${product.name}"
           loading="lazy"
-          onerror="this.src='https://via.placeholder.com/400x400?text=Abdii+Market'"
+          onclick="openImage('${getImage(product)}')"
+          onerror="
+            this.src='https://via.placeholder.com/500x500?text=Abdii+Market'
+          "
         >
 
         <div class="product-info">
 
-          <h3>${product.name}</h3>
+          <h3>
+            ${product.name}
+          </h3>
 
           <div class="price">
-            ${formatPrice(product.price)} ETB
+            ${formatPrice(product.price)}
+            ETB
           </div>
 
           <button
@@ -1112,25 +817,71 @@ function renderProducts(){
 
 }
 
+
+/* =========================
+   IMAGE VIEW
+========================= */
+
+function openImage(src){
+
+  document.getElementById(
+    "largeImage"
+  ).src = src;
+
+  document.getElementById(
+    "imageModal"
+  ).classList.add("show");
+
+}
+
+
+function closeImage(event){
+
+  if(
+    !event ||
+    event.target.id ===
+    "imageModal"
+  ){
+
+    document.getElementById(
+      "imageModal"
+    ).classList.remove("show");
+
+  }
+
+}
+
+
 /* =========================
    CATEGORY
 ========================= */
 
-function setCategory(category, button){
+function setCategory(
+  category,
+  button
+){
 
-  currentCategory = category;
+  currentCategory =
+    category;
 
   document
-    .querySelectorAll(".categories button")
+    .querySelectorAll(
+      ".categories button"
+    )
     .forEach(btn =>
-      btn.classList.remove("active")
+      btn.classList.remove(
+        "active"
+      )
     );
 
-  button.classList.add("active");
+  button.classList.add(
+    "active"
+  );
 
   renderProducts();
 
 }
+
 
 /* =========================
    ADD CART
@@ -1139,12 +890,18 @@ function setCategory(category, button){
 function addToCart(id){
 
   const product =
-    products.find(p => p.id === id);
+    products.find(
+      p => p.id === id
+    );
 
   if(!product) return;
 
+
   const existing =
-    cart.find(item => item.id === id);
+    cart.find(
+      item => item.id === id
+    );
+
 
   if(existing){
 
@@ -1153,21 +910,27 @@ function addToCart(id){
   }else{
 
     cart.push({
+
       id:product.id,
+
       qty:1
+
     });
 
   }
 
+
   saveCart();
+
   updateCartCount();
 
   alert(
     product.name +
-    " Cart keessa gale!"
+    " Cart keessa gale! 🛒"
   );
 
 }
+
 
 /* =========================
    CART COUNT
@@ -1188,6 +951,7 @@ function updateCartCount(){
 
 }
 
+
 /* =========================
    OPEN CART
 ========================= */
@@ -1197,10 +961,15 @@ function openCart(){
   renderCart();
 
   document
-    .getElementById("cartModal")
-    .classList.add("show");
+    .getElementById(
+      "cartModal"
+    )
+    .classList.add(
+      "show"
+    );
 
 }
+
 
 /* =========================
    CLOSE CART
@@ -1209,10 +978,15 @@ function openCart(){
 function closeCart(){
 
   document
-    .getElementById("cartModal")
-    .classList.remove("show");
+    .getElementById(
+      "cartModal"
+    )
+    .classList.remove(
+      "show"
+    );
 
 }
+
 
 /* =========================
    RENDER CART
@@ -1221,17 +995,29 @@ function closeCart(){
 function renderCart(){
 
   const container =
-    document.getElementById("cartItems");
+    document.getElementById(
+      "cartItems"
+    );
+
 
   if(cart.length === 0){
 
-    container.innerHTML =
-      `
+    container.innerHTML = `
+
       <div class="empty">
-        <h3>Cart kee duwwaa dha</h3>
-        <p>Meeshaa barbaadde cart keessa galchi.</p>
+
+        <h3>
+          Cart kee duwwaa dha
+        </h3>
+
+        <p>
+          Meeshaa barbaadde
+          cart keessa galchi.
+        </p>
+
       </div>
-      `;
+
+    `;
 
     document.getElementById(
       "cartTotal"
@@ -1241,7 +1027,9 @@ function renderCart(){
 
   }
 
+
   let total = 0;
+
 
   container.innerHTML =
     cart.map(item => {
@@ -1251,12 +1039,18 @@ function renderCart(){
           p => p.id === item.id
         );
 
-      if(!product) return "";
+
+      if(!product)
+        return "";
+
 
       const subtotal =
-        product.price * item.qty;
+        product.price *
+        item.qty;
+
 
       total += subtotal;
+
 
       return `
 
@@ -1265,7 +1059,6 @@ function renderCart(){
           <img
             src="${getImage(product)}"
             alt="${product.name}"
-            onerror="this.src='https://via.placeholder.com/100?text=Product'"
           >
 
           <div class="cart-details">
@@ -1275,21 +1068,34 @@ function renderCart(){
             </strong>
 
             <div>
-              ${formatPrice(product.price)} ETB
+              ${formatPrice(product.price)}
+              ETB
             </div>
 
             <div class="qty">
 
               <button
-                onclick="changeQty(${product.id},-1)"
+                onclick="
+                  changeQty(
+                    ${product.id},
+                    -1
+                  )
+                "
               >
                 −
               </button>
 
-              <span>${item.qty}</span>
+              <span>
+                ${item.qty}
+              </span>
 
               <button
-                onclick="changeQty(${product.id},1)"
+                onclick="
+                  changeQty(
+                    ${product.id},
+                    1
+                  )
+                "
               >
                 +
               </button>
@@ -1300,7 +1106,11 @@ function renderCart(){
 
           <button
             class="remove"
-            onclick="removeFromCart(${product.id})"
+            onclick="
+              removeFromCart(
+                ${product.id}
+              )
+            "
           >
             Haqi
           </button>
@@ -1311,6 +1121,7 @@ function renderCart(){
 
     }).join("");
 
+
   document.getElementById(
     "cartTotal"
   ).textContent =
@@ -1318,11 +1129,15 @@ function renderCart(){
 
 }
 
+
 /* =========================
    CHANGE QUANTITY
 ========================= */
 
-function changeQty(id, amount){
+function changeQty(
+  id,
+  amount
+){
 
   const item =
     cart.find(
@@ -1331,22 +1146,29 @@ function changeQty(id, amount){
 
   if(!item) return;
 
+
   item.qty += amount;
+
 
   if(item.qty <= 0){
 
     cart =
       cart.filter(
-        item => item.id !== id
+        item =>
+          item.id !== id
       );
 
   }
 
+
   saveCart();
+
   updateCartCount();
+
   renderCart();
 
 }
+
 
 /* =========================
    REMOVE
@@ -1356,14 +1178,18 @@ function removeFromCart(id){
 
   cart =
     cart.filter(
-      item => item.id !== id
+      item =>
+        item.id !== id
     );
 
   saveCart();
+
   updateCartCount();
+
   renderCart();
 
 }
+
 
 /* =========================
    CHECKOUT
@@ -1381,25 +1207,39 @@ async function checkout(){
 
   }
 
+
   const name =
     document
-      .getElementById("customerName")
+      .getElementById(
+        "customerName"
+      )
       .value
       .trim();
+
 
   const phone =
     document
-      .getElementById("customerPhone")
+      .getElementById(
+        "customerPhone"
+      )
       .value
       .trim();
+
 
   const address =
     document
-      .getElementById("customerAddress")
+      .getElementById(
+        "customerAddress"
+      )
       .value
       .trim();
 
-  if(!name || !phone || !address){
+
+  if(
+    !name ||
+    !phone ||
+    !address
+  ){
 
     alert(
       "Maqaa, bilbila fi teessoo guuti."
@@ -1409,7 +1249,9 @@ async function checkout(){
 
   }
 
+
   let total = 0;
+
 
   const items =
     cart.map(item => {
@@ -1419,29 +1261,47 @@ async function checkout(){
           p => p.id === item.id
         );
 
-      if(!product) return null;
 
       const subtotal =
-        product.price * item.qty;
+        product.price *
+        item.qty;
+
 
       total += subtotal;
 
+
       return {
-        productId:product.id,
-        name:product.name,
-        price:product.price,
-        quantity:item.qty,
-        subtotal:subtotal
+
+        productId:
+          product.id,
+
+        name:
+          product.name,
+
+        price:
+          product.price,
+
+        quantity:
+          item.qty,
+
+        subtotal:
+          subtotal
+
       };
 
-    }).filter(Boolean);
+    });
+
 
   const order = {
 
     customer:{
+
       name:name,
+
       phone:phone,
+
       address:address
+
     },
 
     items:items,
@@ -1451,20 +1311,24 @@ async function checkout(){
     currency:"ETB",
 
     createdAt:
-      new Date().toISOString()
+      new Date()
+      .toISOString()
 
   };
 
-  /*
-   IMPORTANT:
-   Chapa Secret Key frontend keessa
-   hin kaa'in.
 
-   Backend endpoint kee asitti kaa'i.
+  /*
+    Chapa Secret Key
+    FRONTEND keessa hin kaa'in.
+
+    Backend endpoint kee:
+    /api/chapa/initialize
   */
+
 
   const API_URL =
     "/api/chapa/initialize";
+
 
   try{
 
@@ -1472,6 +1336,7 @@ async function checkout(){
       await fetch(
         API_URL,
         {
+
           method:"POST",
 
           headers:{
@@ -1480,12 +1345,17 @@ async function checkout(){
           },
 
           body:
-            JSON.stringify(order)
+            JSON.stringify(
+              order
+            )
+
         }
       );
 
+
     const data =
       await response.json();
+
 
     if(
       data &&
@@ -1498,6 +1368,7 @@ async function checkout(){
       return;
 
     }
+
 
     if(
       data &&
@@ -1512,53 +1383,40 @@ async function checkout(){
 
     }
 
+
     alert(
       "Chapa checkout URL hin argamne."
     );
+
 
   }catch(error){
 
     console.error(error);
 
-    const message =
-      `🛒 ABDII MARKET ORDER%0A%0A` +
-
-      `👤 Maqaa: ${encodeURIComponent(name)}%0A` +
-
-      `📞 Bilbila: ${encodeURIComponent(phone)}%0A` +
-
-      `📍 Teessoo: ${encodeURIComponent(address)}%0A%0A` +
-
-      items.map(item =>
-        `• ${encodeURIComponent(item.name)} x${item.quantity} = ${formatPrice(item.subtotal)} ETB`
-      ).join("%0A") +
-
-      `%0A%0A💰 Total: ${formatPrice(total)} ETB`;
-
     alert(
-      "Chapa backend waliin wal qunnamuun dadhabe. Telegram irratti order ergi."
-    );
-
-    window.open(
-      "https://t.me/AbdiiMarketBot",
-      "_blank"
+      "Chapa backend hin argamne. Mee backend kee ilaali."
     );
 
   }
 
 }
 
+
 /* =========================
-   CLOSE MODAL OUTSIDE
+   CLOSE CART OUTSIDE
 ========================= */
 
 document
-  .getElementById("cartModal")
+  .getElementById(
+    "cartModal"
+  )
   .addEventListener(
     "click",
     function(e){
 
-      if(e.target === this){
+      if(
+        e.target === this
+      ){
 
         closeCart();
 
@@ -1567,11 +1425,13 @@ document
     }
   );
 
+
 /* =========================
    START
 ========================= */
 
 renderProducts();
+
 updateCartCount();
 
 </script>
