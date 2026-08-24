@@ -3,391 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Abdii Market — Fashion Store</title>
 
 <style>
 *{
+  box-sizing:border-box;
   margin:0;
   padding:0;
-  box-sizing:border-box;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f4f5f7;
+  background:#f7f7f8;
   color:#111;
-  padding-bottom:75px;
 }
 
 header{
   position:sticky;
   top:0;
-  z-index:1000;
+  z-index:100;
   background:#111;
   color:white;
-  padding:14px;
-  box-shadow:0 3px 15px rgba(0,0,0,.25);
+  padding:15px;
+  box-shadow:0 3px 15px #0003;
 }
 
 .header{
   max-width:1200px;
   margin:auto;
-}
-
-.top{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 
 .logo{
-  font-size:23px;
-  font-weight:900;
+  font-size:22px;
+  font-weight:800;
+  white-space:nowrap;
 }
 
 .logo span{
-  color:#00d26a;
+  color:#d4af37;
 }
 
-.cart{
-  position:relative;
-  font-size:27px;
+.cartBtn{
+  border:0;
+  background:#d4af37;
+  color:#111;
+  padding:11px 15px;
+  border-radius:12px;
+  font-weight:bold;
   cursor:pointer;
 }
 
-.cart-count{
-  position:absolute;
-  top:-8px;
-  right:-9px;
-  width:21px;
-  height:21px;
-  border-radius:50%;
-  background:#00d26a;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.search{
-  margin-top:13px;
-}
-
-.search input{
-  width:100%;
-  padding:14px 17px;
-  border:0;
-  outline:0;
-  border-radius:12px;
-  font-size:15px;
-}
-
 .hero{
-  max-width:1200px;
-  margin:18px auto;
-  padding:32px 20px;
-  border-radius:20px;
+  background:linear-gradient(135deg,#111,#292929);
   color:white;
-  background:
-  linear-gradient(
-    135deg,
-    rgba(0,0,0,.94),
-    rgba(30,30,30,.88)
-  );
+  padding:45px 18px;
+  text-align:center;
 }
 
 .hero h1{
-  font-size:31px;
+  font-size:34px;
   margin-bottom:10px;
 }
 
 .hero p{
-  color:#ccc;
-  line-height:1.5;
+  color:#ddd;
+  margin-bottom:22px;
 }
 
-.hero-btn{
-  margin-top:18px;
+.searchBox{
+  max-width:650px;
+  margin:auto;
+  display:flex;
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.searchBox input{
+  flex:1;
   border:0;
-  padding:12px 20px;
-  border-radius:10px;
-  background:#00d26a;
-  color:#111;
-  font-weight:bold;
+  padding:16px;
+  font-size:16px;
+  outline:none;
+}
+
+.searchBox button{
+  width:55px;
+  border:0;
+  background:#d4af37;
   cursor:pointer;
+  font-size:20px;
+}
+
+.filters{
+  max-width:1200px;
+  margin:20px auto;
+  padding:0 15px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:11px;
+  background:white;
+  font-size:14px;
 }
 
 .section{
   max-width:1200px;
-  margin:25px auto;
-  padding:0 15px;
+  margin:auto;
+  padding:0 15px 40px;
 }
 
-.title{
+.sectionTitle{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:15px;
+  margin:20px 0;
 }
 
-.title h2{
-  font-size:21px;
+.sectionTitle h2{
+  font-size:22px;
 }
 
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:5px;
-}
-
-.category{
-  min-width:90px;
-  border:0;
-  background:white;
-  padding:13px 10px;
-  border-radius:14px;
-  cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,.06);
-}
-
-.category.active{
-  background:#111;
-  color:white;
-}
-
-.category-icon{
-  font-size:27px;
-}
-
-.category-name{
-  margin-top:5px;
-  font-size:12px;
-  font-weight:bold;
+.count{
+  color:#777;
+  font-size:14px;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
 }
 
-.product{
+.card{
   background:white;
   border-radius:17px;
   overflow:hidden;
-  box-shadow:0 3px 13px rgba(0,0,0,.08);
-}
-
-.product-image{
-  height:190px;
+  box-shadow:0 3px 15px #0000000d;
+  transition:.2s;
   position:relative;
-  overflow:hidden;
-  background:#eee;
-  cursor:zoom-in;
 }
 
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .35s ease;
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 25px #0002;
 }
 
-.product-image:hover img{
-  transform:scale(1.08);
-}
-
-.zoom{
-  position:absolute;
-  right:8px;
-  bottom:8px;
-  background:rgba(0,0,0,.65);
-  color:white;
-  width:33px;
-  height:33px;
-  border-radius:50%;
+.productImage{
+  height:235px;
   display:flex;
   align-items:center;
   justify-content:center;
+  cursor:zoom-in;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#eee,#fafafa);
+}
+
+.productImage .emoji{
+  font-size:100px;
+  filter:drop-shadow(0 8px 8px #0002);
+  transition:.25s;
+}
+
+.productImage:hover .emoji{
+  transform:scale(1.08);
 }
 
 .badge{
   position:absolute;
-  top:8px;
-  left:8px;
+  top:10px;
+  left:10px;
   background:#111;
   color:white;
-  padding:5px 8px;
+  padding:6px 9px;
   border-radius:8px;
-  font-size:10px;
-  font-weight:bold;
-}
-
-.product-info{
-  padding:12px;
-}
-
-.product-name{
-  font-size:14px;
-  font-weight:bold;
-  min-height:35px;
-}
-
-.product-meta{
-  color:#777;
   font-size:11px;
-  margin:5px 0;
+  font-weight:bold;
+}
+
+.cardBody{
+  padding:14px;
+}
+
+.category{
+  color:#888;
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.name{
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:8px;
 }
 
 .price{
-  color:#00a94f;
-  font-size:17px;
-  font-weight:900;
-  margin:8px 0;
+  color:#b38b00;
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
-.add{
+.meta{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-bottom:12px;
+}
+
+.tag{
+  background:#f1f1f1;
+  padding:5px 7px;
+  border-radius:7px;
+  font-size:11px;
+}
+
+.addBtn{
   width:100%;
+  padding:11px;
   border:0;
-  padding:10px;
-  border-radius:9px;
+  border-radius:10px;
   background:#111;
   color:white;
   font-weight:bold;
   cursor:pointer;
 }
 
-.add:hover{
-  background:#00d26a;
+.addBtn:hover{
+  background:#d4af37;
   color:#111;
 }
 
-/* IMAGE ZOOM */
-
-.image-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  z-index:5000;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+.empty{
+  text-align:center;
+  padding:50px;
+  color:#777;
+  grid-column:1/-1;
 }
-
-.image-modal.show{
-  display:flex;
-}
-
-.image-modal img{
-  max-width:95%;
-  max-height:85vh;
-  object-fit:contain;
-  border-radius:15px;
-}
-
-.image-close{
-  position:absolute;
-  top:20px;
-  right:20px;
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  font-size:25px;
-  cursor:pointer;
-}
-
-/* CART */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
-  z-index:4000;
-  background:rgba(0,0,0,.65);
-  align-items:flex-end;
+  background:#000b;
+  z-index:500;
+  align-items:center;
   justify-content:center;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:100%;
-  max-width:600px;
-  max-height:92vh;
-  overflow:auto;
-  background:white;
-  border-radius:22px 22px 0 0;
   padding:20px;
 }
 
-.modal-head{
+.modal.active{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
+}
+
+.modalBox{
+  background:white;
+  max-width:500px;
+  width:100%;
+  border-radius:20px;
+  padding:18px;
+  position:relative;
 }
 
 .close{
-  width:38px;
-  height:38px;
+  position:absolute;
+  right:12px;
+  top:10px;
   border:0;
+  background:#111;
+  color:white;
+  width:35px;
+  height:35px;
   border-radius:50%;
-  background:#eee;
-  font-size:22px;
   cursor:pointer;
 }
 
-.cart-item{
+.zoomImage{
+  height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f3f3;
+  border-radius:15px;
+}
+
+.zoomImage .emoji{
+  font-size:180px;
+}
+
+.cartPanel{
+  position:fixed;
+  right:-420px;
+  top:0;
+  width:400px;
+  max-width:95%;
+  height:100%;
+  background:white;
+  z-index:600;
+  box-shadow:-5px 0 25px #0003;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+}
+
+.cartPanel.open{
+  right:0;
+}
+
+.cartHeader{
+  padding:18px;
+  background:#111;
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cartItems{
+  flex:1;
+  overflow:auto;
+  padding:15px;
+}
+
+.cartItem{
   display:flex;
   gap:10px;
-  align-items:center;
   padding:12px 0;
   border-bottom:1px solid #eee;
 }
 
-.cart-image{
-  width:65px;
-  height:65px;
-  object-fit:cover;
+.cartEmoji{
+  width:60px;
+  height:60px;
+  background:#f3f3f3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border-radius:10px;
+  font-size:32px;
 }
 
-.cart-info{
+.cartInfo{
   flex:1;
 }
 
-.cart-name{
-  font-weight:bold;
-  font-size:14px;
-}
-
-.cart-price{
-  color:#00a94f;
-  margin-top:4px;
-  font-size:13px;
+.cartInfo strong{
+  display:block;
+  margin-bottom:5px;
 }
 
 .qty{
   display:flex;
-  gap:7px;
   align-items:center;
-  margin-top:7px;
+  gap:8px;
 }
 
 .qty button{
-  width:29px;
-  height:29px;
+  width:27px;
+  height:27px;
   border:0;
-  border-radius:7px;
+  border-radius:6px;
   background:#111;
   color:white;
   cursor:pointer;
@@ -395,119 +381,101 @@ header{
 
 .remove{
   border:0;
-  background:#ff3b30;
-  color:white;
-  padding:7px 9px;
-  border-radius:7px;
+  background:none;
+  color:#d00;
   cursor:pointer;
+  margin-left:8px;
+}
+
+.cartFooter{
+  padding:18px;
+  border-top:1px solid #ddd;
 }
 
 .total{
-  font-size:21px;
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
   font-weight:bold;
-  margin:20px 0;
+  margin-bottom:15px;
 }
 
 .checkout{
   width:100%;
-  padding:14px;
   border:0;
+  background:#d4af37;
+  padding:14px;
   border-radius:11px;
-  background:#00d26a;
-  color:#111;
   font-weight:bold;
-  font-size:16px;
   cursor:pointer;
 }
 
-/* FORM */
-
-.form{
-  margin-top:15px;
-}
-
-.form input,
-.form textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:9px;
-  margin-bottom:10px;
-  outline:0;
-  font-size:15px;
-}
-
-.form textarea{
-  min-height:80px;
-}
-
-.empty{
-  grid-column:1/-1;
+footer{
+  background:#111;
+  color:white;
+  padding:35px 15px;
   text-align:center;
-  padding:40px 10px;
-  color:#777;
 }
 
-/* BOTTOM NAV */
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
 
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:67px;
-  background:white;
-  border-top:1px solid #ddd;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  z-index:3000;
+  .filters{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-.nav{
-  text-align:center;
-  font-size:11px;
-  color:#777;
-  cursor:pointer;
-}
+@media(max-width:600px){
+  .header{
+    flex-wrap:wrap;
+  }
 
-.nav-icon{
-  font-size:23px;
-  margin-bottom:2px;
-}
+  .logo{
+    font-size:19px;
+  }
 
-.nav.active{
-  color:#00a94f;
-  font-weight:bold;
-}
+  .hero{
+    padding:35px 14px;
+  }
 
-@media(min-width:700px){
+  .hero h1{
+    font-size:27px;
+  }
+
+  .filters{
+    grid-template-columns:1fr 1fr;
+  }
 
   .products{
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
   }
 
-  .bottom{
-    display:none;
+  .productImage{
+    height:180px;
   }
 
-  body{
-    padding-bottom:20px;
+  .productImage .emoji{
+    font-size:72px;
   }
 
-  .modal{
-    align-items:center;
+  .cardBody{
+    padding:10px;
   }
 
-  .modal-box{
-    border-radius:20px;
+  .name{
+    font-size:14px;
   }
-}
 
-@media(min-width:1000px){
+  .price{
+    font-size:16px;
+  }
 
-  .products{
-    grid-template-columns:repeat(5,1fr);
+  .cartPanel{
+    width:100%;
+    max-width:100%;
   }
 }
 </style>
@@ -516,1181 +484,510 @@ header{
 <body>
 
 <header>
+  <div class="header">
+    <div class="logo">Abdii <span>Market</span></div>
 
-<div class="header">
-
-<div class="top">
-
-<div class="logo">
-Abdii<span>Market</span>
-</div>
-
-<div
-  class="cart"
-  onclick="openCart()"
->
-🛒
-<span
-  class="cart-count"
-  id="cartCount"
->0</span>
-</div>
-
-</div>
-
-<div class="search">
-
-<input
-  id="search"
-  type="text"
-  placeholder="🔎 Search: shoes, dress, pant, Jordan, black..."
-  oninput="renderProducts()"
->
-
-</div>
-
-</div>
-
+    <button class="cartBtn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
 </header>
 
-
 <section class="hero">
+  <h1>✨ Abdii Fashion Market</h1>
+  <p>Fashion products for everyone</p>
 
-<h1>
-🛍️ Abdii Market Fashion
-</h1>
-
-<p>
-Uffata, kophee, pant, eye glass, sa'aatii,
-warqee fi borsa ammayyaa bakka tokko irraa argadhu.
-</p>
-
-<button
-  class="hero-btn"
-  onclick="scrollToProducts()"
->
-Shop Now →
-</button>
-
+  <div class="searchBox">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search product, color, category..."
+      oninput="renderProducts()"
+    >
+    <button onclick="renderProducts()">🔎</button>
+  </div>
 </section>
 
+<div class="filters">
+
+  <select id="category" onchange="renderProducts()">
+    <option value="all">All Categories</option>
+    <option value="clothes">👕 Clothes</option>
+    <option value="shoes">👟 Shoes</option>
+    <option value="pants">👖 Pants</option>
+    <option value="glasses">🕶️ Eye Glass</option>
+    <option value="watch">⌚ Watch</option>
+    <option value="necklace">📿 Necklace</option>
+    <option value="bag">👜 Bag</option>
+  </select>
+
+  <select id="gender" onchange="renderProducts()">
+    <option value="all">All Gender</option>
+    <option value="male">👨 Men</option>
+    <option value="female">👩 Women</option>
+  </select>
+
+  <select id="color" onchange="renderProducts()">
+    <option value="all">All Colors</option>
+    <option>Black</option>
+    <option>White</option>
+    <option>Red</option>
+    <option>Blue</option>
+    <option>Green</option>
+    <option>Yellow</option>
+    <option>Pink</option>
+    <option>Purple</option>
+    <option>Brown</option>
+    <option>Gold</option>
+    <option>Silver</option>
+  </select>
+
+  <select id="sort" onchange="renderProducts()">
+    <option value="default">Sort Products</option>
+    <option value="low">Price: Low → High</option>
+    <option value="high">Price: High → Low</option>
+  </select>
+
+</div>
 
 <section class="section">
 
-<div class="title">
-<h2>Categories</h2>
-</div>
+  <div class="sectionTitle">
+    <h2>🛍️ Fashion Collection</h2>
+    <span class="count" id="count"></span>
+  </div>
 
-<div class="categories">
-
-<button
- class="category active"
- onclick="setCategory('All',this)"
->
-<div class="category-icon">🛍️</div>
-<div class="category-name">All</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Clothes',this)"
->
-<div class="category-icon">👕</div>
-<div class="category-name">Clothes</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Shoes',this)"
->
-<div class="category-icon">👟</div>
-<div class="category-name">Shoes</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Pants',this)"
->
-<div class="category-icon">👖</div>
-<div class="category-name">Pants</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Glasses',this)"
->
-<div class="category-icon">🕶️</div>
-<div class="category-name">Glasses</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Watches',this)"
->
-<div class="category-icon">⌚</div>
-<div class="category-name">Watches</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Necklaces',this)"
->
-<div class="category-icon">📿</div>
-<div class="category-name">Necklace</div>
-</button>
-
-<button
- class="category"
- onclick="setCategory('Bags',this)"
->
-<div class="category-icon">👜</div>
-<div class="category-name">Bags</div>
-</button>
-
-</div>
+  <div class="products" id="products"></div>
 
 </section>
-
-
-<section
- class="section"
- id="productsSection"
->
-
-<div class="title">
-<h2>🔥 New Fashion</h2>
-</div>
-
-<div
- id="products"
- class="products"
-></div>
-
-</section>
-
 
 <!-- IMAGE ZOOM -->
 
-<div
- id="imageModal"
- class="image-modal"
- onclick="closeImage()"
->
+<div class="modal" id="imageModal" onclick="closeImage()">
 
-<button
- class="image-close"
- onclick="closeImage()"
->
-×
-</button>
+  <div class="modalBox" onclick="event.stopPropagation()">
 
-<img
- id="zoomImage"
- src=""
- alt="Product"
- onclick="event.stopPropagation()"
->
+    <button class="close" onclick="closeImage()">×</button>
+
+    <div class="zoomImage">
+      <div class="emoji" id="zoomEmoji">👕</div>
+    </div>
+
+    <h2 id="zoomName" style="margin-top:15px"></h2>
+    <p id="zoomPrice" style="margin-top:7px;color:#b38b00;font-weight:bold"></p>
+
+  </div>
 
 </div>
-
 
 <!-- CART -->
 
-<div
- id="cartModal"
- class="modal"
->
+<div class="cartPanel" id="cartPanel">
 
-<div class="modal-box">
+  <div class="cartHeader">
+    <h2>🛒 Your Cart</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
 
-<div class="modal-head">
+  <div class="cartItems" id="cartItems"></div>
 
-<h2>🛒 Your Cart</h2>
+  <div class="cartFooter">
 
-<button
- class="close"
- onclick="closeCart()"
->
-×
-</button>
+    <div class="total">
+      <span>Total</span>
+      <span id="total">0 ETB</span>
+    </div>
 
-</div>
+    <button class="checkout" onclick="checkout()">
+      💳 Checkout with Chapa
+    </button>
 
-<div id="cartItems"></div>
-
-<div class="total">
-Total:
-<span id="cartTotal">0</span> ETB
-</div>
-
-<button
- class="checkout"
- onclick="openCheckout()"
->
-💳 Checkout & Pay
-</button>
+  </div>
 
 </div>
 
-</div>
-
-
-<!-- CHECKOUT -->
-
-<div
- id="checkoutModal"
- class="modal"
->
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2>📦 Checkout</h2>
-
-<button
- class="close"
- onclick="closeCheckout()"
->
-×
-</button>
-
-</div>
-
-<div class="form">
-
-<input
- id="firstName"
- placeholder="First Name *"
->
-
-<input
- id="lastName"
- placeholder="Last Name *"
->
-
-<input
- id="phone"
- placeholder="Phone Number *"
- type="tel"
->
-
-<input
- id="email"
- placeholder="Email"
- type="email"
->
-
-<textarea
- id="address"
- placeholder="Delivery Address *"
-></textarea>
-
-</div>
-
-<div class="total">
-
-Total:
-<span id="checkoutTotal">0</span>
-ETB
-
-</div>
-
-<button
- id="payButton"
- class="checkout"
- onclick="startPayment()"
->
-💳 Pay Now
-</button>
-
-</div>
-
-</div>
-
-
-<!-- BOTTOM NAV -->
-
-<div class="bottom">
-
-<div
- class="nav active"
- onclick="goHome()"
->
-<div class="nav-icon">🏠</div>
-Home
-</div>
-
-<div
- class="nav"
- onclick="scrollToProducts()"
->
-<div class="nav-icon">🛍️</div>
-Shop
-</div>
-
-<div
- class="nav"
- onclick="openCart()"
->
-<div class="nav-icon">🛒</div>
-Cart
-</div>
-
-<div
- class="nav"
- onclick="openTelegram()"
->
-<div class="nav-icon">✈️</div>
-Telegram
-</div>
-
-</div>
-
+<footer>
+  <h3>Abdii Market</h3>
+  <p style="margin-top:8px;color:#aaa">
+    Your fashion marketplace
+  </p>
+  <p style="margin-top:15px;color:#777">
+    © 2026 Abdii Market
+  </p>
+</footer>
 
 <script>
 
-/* =====================================================
-   CONFIG
-===================================================== */
+const products = [];
 
-const TELEGRAM_USERNAME =
-"AbdiiMarketBot";
+let id = 1;
 
-const BACKEND_URL =
-"https://abdii-market-f3os.onrender.com";
-
-const PAYMENT_ENDPOINT =
-BACKEND_URL + "/api/create-payment";
-
-
-/* =====================================================
-   IMAGE SYSTEM
-   Product-only fashion images
-===================================================== */
-
-const fashionImages = {
-
-clothes:[
-"https://loremflickr.com/600/700/fashion,dress?lock=101",
-"https://loremflickr.com/600/700/fashion,shirt?lock=102",
-"https://loremflickr.com/600/700/fashion,clothing?lock=103",
-"https://loremflickr.com/600/700/fashion,jacket?lock=104",
-"https://loremflickr.com/600/700/fashion,hoodie?lock=105",
-"https://loremflickr.com/600/700/fashion,sweater?lock=106",
-"https://loremflickr.com/600/700/fashion,tshirt?lock=107",
-"https://loremflickr.com/600/700/fashion,blouse?lock=108"
-],
-
-shoes:[
-"https://loremflickr.com/600/600/shoes,sneakers?lock=201",
-"https://loremflickr.com/600/600/jordan,shoes?lock=202",
-"https://loremflickr.com/600/600/sneakers?lock=203",
-"https://loremflickr.com/600/600/shoes?lock=204"
-],
-
-pants:[
-"https://loremflickr.com/600/700/jeans,pants?lock=301",
-"https://loremflickr.com/600/700/pants,fashion?lock=302",
-"https://loremflickr.com/600/700/jeans?lock=303"
-],
-
-glasses:[
-"https://loremflickr.com/600/500/sunglasses?lock=401",
-"https://loremflickr.com/600/500/eyeglasses?lock=402",
-"https://loremflickr.com/600/500/fashion,glasses?lock=403"
-],
-
-watches:[
-"https://loremflickr.com/600/600/watch?lock=501",
-"https://loremflickr.com/600/600/smartwatch?lock=502",
-"https://loremflickr.com/600/600/wristwatch?lock=503"
-],
-
-necklaces:[
-"https://loremflickr.com/600/600/necklace,jewelry?lock=601",
-"https://loremflickr.com/600/600/gold,necklace?lock=602"
-],
-
-bags:[
-"https://loremflickr.com/600/700/handbag?lock=701",
-"https://loremflickr.com/600/700/bag,fashion?lock=702",
-"https://loremflickr.com/600/700/backpack?lock=703"
-]
-
-};
-
-
-/* =====================================================
+/* --------------------------------
    PRODUCT GENERATOR
-===================================================== */
+-------------------------------- */
 
-const colors = [
-"Black",
-"White",
-"Red",
-"Blue",
-"Green",
-"Yellow",
-"Pink",
-"Brown",
-"Grey",
-"Purple",
-"Orange",
-"Beige",
-"Gold",
-"Silver",
-"Navy",
-"Sky Blue",
-"Dark Green",
-"Wine",
-"Cream",
-"Mixed"
-];
+function addProducts(category, count, gender, emoji, basePrice, colors){
 
+  for(let i=1;i<=count;i++){
 
-const menClothes = [
-"T-Shirt",
-"Oversized T-Shirt",
-"Polo Shirt",
-"Hoodie",
-"Sweater",
-"Jacket",
-"Denim Jacket",
-"Leather Jacket",
-"Tracksuit",
-"Casual Shirt",
-"Formal Shirt",
-"Long Sleeve",
-"Short Sleeve",
-"Sport Shirt",
-"Summer Shirt",
-"Winter Jacket",
-"Bomber Jacket",
-"Zip Hoodie",
-"Premium Shirt",
-"Classic Shirt"
-];
+    const color = colors[(i-1)%colors.length];
 
+    products.push({
 
-const womenClothes = [
-"T-Shirt",
-"Oversized T-Shirt",
-"Blouse",
-"Hoodie",
-"Sweater",
-"Jacket",
-"Denim Jacket",
-"Cardigan",
-"Dress",
-"Long Dress",
-"Mini Dress",
-"Summer Dress",
-"Winter Dress",
-"Crop Top",
-"Fashion Top",
-"Casual Top",
-"Premium Blouse",
-"Elegant Dress",
-"Sport Top",
-"Classic Dress"
-];
+      id:id++,
 
+      name:
+        category.charAt(0).toUpperCase()
+        + category.slice(1)
+        + " Fashion "
+        + i,
 
-let productsData = [];
+      category:category,
 
-let productId = 1;
+      gender:gender,
 
+      color:color,
 
-/* 80 CLOTHES */
+      price:basePrice + ((i%7)*500),
 
-for(let i=0;i<40;i++){
-
-  const name =
-    "Men's " +
-    menClothes[i % menClothes.length];
-
-  productsData.push({
-
-    id:productId++,
-
-    name:name +
-      " " +
-      (Math.floor(i/20)+1),
-
-    category:"Clothes",
-
-    gender:"Men",
-
-    color:colors[i % colors.length],
-
-    price:(
-      1800 +
-      (i * 137)
-    ),
-
-    image:
-      fashionImages.clothes[
-        i % fashionImages.clothes.length
-      ]
-
-  });
-
-}
-
-
-for(let i=0;i<40;i++){
-
-  const name =
-    "Women's " +
-    womenClothes[i % womenClothes.length];
-
-  productsData.push({
-
-    id:productId++,
-
-    name:name +
-      " " +
-      (Math.floor(i/20)+1),
-
-    category:"Clothes",
-
-    gender:"Women",
-
-    color:colors[(i+4) % colors.length],
-
-    price:(
-      2000 +
-      (i * 149)
-    ),
-
-    image:
-      fashionImages.clothes[
-        (i+3) %
-        fashionImages.clothes.length
-      ]
-
-  });
-
-}
-
-
-/* =====================================================
-   20 SHOES
-   10 MEN + 10 WOMEN
-===================================================== */
-
-const menShoes = [
-"Jordan 4",
-"Jordan 7",
-"Air Jordan",
-"Air Force",
-"Running Shoes",
-"Sport Sneakers",
-"Classic Sneakers",
-"Premium Shoes",
-"Casual Shoes",
-"Luxury Sneakers"
-];
-
-const womenShoes = [
-"Jordan 4 Women",
-"Jordan 7 Women",
-"Fashion Sneakers",
-"Air Force Women",
-"Running Shoes Women",
-"Sport Sneakers Women",
-"Classic Sneakers Women",
-"Premium Shoes Women",
-"Casual Shoes Women",
-"Luxury Sneakers Women"
-];
-
-
-menShoes.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Shoes",
-    gender:"Men",
-    color:colors[i % colors.length],
-    price:3500 + i*250,
-    image:fashionImages.shoes[
-      i % fashionImages.shoes.length
-    ]
-
-  });
-
-});
-
-
-womenShoes.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Shoes",
-    gender:"Women",
-    color:colors[(i+5)%colors.length],
-    price:3800 + i*260,
-    image:fashionImages.shoes[
-      (i+1)%fashionImages.shoes.length
-    ]
-
-  });
-
-});
-
-
-/* =====================================================
-   20 PANTS
-===================================================== */
-
-const menPants = [
-"Classic Jeans",
-"Baggy Jeans",
-"Cargo Pant",
-"Straight Jeans",
-"Black Jeans",
-"Blue Jeans",
-"Wide Leg Pant",
-"Formal Pant",
-"Sport Pant",
-"Premium Jeans"
-];
-
-const womenPants = [
-"Women's Jeans",
-"Baggy Jeans Women",
-"Cargo Pant Women",
-"Straight Jeans Women",
-"Black Jeans Women",
-"Blue Jeans Women",
-"Wide Leg Pant Women",
-"Formal Pant Women",
-"Sport Pant Women",
-"Premium Jeans Women"
-];
-
-
-menPants.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Pants",
-    gender:"Men",
-    color:colors[(i+2)%colors.length],
-    price:3000+i*200,
-    image:fashionImages.pants[
-      i%fashionImages.pants.length
-    ]
-
-  });
-
-});
-
-
-womenPants.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Pants",
-    gender:"Women",
-    color:colors[(i+7)%colors.length],
-    price:3200+i*220,
-    image:fashionImages.pants[
-      (i+1)%fashionImages.pants.length
-    ]
-
-  });
-
-});
-
-
-/* =====================================================
-   20 GLASSES
-===================================================== */
-
-const menGlasses = [
-"Classic Black Glass",
-"Square Glass",
-"Sport Glass",
-"Premium Glass",
-"Vintage Glass",
-"Round Glass",
-"Metal Glass",
-"Luxury Glass",
-"Sun Glass",
-"Fashion Glass"
-];
-
-const womenGlasses = [
-"Classic Women Glass",
-"Square Women Glass",
-"Fashion Women Glass",
-"Premium Women Glass",
-"Vintage Women Glass",
-"Round Women Glass",
-"Metal Women Glass",
-"Luxury Women Glass",
-"Sun Glass Women",
-"Elegant Glass"
-];
-
-
-menGlasses.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Glasses",
-    gender:"Men",
-    color:colors[(i+1)%colors.length],
-    price:1500+i*150,
-    image:fashionImages.glasses[
-      i%fashionImages.glasses.length
-    ]
-
-  });
-
-});
-
-
-womenGlasses.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Glasses",
-    gender:"Women",
-    color:colors[(i+6)%colors.length],
-    price:1700+i*160,
-    image:fashionImages.glasses[
-      (i+1)%fashionImages.glasses.length
-    ]
-
-  });
-
-});
-
-
-/* =====================================================
-   20 WATCHES
-===================================================== */
-
-const menWatches = [
-"Classic Watch",
-"Luxury Watch",
-"Sport Watch",
-"Digital Watch",
-"Smart Watch",
-"Metal Watch",
-"Leather Watch",
-"Premium Watch",
-"Black Watch",
-"Silver Watch"
-];
-
-const womenWatches = [
-"Classic Women Watch",
-"Luxury Women Watch",
-"Fashion Watch",
-"Digital Women Watch",
-"Smart Watch Women",
-"Metal Women Watch",
-"Leather Women Watch",
-"Premium Women Watch",
-"Gold Women Watch",
-"Silver Women Watch"
-];
-
-
-menWatches.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Watches",
-    gender:"Men",
-    color:colors[(i+3)%colors.length],
-    price:2500+i*300,
-    image:fashionImages.watches[
-      i%fashionImages.watches.length
-    ]
-
-  });
-
-});
-
-
-womenWatches.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-    name:name,
-    category:"Watches",
-    gender:"Women",
-    color:colors[(i+8)%colors.length],
-    price:2800+i*320,
-    image:fashionImages.watches[
-      (i+1)%fashionImages.watches.length
-    ]
-
-  });
-
-});
-
-
-/* =====================================================
-   10 NECKLACES
-===================================================== */
-
-for(let i=0;i<10;i++){
-
-  productsData.push({
-
-    id:productId++,
-
-    name:
-      i%2===0
-      ? "Men's Premium Necklace " + (i+1)
-      : "Women's Elegant Necklace " + (i+1),
-
-    category:"Necklaces",
-
-    gender:
-      i%2===0
-      ? "Men"
-      : "Women",
-
-    color:
-      i%2===0
-      ? "Gold"
-      : "Silver",
-
-    price:
-      4500+i*500,
-
-    image:
-      fashionImages.necklaces[
-        i%fashionImages.necklaces.length
-      ]
-
-  });
-
-}
-
-
-/* =====================================================
-   10 BAGS
-===================================================== */
-
-const bagNames = [
-"Premium Hand Bag",
-"Fashion Hand Bag",
-"Classic Bag",
-"Luxury Bag",
-"Travel Bag",
-"School Bag",
-"Backpack",
-"Shoulder Bag",
-"Crossbody Bag",
-"Premium Backpack"
-];
-
-bagNames.forEach((name,i)=>{
-
-  productsData.push({
-
-    id:productId++,
-
-    name:name,
-
-    category:"Bags",
-
-    gender:
-      i%2===0
-      ? "Women"
-      : "Men",
-
-    color:
-      colors[(i+5)%colors.length],
-
-    price:
-      3000+i*350,
-
-    image:
-      fashionImages.bags[
-        i%fashionImages.bags.length
-      ]
-
-  });
-
-});
-
-
-/* =====================================================
-   CART
-===================================================== */
-
-let cart =
-JSON.parse(
-  localStorage.getItem(
-    "abdiiMarketCart"
-  ) || "[]"
-);
-
-let currentCategory = "All";
-
-
-function saveCart(){
-
-  localStorage.setItem(
-    "abdiiMarketCart",
-    JSON.stringify(cart)
-  );
-
-}
-
-
-function formatPrice(price){
-
-  return Number(price)
-    .toLocaleString("en-US");
-
-}
-
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function renderProducts(){
-
-  const search =
-    document.getElementById(
-      "search"
-    )
-    .value
-    .toLowerCase()
-    .trim();
-
-
-  const results =
-    productsData.filter(product=>{
-
-      const categoryOK =
-        currentCategory === "All" ||
-        product.category ===
-        currentCategory;
-
-
-      const text =
-        (
-          product.name +
-          " " +
-          product.gender +
-          " " +
-          product.color +
-          " " +
-          product.category
-        )
-        .toLowerCase();
-
-
-      return (
-        categoryOK &&
-        text.includes(search)
-      );
+      emoji:emoji
 
     });
 
+  }
+
+}
+
+/* 80 CLOTHES */
+
+const clothesColors=[
+  "Black","White","Red","Blue",
+  "Green","Yellow","Pink","Purple",
+  "Brown","Black"
+];
+
+for(let i=1;i<=80;i++){
+
+  const gender = i%2===0 ? "female":"male";
+
+  products.push({
+
+    id:id++,
+
+    name:
+      (gender==="male" ? "Men's" : "Women's")
+      +" Fashion Dress "
+      +i,
+
+    category:"clothes",
+
+    gender:gender,
+
+    color:clothesColors[(i-1)%clothesColors.length],
+
+    price:3000+((i%15)*500),
+
+    emoji:"👕"
+
+  });
+
+}
+
+/* SHOES 20 */
+
+addProducts(
+  "shoes",
+  10,
+  "male",
+  "👟",
+  4500,
+  ["Black","White","Blue","Red","Brown"]
+);
+
+addProducts(
+  "shoes",
+  10,
+  "female",
+  "👠",
+  4500,
+  ["Black","White","Pink","Red","Purple"]
+);
+
+/* PANTS 20 */
+
+addProducts(
+  "pants",
+  10,
+  "male",
+  "👖",
+  5000,
+  ["Black","Blue","Brown","White","Green"]
+);
+
+addProducts(
+  "pants",
+  10,
+  "female",
+  "👖",
+  5000,
+  ["Black","Blue","Pink","White","Purple"]
+);
+
+/* GLASSES 20 */
+
+addProducts(
+  "glasses",
+  10,
+  "male",
+  "🕶️",
+  2500,
+  ["Black","Brown","Blue","Silver","Gold"]
+);
+
+addProducts(
+  "glasses",
+  10,
+  "female",
+  "🕶️",
+  2500,
+  ["Black","Pink","Purple","Gold","Silver"]
+);
+
+/* WATCH 20 */
+
+addProducts(
+  "watch",
+  10,
+  "male",
+  "⌚",
+  7000,
+  ["Black","Silver","Gold","Blue","Brown"]
+);
+
+addProducts(
+  "watch",
+  10,
+  "female",
+  "⌚",
+  7000,
+  ["Gold","Silver","Pink","Black","Purple"]
+);
+
+/* NECKLACE 10 */
+
+addProducts(
+  "necklace",
+  10,
+  "male",
+  "📿",
+  6000,
+  ["Gold","Silver","Black","Gold","Silver"]
+);
+
+/* BAG 10 */
+
+addProducts(
+  "bag",
+  10,
+  "female",
+  "👜",
+  4500,
+  ["Black","Brown","Red","Pink","Purple"]
+);
+
+let cart =
+  JSON.parse(localStorage.getItem("abdiiCart")) || [];
+
+
+/* --------------------------------
+   RENDER PRODUCTS
+-------------------------------- */
+
+function renderProducts(){
 
   const container =
-    document.getElementById(
-      "products"
-    );
+    document.getElementById("products");
 
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase();
 
-  if(results.length===0){
+  const category =
+    document.getElementById("category").value;
 
-    container.innerHTML = `
-      <div class="empty">
-        <h3>❌ Product hin argamne</h3>
-        <p>Search kee jijjiiri.</p>
-      </div>
-    `;
+  const gender =
+    document.getElementById("gender").value;
+
+  const color =
+    document.getElementById("color").value;
+
+  const sort =
+    document.getElementById("sort").value;
+
+  let list = products.filter(p=>{
+
+    const searchMatch =
+      p.name.toLowerCase().includes(search)
+      ||
+      p.category.toLowerCase().includes(search)
+      ||
+      p.gender.toLowerCase().includes(search)
+      ||
+      p.color.toLowerCase().includes(search);
+
+    const categoryMatch =
+      category==="all" ||
+      p.category===category;
+
+    const genderMatch =
+      gender==="all" ||
+      p.gender===gender;
+
+    const colorMatch =
+      color==="all" ||
+      p.color===color;
+
+    return
+      searchMatch &&
+      categoryMatch &&
+      genderMatch &&
+      colorMatch;
+
+  });
+
+  if(sort==="low"){
+    list.sort((a,b)=>a.price-b.price);
+  }
+
+  if(sort==="high"){
+    list.sort((a,b)=>b.price-a.price);
+  }
+
+  document.getElementById("count").textContent =
+    list.length+" products";
+
+  container.innerHTML="";
+
+  if(list.length===0){
+
+    container.innerHTML=
+      `<div class="empty">
+        😔 Product hin argamne.
+      </div>`;
 
     return;
 
   }
 
+  list.forEach(p=>{
 
-  container.innerHTML =
-    results.map(product=>`
+    const card=document.createElement("div");
 
-      <div class="product">
+    card.className="card";
 
-        <div
-          class="product-image"
-          onclick="zoomImage('${product.image}')"
-        >
+    card.innerHTML=`
 
-          <span class="badge">
-            ${product.gender}
-          </span>
+      <div
+        class="productImage"
+        onclick="zoomProduct(${p.id})"
+      >
 
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-            loading="lazy"
-            onerror="
-              this.src='https://picsum.photos/600/700?random=${product.id}'
-            "
-          >
+        <span class="badge">
+          ${p.gender==="male"?"MEN":"WOMEN"}
+        </span>
 
-          <span class="zoom">
-            🔍
-          </span>
-
-        </div>
-
-        <div class="product-info">
-
-          <div class="product-name">
-            ${product.name}
-          </div>
-
-          <div class="product-meta">
-            ${product.category}
-            •
-            ${product.color}
-          </div>
-
-          <div class="price">
-            ${formatPrice(product.price)}
-            ETB
-          </div>
-
-          <button
-            class="add"
-            onclick="addToCart(${product.id})"
-          >
-            🛒 Add to Cart
-          </button>
-
+        <div class="emoji">
+          ${p.emoji}
         </div>
 
       </div>
 
-    `).join("");
+      <div class="cardBody">
+
+        <div class="category">
+          ${p.category.toUpperCase()}
+        </div>
+
+        <div class="name">
+          ${p.name}
+        </div>
+
+        <div class="price">
+          ${p.price.toLocaleString()} ETB
+        </div>
+
+        <div class="meta">
+          <span class="tag">${p.gender}</span>
+          <span class="tag">${p.color}</span>
+        </div>
+
+        <button
+          class="addBtn"
+          onclick="addToCart(${p.id})"
+        >
+          🛒 Add to Cart
+        </button>
+
+      </div>
+    `;
+
+    container.appendChild(card);
+
+  });
 
 }
 
 
-/* =====================================================
-   CATEGORY
-===================================================== */
-
-function setCategory(category,button){
-
-  currentCategory =
-    category;
-
-  document
-    .querySelectorAll(".category")
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
-
-  button.classList.add("active");
-
-  renderProducts();
-
-}
-
-
-/* =====================================================
-   ZOOM
-===================================================== */
-
-function zoomImage(src){
-
-  document.getElementById(
-    "zoomImage"
-  ).src = src;
-
-  document.getElementById(
-    "imageModal"
-  ).classList.add("show");
-
-}
-
-
-function closeImage(){
-
-  document.getElementById(
-    "imageModal"
-  ).classList.remove("show");
-
-}
-
-
-/* =====================================================
+/* --------------------------------
    CART
-===================================================== */
+-------------------------------- */
 
 function addToCart(id){
 
-  const product =
-    productsData.find(
-      p=>p.id===id
-    );
-
-  if(!product)return;
-
-
   const existing =
-    cart.find(
-      item=>item.id===id
-    );
-
+    cart.find(item=>item.id===id);
 
   if(existing){
 
-    existing.quantity++;
+    existing.qty++;
 
   }else{
+
+    const product =
+      products.find(p=>p.id===id);
 
     cart.push({
 
       id:product.id,
 
-      quantity:1
+      name:product.name,
+
+      price:product.price,
+
+      emoji:product.emoji,
+
+      qty:1
 
     });
 
   }
 
-
   saveCart();
 
   updateCart();
 
-  alert(
-    product.name +
-    " 🛒 cart keessa gale!"
+  openCart();
+
+}
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    "abdiiCart",
+    JSON.stringify(cart)
   );
 
 }
@@ -1698,475 +995,225 @@ function addToCart(id){
 
 function updateCart(){
 
-  const count =
-    cart.reduce(
-      (sum,item)=>
-        sum+item.quantity,
-      0
-    );
+  const container =
+    document.getElementById("cartItems");
 
-  document.getElementById(
-    "cartCount"
-  ).textContent =
+  const count =
+    cart.reduce((sum,item)=>sum+item.qty,0);
+
+  document.getElementById("cartCount").textContent =
     count;
+
+  container.innerHTML="";
+
+  let total=0;
+
+  if(cart.length===0){
+
+    container.innerHTML=
+      `<div style="text-align:center;padding:50px;color:#777">
+        🛒 Cart kee duwwaa dha.
+      </div>`;
+
+  }
+
+  cart.forEach(item=>{
+
+    total += item.price * item.qty;
+
+    const div=document.createElement("div");
+
+    div.className="cartItem";
+
+    div.innerHTML=`
+
+      <div class="cartEmoji">
+        ${item.emoji}
+      </div>
+
+      <div class="cartInfo">
+
+        <strong>${item.name}</strong>
+
+        <div style="font-size:13px;margin-bottom:8px">
+          ${item.price.toLocaleString()} ETB
+        </div>
+
+        <div class="qty">
+
+          <button
+            onclick="changeQty(${item.id},-1)"
+          >−</button>
+
+          <span>${item.qty}</span>
+
+          <button
+            onclick="changeQty(${item.id},1)"
+          >+</button>
+
+          <button
+            class="remove"
+            onclick="removeFromCart(${item.id})"
+          >
+            Remove
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    container.appendChild(div);
+
+  });
+
+  document.getElementById("total").textContent =
+    total.toLocaleString()+" ETB";
+
+}
+
+
+function changeQty(id,change){
+
+  const item =
+    cart.find(x=>x.id===id);
+
+  if(!item) return;
+
+  item.qty += change;
+
+  if(item.qty<=0){
+
+    cart =
+      cart.filter(x=>x.id!==id);
+
+  }
+
+  saveCart();
+
+  updateCart();
+
+}
+
+
+function removeFromCart(id){
+
+  cart =
+    cart.filter(item=>item.id!==id);
+
+  saveCart();
+
+  updateCart();
 
 }
 
 
 function openCart(){
 
-  document.getElementById(
-    "cartModal"
-  ).classList.add("show");
-
-  renderCart();
+  document
+    .getElementById("cartPanel")
+    .classList.add("open");
 
 }
 
 
 function closeCart(){
 
-  document.getElementById(
-    "cartModal"
-  ).classList.remove("show");
+  document
+    .getElementById("cartPanel")
+    .classList.remove("open");
 
 }
 
 
-function renderCart(){
+/* --------------------------------
+   IMAGE ZOOM
+-------------------------------- */
 
-  const container =
-    document.getElementById(
-      "cartItems"
-    );
+function zoomProduct(id){
 
+  const p =
+    products.find(x=>x.id===id);
+
+  if(!p) return;
+
+  document.getElementById("zoomEmoji")
+    .textContent=p.emoji;
+
+  document.getElementById("zoomName")
+    .textContent=p.name;
+
+  document.getElementById("zoomPrice")
+    .textContent=
+      p.price.toLocaleString()+" ETB";
+
+  document
+    .getElementById("imageModal")
+    .classList.add("active");
+
+}
+
+
+function closeImage(){
+
+  document
+    .getElementById("imageModal")
+    .classList.remove("active");
+
+}
+
+
+/* --------------------------------
+   CHAPA PLACEHOLDER
+-------------------------------- */
+
+function checkout(){
 
   if(cart.length===0){
 
-    container.innerHTML=`
-      <div class="empty">
-        🛒 Cart kee duwwaa dha.
-      </div>
-    `;
-
-    document.getElementById(
-      "cartTotal"
-    ).textContent="0";
+    alert("Cart kee duwwaa dha.");
 
     return;
 
   }
 
+  const total =
+    cart.reduce(
+      (sum,item)=>
+        sum+(item.price*item.qty),
+      0
+    );
 
-  let total=0;
+  /*
+    CHAPA BACKEND
 
+    Asitti booda endpoint kee galchi:
 
-  container.innerHTML =
-    cart.map((item,index)=>{
+    fetch("/api/checkout",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        amount:total,
+        items:cart
+      })
+    })
 
-      const product =
-        productsData.find(
-          p=>p.id===item.id
-        );
+  */
 
-      if(!product)return "";
-
-
-      const subtotal =
-        product.price *
-        item.quantity;
-
-
-      total += subtotal;
-
-
-      return `
-
-        <div class="cart-item">
-
-          <img
-            class="cart-image"
-            src="${product.image}"
-            alt="${product.name}"
-          >
-
-          <div class="cart-info">
-
-            <div class="cart-name">
-              ${product.name}
-            </div>
-
-            <div class="cart-price">
-              ${formatPrice(product.price)}
-              ETB
-            </div>
-
-            <div class="qty">
-
-              <button
-                onclick="changeQty(${index},-1)"
-              >
-                −
-              </button>
-
-              <strong>
-                ${item.quantity}
-              </strong>
-
-              <button
-                onclick="changeQty(${index},1)"
-              >
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-          <button
-            class="remove"
-            onclick="removeCart(${index})"
-          >
-            Haqi
-          </button>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-
-  document.getElementById(
-    "cartTotal"
-  ).textContent =
-    formatPrice(total);
-
-}
-
-
-function changeQty(index,change){
-
-  if(!cart[index])return;
-
-
-  cart[index].quantity +=
-    change;
-
-
-  if(cart[index].quantity<=0){
-
-    cart.splice(index,1);
-
-  }
-
-
-  saveCart();
-
-  updateCart();
-
-  renderCart();
-
-}
-
-
-function removeCart(index){
-
-  cart.splice(index,1);
-
-  saveCart();
-
-  updateCart();
-
-  renderCart();
-
-}
-
-
-function getCartTotal(){
-
-  return cart.reduce(
-    (total,item)=>{
-
-      const product =
-        productsData.find(
-          p=>p.id===item.id
-        );
-
-      if(!product)return total;
-
-      return total +
-        product.price *
-        item.quantity;
-
-    },
-    0
+  alert(
+    "Checkout ready!\n\n"+
+    "Total: "+
+    total.toLocaleString()+
+    " ETB\n\n"+
+    "Chapa backend itti aanu keessatti walitti hidha."
   );
 
 }
 
 
-/* =====================================================
-   CHECKOUT
-===================================================== */
-
-function openCheckout(){
-
-  if(cart.length===0){
-
-    alert(
-      "Cart kee duwwaa dha."
-    );
-
-    return;
-
-  }
-
-
-  document.getElementById(
-    "checkoutTotal"
-  ).textContent =
-    formatPrice(
-      getCartTotal()
-    );
-
-
-  closeCart();
-
-
-  document.getElementById(
-    "checkoutModal"
-  ).classList.add("show");
-
-}
-
-
-function closeCheckout(){
-
-  document.getElementById(
-    "checkoutModal"
-  ).classList.remove("show");
-
-}
-
-
-/* =====================================================
-   PAYMENT
-===================================================== */
-
-async function startPayment(){
-
-  const firstName =
-    document.getElementById(
-      "firstName"
-    ).value.trim();
-
-  const lastName =
-    document.getElementById(
-      "lastName"
-    ).value.trim();
-
-  const phone =
-    document.getElementById(
-      "phone"
-    ).value.trim();
-
-  const email =
-    document.getElementById(
-      "email"
-    ).value.trim();
-
-  const address =
-    document.getElementById(
-      "address"
-    ).value.trim();
-
-
-  if(
-    !firstName ||
-    !lastName ||
-    !phone ||
-    !address
-  ){
-
-    alert(
-      "Maqaa, bilbila fi teessoo guuti."
-    );
-
-    return;
-
-  }
-
-
-  const order = {
-
-    orderId:
-      "ABD-" +
-      Date.now(),
-
-    customer:{
-      firstName,
-      lastName,
-      phone,
-      email,
-      address
-    },
-
-    items:
-      cart,
-
-    amount:
-      getCartTotal(),
-
-    currency:
-      "ETB",
-
-    createdAt:
-      new Date().toISOString()
-
-  };
-
-
-  localStorage.setItem(
-    "abdiiLastOrder",
-    JSON.stringify(order)
-  );
-
-
-  const button =
-    document.getElementById(
-      "payButton"
-    );
-
-
-  button.disabled=true;
-
-  button.innerText =
-    "⏳ Chapa waliin wal qunnamaa...";
-
-
-  try{
-
-    const response =
-      await fetch(
-        PAYMENT_ENDPOINT,
-        {
-
-          method:"POST",
-
-          headers:{
-            "Content-Type":
-              "application/json",
-            "Accept":
-              "application/json"
-          },
-
-          body:
-            JSON.stringify(order)
-
-        }
-      );
-
-
-    const data =
-      await response.json();
-
-
-    if(
-      !response.ok
-    ){
-
-      throw new Error(
-        data.message ||
-        data.error ||
-        "Payment server error"
-      );
-
-    }
-
-
-    if(
-      data.success &&
-      data.checkout_url
-    ){
-
-      window.location.href =
-        data.checkout_url;
-
-      return;
-
-    }
-
-
-    throw new Error(
-      data.message ||
-      "Checkout URL hin argamne."
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    alert(
-      "Payment jalqabuu hin dandeenye.\n\n" +
-      (
-        error.message ||
-        "Mee irra deebi'i."
-      )
-    );
-
-
-    button.disabled=false;
-
-    button.innerText =
-      "💳 Pay Now";
-
-  }
-
-}
-
-
-/* =====================================================
-   SEARCH / NAVIGATION
-===================================================== */
-
-function scrollToProducts(){
-
-  document.getElementById(
-    "productsSection"
-  ).scrollIntoView({
-    behavior:"smooth"
-  });
-
-}
-
-
-function goHome(){
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-function openTelegram(){
-
-  window.open(
-    "https://t.me/" +
-    TELEGRAM_USERNAME,
-    "_blank"
-  );
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
+/* START */
 
 renderProducts();
 
