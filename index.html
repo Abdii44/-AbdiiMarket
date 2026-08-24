@@ -19,6 +19,8 @@ body{
   color:#111;
 }
 
+/* HEADER */
+
 header{
   position:sticky;
   top:0;
@@ -34,6 +36,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:10px;
 }
 
 .logo{
@@ -51,17 +54,18 @@ header{
   cursor:pointer;
 }
 
+/* HERO */
+
 .hero{
-  padding:45px 15px;
-  text-align:center;
-  color:white;
   background:
     linear-gradient(
       135deg,
-      rgba(0,0,0,.88),
-      rgba(40,40,40,.75)
-    ),
-    radial-gradient(circle at top,#555,#111);
+      rgba(0,0,0,.94),
+      rgba(40,40,40,.82)
+    );
+  color:white;
+  text-align:center;
+  padding:45px 15px;
 }
 
 .hero h1{
@@ -71,7 +75,6 @@ header{
 
 .hero p{
   opacity:.9;
-  font-size:16px;
 }
 
 .search-box{
@@ -87,6 +90,8 @@ header{
   border-radius:12px;
   font-size:16px;
 }
+
+/* CATEGORIES */
 
 .categories{
   max-width:1200px;
@@ -112,6 +117,8 @@ header{
   color:white;
 }
 
+/* PRODUCTS */
+
 .container{
   max-width:1200px;
   margin:auto;
@@ -120,7 +127,8 @@ header{
 
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  grid-template-columns:
+    repeat(auto-fill,minmax(190px,1fr));
   gap:16px;
 }
 
@@ -182,14 +190,14 @@ header{
   color:#777;
 }
 
-/* IMAGE VIEWER */
+/* FULL IMAGE */
 
 .image-modal{
   display:none;
   position:fixed;
   inset:0;
   z-index:3000;
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.92);
   align-items:center;
   justify-content:center;
   padding:15px;
@@ -220,7 +228,7 @@ header{
   cursor:pointer;
 }
 
-/* CART */
+/* CART MODAL */
 
 .modal{
   display:none;
@@ -263,6 +271,8 @@ header{
   cursor:pointer;
   font-size:18px;
 }
+
+/* CART ITEM */
 
 .cart-item{
   display:flex;
@@ -307,11 +317,15 @@ header{
   cursor:pointer;
 }
 
+/* TOTAL */
+
 .total{
   font-size:21px;
   font-weight:bold;
   margin:20px 0;
 }
+
+/* FORM */
 
 .form input{
   width:100%;
@@ -334,6 +348,8 @@ header{
   font-size:16px;
 }
 
+/* TELEGRAM */
+
 .telegram{
   position:fixed;
   right:18px;
@@ -352,6 +368,8 @@ header{
   box-shadow:0 4px 15px rgba(0,0,0,.25);
 }
 
+/* FOOTER */
+
 footer{
   margin-top:45px;
   padding:28px 15px;
@@ -360,10 +378,13 @@ footer{
   color:white;
 }
 
+/* MOBILE */
+
 @media(max-width:500px){
 
   .products{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:
+      repeat(2,1fr);
     gap:10px;
   }
 
@@ -392,22 +413,40 @@ footer{
 
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">🛒 Abdii Market</div>
+<!-- HEADER -->
 
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
+<header>
+
+  <div class="nav">
+
+    <div class="logo">
+      🛒 Abdii Market
+    </div>
+
+    <button
+      class="cart-btn"
+      onclick="openCart()"
+    >
+      🛒 Cart
+      (<span id="cartCount">0</span>)
     </button>
+
   </div>
+
 </header>
+
+
+<!-- HERO -->
 
 <section class="hero">
 
-  <h1>🛍️ Abdii Market</h1>
+  <h1>
+    🛍️ Abdii Market
+  </h1>
 
   <p>
-    Meeshaalee barbaadde salphaatti bitadhu
+    Meeshaalee barbaadde
+    salphaatti bitadhu
   </p>
 
   <div class="search-box">
@@ -423,6 +462,9 @@ footer{
 
 </section>
 
+
+<!-- CATEGORIES -->
+
 <div class="categories">
 
   <button
@@ -432,19 +474,28 @@ footer{
     Hunda
   </button>
 
-  <button onclick="setCategory('Shoes',this)">
+  <button
+    onclick="setCategory('Shoes',this)"
+  >
     👟 Shoes
   </button>
 
-  <button onclick="setCategory('Clothes',this)">
+  <button
+    onclick="setCategory('Clothes',this)"
+  >
     👕 Clothes
   </button>
 
-  <button onclick="setCategory('Electronics',this)">
+  <button
+    onclick="setCategory('Electronics',this)"
+  >
     📱 Electronics
   </button>
 
 </div>
+
+
+<!-- PRODUCTS -->
 
 <main class="container">
 
@@ -456,7 +507,7 @@ footer{
 </main>
 
 
-<!-- IMAGE FULLSCREEN -->
+<!-- FULL IMAGE MODAL -->
 
 <div
   id="imageModal"
@@ -491,7 +542,9 @@ footer{
 
     <div class="modal-head">
 
-      <h2>🛒 Cart Kee</h2>
+      <h2>
+        🛒 Cart Kee
+      </h2>
 
       <button
         class="close"
@@ -507,7 +560,9 @@ footer{
     <div class="total">
 
       Total:
-      <span id="cartTotal">0</span>
+      <span id="cartTotal">
+        0
+      </span>
       ETB
 
     </div>
@@ -543,6 +598,8 @@ footer{
 </div>
 
 
+<!-- TELEGRAM -->
+
 <a
   class="telegram"
   href="https://t.me/AbdiiMarketBot"
@@ -552,30 +609,38 @@ footer{
 </a>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-  <h3>🛒 Abdii Market</h3>
+  <h3>
+    🛒 Abdii Market
+  </h3>
 
-  <p>Online Marketplace</p>
+  <p>
+    Online Marketplace
+  </p>
 
-  <p>© 2026 Abdii Market</p>
+  <p>
+    © 2026 Abdii Market
+  </p>
 
 </footer>
 
 
 <script>
 
-/* =========================
+/* =====================================
    IMAGE BASE
-========================= */
+===================================== */
 
 const imageBase =
 "https://raw.githubusercontent.com/Abdii44/-AbdiiMarket/main/";
 
 
-/* =========================
-   PRODUCTS 10
-========================= */
+/* =====================================
+   PRODUCTS — 10 QOFA
+===================================== */
 
 const products = [
 
@@ -662,23 +727,24 @@ const products = [
 ];
 
 
-/* =========================
+/* =====================================
    STATE
-========================= */
+===================================== */
 
 let cart =
-  JSON.parse(
-    localStorage.getItem(
-      "abdiiMarketCart"
-    ) || "[]"
-  );
+JSON.parse(
+  localStorage.getItem(
+    "abdiiMarketCart"
+  ) || "[]"
+);
 
-let currentCategory = "All";
+let currentCategory =
+"All";
 
 
-/* =========================
+/* =====================================
    SAVE CART
-========================= */
+===================================== */
 
 function saveCart(){
 
@@ -690,20 +756,23 @@ function saveCart(){
 }
 
 
-/* =========================
+/* =====================================
    IMAGE URL
-========================= */
+===================================== */
 
 function getImage(product){
 
-  return imageBase + product.image;
+  return imageBase +
+    encodeURIComponent(
+      product.image
+    );
 
 }
 
 
-/* =========================
-   PRICE FORMAT
-========================= */
+/* =====================================
+   PRICE
+===================================== */
 
 function formatPrice(price){
 
@@ -713,9 +782,9 @@ function formatPrice(price){
 }
 
 
-/* =========================
+/* =====================================
    RENDER PRODUCTS
-========================= */
+===================================== */
 
 function renderProducts(){
 
@@ -725,31 +794,34 @@ function renderProducts(){
     );
 
   const search =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
+    document.getElementById(
+      "search"
+    ).value
+    .toLowerCase()
+    .trim();
+
 
   const filtered =
-    products.filter(product => {
+    products.filter(
+      product => {
 
-      const categoryOK =
-        currentCategory === "All" ||
-        product.category ===
-        currentCategory;
+        const categoryOK =
+          currentCategory === "All" ||
+          product.category ===
+          currentCategory;
 
-      const searchOK =
-        product.name
-          .toLowerCase()
-          .includes(search);
+        const searchOK =
+          product.name
+            .toLowerCase()
+            .includes(search);
 
-      return (
-        categoryOK &&
-        searchOK
-      );
+        return (
+          categoryOK &&
+          searchOK
+        );
 
-    });
+      }
+    );
 
 
   if(filtered.length === 0){
@@ -771,56 +843,81 @@ function renderProducts(){
     `;
 
     return;
-
   }
 
 
   container.innerHTML =
-    filtered.map(product => `
+    filtered.map(
+      product => `
 
-      <div class="product">
+        <div class="product">
 
-        <img
-          class="product-image"
-          src="${getImage(product)}"
-          alt="${product.name}"
-          loading="lazy"
-          onclick="openImage('${getImage(product)}')"
-          onerror="
-            this.src='https://via.placeholder.com/500x500?text=Abdii+Market'
-          "
-        >
-
-        <div class="product-info">
-
-          <h3>
-            ${product.name}
-          </h3>
-
-          <div class="price">
-            ${formatPrice(product.price)}
-            ETB
-          </div>
-
-          <button
-            class="add"
-            onclick="addToCart(${product.id})"
+          <img
+            class="product-image"
+            src="${getImage(product)}"
+            alt="${product.name}"
+            loading="lazy"
+            onclick="
+              openImage(
+                '${getImage(product)}'
+              )
+            "
+            onerror="
+              imageError(this)
+            "
           >
-            🛒 Cart keessa galchi
-          </button>
+
+          <div class="product-info">
+
+            <h3>
+              ${product.name}
+            </h3>
+
+            <div class="price">
+
+              ${formatPrice(
+                product.price
+              )}
+              ETB
+
+            </div>
+
+            <button
+              class="add"
+              onclick="
+                addToCart(
+                  ${product.id}
+                )
+              "
+            >
+              🛒 Cart keessa galchi
+            </button>
+
+          </div>
 
         </div>
 
-      </div>
-
-    `).join("");
+      `
+    ).join("");
 
 }
 
 
-/* =========================
-   IMAGE VIEW
-========================= */
+/* =====================================
+   IMAGE ERROR
+===================================== */
+
+function imageError(img){
+
+  img.src =
+    "https://placehold.co/600x600?text=Abdii+Market";
+
+}
+
+
+/* =====================================
+   IMAGE FULLSCREEN
+===================================== */
 
 function openImage(src){
 
@@ -845,16 +942,18 @@ function closeImage(event){
 
     document.getElementById(
       "imageModal"
-    ).classList.remove("show");
+    ).classList.remove(
+      "show"
+    );
 
   }
 
 }
 
 
-/* =========================
+/* =====================================
    CATEGORY
-========================= */
+===================================== */
 
 function setCategory(
   category,
@@ -868,10 +967,11 @@ function setCategory(
     .querySelectorAll(
       ".categories button"
     )
-    .forEach(btn =>
-      btn.classList.remove(
-        "active"
-      )
+    .forEach(
+      btn =>
+        btn.classList.remove(
+          "active"
+        )
     );
 
   button.classList.add(
@@ -883,9 +983,9 @@ function setCategory(
 }
 
 
-/* =========================
-   ADD CART
-========================= */
+/* =====================================
+   ADD TO CART
+===================================== */
 
 function addToCart(id){
 
@@ -905,16 +1005,13 @@ function addToCart(id){
 
   if(existing){
 
-    existing.qty += 1;
+    existing.qty++;
 
   }else{
 
     cart.push({
-
       id:product.id,
-
       qty:1
-
     });
 
   }
@@ -932,9 +1029,9 @@ function addToCart(id){
 }
 
 
-/* =========================
+/* =====================================
    CART COUNT
-========================= */
+===================================== */
 
 function updateCartCount(){
 
@@ -952,9 +1049,9 @@ function updateCartCount(){
 }
 
 
-/* =========================
+/* =====================================
    OPEN CART
-========================= */
+===================================== */
 
 function openCart(){
 
@@ -971,9 +1068,9 @@ function openCart(){
 }
 
 
-/* =========================
+/* =====================================
    CLOSE CART
-========================= */
+===================================== */
 
 function closeCart(){
 
@@ -988,9 +1085,9 @@ function closeCart(){
 }
 
 
-/* =========================
+/* =====================================
    RENDER CART
-========================= */
+===================================== */
 
 function renderCart(){
 
@@ -1024,7 +1121,6 @@ function renderCart(){
     ).textContent = "0";
 
     return;
-
   }
 
 
@@ -1032,94 +1128,102 @@ function renderCart(){
 
 
   container.innerHTML =
-    cart.map(item => {
+    cart.map(
+      item => {
 
-      const product =
-        products.find(
-          p => p.id === item.id
-        );
-
-
-      if(!product)
-        return "";
+        const product =
+          products.find(
+            p =>
+              p.id === item.id
+          );
 
 
-      const subtotal =
-        product.price *
-        item.qty;
+        if(!product)
+          return "";
 
 
-      total += subtotal;
+        const subtotal =
+          product.price *
+          item.qty;
 
 
-      return `
+        total += subtotal;
 
-        <div class="cart-item">
 
-          <img
-            src="${getImage(product)}"
-            alt="${product.name}"
-          >
+        return `
 
-          <div class="cart-details">
+          <div class="cart-item">
 
-            <strong>
-              ${product.name}
-            </strong>
+            <img
+              src="${getImage(product)}"
+              alt="${product.name}"
+              onerror="
+                imageError(this)
+              "
+            >
 
-            <div>
-              ${formatPrice(product.price)}
-              ETB
+            <div class="cart-details">
+
+              <strong>
+                ${product.name}
+              </strong>
+
+              <div>
+                ${formatPrice(
+                  product.price
+                )}
+                ETB
+              </div>
+
+              <div class="qty">
+
+                <button
+                  onclick="
+                    changeQty(
+                      ${product.id},
+                      -1
+                    )
+                  "
+                >
+                  −
+                </button>
+
+                <span>
+                  ${item.qty}
+                </span>
+
+                <button
+                  onclick="
+                    changeQty(
+                      ${product.id},
+                      1
+                    )
+                  "
+                >
+                  +
+                </button>
+
+              </div>
+
             </div>
 
-            <div class="qty">
-
-              <button
-                onclick="
-                  changeQty(
-                    ${product.id},
-                    -1
-                  )
-                "
-              >
-                −
-              </button>
-
-              <span>
-                ${item.qty}
-              </span>
-
-              <button
-                onclick="
-                  changeQty(
-                    ${product.id},
-                    1
-                  )
-                "
-              >
-                +
-              </button>
-
-            </div>
+            <button
+              class="remove"
+              onclick="
+                removeFromCart(
+                  ${product.id}
+                )
+              "
+            >
+              Haqi
+            </button>
 
           </div>
 
-          <button
-            class="remove"
-            onclick="
-              removeFromCart(
-                ${product.id}
-              )
-            "
-          >
-            Haqi
-          </button>
+        `;
 
-        </div>
-
-      `;
-
-    }).join("");
+      }
+    ).join("");
 
 
   document.getElementById(
@@ -1130,9 +1234,9 @@ function renderCart(){
 }
 
 
-/* =========================
+/* =====================================
    CHANGE QUANTITY
-========================= */
+===================================== */
 
 function changeQty(
   id,
@@ -1141,7 +1245,8 @@ function changeQty(
 
   const item =
     cart.find(
-      item => item.id === id
+      item =>
+        item.id === id
     );
 
   if(!item) return;
@@ -1170,9 +1275,9 @@ function changeQty(
 }
 
 
-/* =========================
+/* =====================================
    REMOVE
-========================= */
+===================================== */
 
 function removeFromCart(id){
 
@@ -1191,48 +1296,38 @@ function removeFromCart(id){
 }
 
 
-/* =========================
+/* =====================================
    CHECKOUT
-========================= */
+===================================== */
 
 async function checkout(){
 
   if(cart.length === 0){
 
     alert(
-      "Mee yaa cart kee duwwaa dha."
+      "Cart kee duwwaa dha."
     );
 
     return;
-
   }
 
 
   const name =
-    document
-      .getElementById(
-        "customerName"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "customerName"
+    ).value.trim();
 
 
   const phone =
-    document
-      .getElementById(
-        "customerPhone"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "customerPhone"
+    ).value.trim();
 
 
   const address =
-    document
-      .getElementById(
-        "customerAddress"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "customerAddress"
+    ).value.trim();
 
 
   if(
@@ -1246,7 +1341,6 @@ async function checkout(){
     );
 
     return;
-
   }
 
 
@@ -1254,54 +1348,53 @@ async function checkout(){
 
 
   const items =
-    cart.map(item => {
+    cart.map(
+      item => {
 
-      const product =
-        products.find(
-          p => p.id === item.id
-        );
-
-
-      const subtotal =
-        product.price *
-        item.qty;
+        const product =
+          products.find(
+            p =>
+              p.id === item.id
+          );
 
 
-      total += subtotal;
+        const subtotal =
+          product.price *
+          item.qty;
 
 
-      return {
+        total += subtotal;
 
-        productId:
-          product.id,
 
-        name:
-          product.name,
+        return {
 
-        price:
-          product.price,
+          productId:
+            product.id,
 
-        quantity:
-          item.qty,
+          name:
+            product.name,
 
-        subtotal:
-          subtotal
+          price:
+            product.price,
 
-      };
+          quantity:
+            item.qty,
 
-    });
+          subtotal:
+            subtotal
+
+        };
+
+      }
+    );
 
 
   const order = {
 
     customer:{
-
       name:name,
-
       phone:phone,
-
       address:address
-
     },
 
     items:items,
@@ -1312,29 +1405,27 @@ async function checkout(){
 
     createdAt:
       new Date()
-      .toISOString()
+        .toISOString()
 
   };
 
 
   /*
-    Chapa Secret Key
-    FRONTEND keessa hin kaa'in.
+    IMPORTANT:
 
-    Backend endpoint kee:
+    Chapa Secret Key
+    frontend keessa hin kaa'in.
+
+    Backend endpoint:
     /api/chapa/initialize
   */
-
-
-  const API_URL =
-    "/api/chapa/initialize";
 
 
   try{
 
     const response =
       await fetch(
-        API_URL,
+        "/api/chapa/initialize",
         {
 
           method:"POST",
@@ -1366,7 +1457,6 @@ async function checkout(){
         data.checkout_url;
 
       return;
-
     }
 
 
@@ -1380,7 +1470,6 @@ async function checkout(){
         data.data.checkout_url;
 
       return;
-
     }
 
 
@@ -1394,7 +1483,7 @@ async function checkout(){
     console.error(error);
 
     alert(
-      "Chapa backend hin argamne. Mee backend kee ilaali."
+      "Chapa backend waliin wal qunnamuun dadhabe."
     );
 
   }
@@ -1402,9 +1491,9 @@ async function checkout(){
 }
 
 
-/* =========================
+/* =====================================
    CLOSE CART OUTSIDE
-========================= */
+===================================== */
 
 document
   .getElementById(
@@ -1414,9 +1503,7 @@ document
     "click",
     function(e){
 
-      if(
-        e.target === this
-      ){
+      if(e.target === this){
 
         closeCart();
 
@@ -1426,9 +1513,9 @@ document
   );
 
 
-/* =========================
+/* =====================================
    START
-========================= */
+===================================== */
 
 renderProducts();
 
