@@ -3,19 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdii Market — Fashion Store</title>
+<title>Abdii Market — Fashion</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f7f8;
-  color:#111;
+  font-family:Arial,sans-serif;
+  background:#f6f6f6;
+  color:#111
 }
 
 header{
@@ -24,79 +20,72 @@ header{
   z-index:100;
   background:#111;
   color:white;
-  padding:15px;
-  box-shadow:0 3px 15px #0003;
+  padding:14px
 }
 
-.header{
+.nav{
   max-width:1200px;
   margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:12px;
+  align-items:center
 }
 
 .logo{
-  font-size:22px;
-  font-weight:800;
-  white-space:nowrap;
+  font-size:23px;
+  font-weight:900
 }
 
-.logo span{
-  color:#d4af37;
-}
+.logo span{color:#d4af37}
 
-.cartBtn{
-  border:0;
+.cart-btn{
   background:#d4af37;
-  color:#111;
-  padding:11px 15px;
+  border:0;
+  padding:11px 16px;
   border-radius:12px;
   font-weight:bold;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .hero{
-  background:linear-gradient(135deg,#111,#292929);
+  background:linear-gradient(135deg,#050505,#292929);
   color:white;
-  padding:45px 18px;
   text-align:center;
+  padding:48px 15px
 }
 
 .hero h1{
-  font-size:34px;
-  margin-bottom:10px;
+  font-size:36px;
+  margin-bottom:10px
 }
 
 .hero p{
-  color:#ddd;
-  margin-bottom:22px;
+  color:#ccc;
+  margin-bottom:22px
 }
 
-.searchBox{
-  max-width:650px;
+.search{
+  max-width:680px;
   margin:auto;
-  display:flex;
   background:white;
+  display:flex;
   border-radius:15px;
-  overflow:hidden;
+  overflow:hidden
 }
 
-.searchBox input{
+.search input{
   flex:1;
   border:0;
+  outline:0;
   padding:16px;
-  font-size:16px;
-  outline:none;
+  font-size:16px
 }
 
-.searchBox button{
-  width:55px;
+.search button{
+  width:60px;
   border:0;
   background:#d4af37;
-  cursor:pointer;
-  font-size:20px;
+  font-size:20px
 }
 
 .filters{
@@ -105,291 +94,217 @@ header{
   padding:0 15px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  gap:10px
 }
 
-select{
-  width:100%;
+.filters select{
   padding:13px;
   border:1px solid #ddd;
   border-radius:11px;
-  background:white;
-  font-size:14px;
+  background:white
 }
 
-.section{
+.container{
   max-width:1200px;
   margin:auto;
-  padding:0 15px 40px;
+  padding:10px 15px 50px
 }
 
-.sectionTitle{
+.top{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin:20px 0;
-}
-
-.sectionTitle h2{
-  font-size:22px;
-}
-
-.count{
-  color:#777;
-  font-size:14px;
+  margin:20px 0
 }
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:16px;
+  gap:16px
 }
 
 .card{
   background:white;
-  border-radius:17px;
+  border-radius:18px;
   overflow:hidden;
-  box-shadow:0 3px 15px #0000000d;
-  transition:.2s;
-  position:relative;
+  box-shadow:0 4px 18px #00000012;
+  transition:.25s
 }
 
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 25px #0002;
+  transform:translateY(-5px)
 }
 
-.productImage{
-  height:235px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:zoom-in;
+.product-img{
+  height:250px;
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#eee,#fafafa);
+  cursor:zoom-in;
+  background:#f1f1f1
 }
 
-.productImage .emoji{
-  font-size:100px;
-  filter:drop-shadow(0 8px 8px #0002);
-  transition:.25s;
+.product-img svg{
+  width:100%;
+  height:100%;
+  transition:.3s
 }
 
-.productImage:hover .emoji{
-  transform:scale(1.08);
+.product-img:hover svg{
+  transform:scale(1.08)
 }
 
 .badge{
   position:absolute;
   top:10px;
   left:10px;
+  z-index:3;
   background:#111;
   color:white;
   padding:6px 9px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:bold;
+  border-radius:7px;
+  font-size:10px;
+  font-weight:bold
 }
 
-.cardBody{
-  padding:14px;
+.body{
+  padding:14px
 }
 
 .category{
   color:#888;
-  font-size:12px;
-  margin-bottom:5px;
+  font-size:11px;
+  margin-bottom:5px
 }
 
 .name{
   font-size:16px;
   font-weight:bold;
-  margin-bottom:8px;
+  margin-bottom:8px
 }
 
 .price{
-  color:#b38b00;
+  color:#a77d00;
   font-size:18px;
-  font-weight:800;
-  margin-bottom:10px;
+  font-weight:900;
+  margin-bottom:10px
 }
 
-.meta{
+.tags{
   display:flex;
   gap:5px;
-  flex-wrap:wrap;
   margin-bottom:12px;
+  flex-wrap:wrap
 }
 
 .tag{
-  background:#f1f1f1;
-  padding:5px 7px;
+  background:#f0f0f0;
+  padding:5px 8px;
   border-radius:7px;
-  font-size:11px;
+  font-size:11px
 }
 
-.addBtn{
+.add{
   width:100%;
-  padding:11px;
   border:0;
-  border-radius:10px;
   background:#111;
   color:white;
+  padding:11px;
+  border-radius:10px;
   font-weight:bold;
-  cursor:pointer;
+  cursor:pointer
 }
 
-.addBtn:hover{
+.add:hover{
   background:#d4af37;
-  color:#111;
+  color:#111
 }
 
-.empty{
-  text-align:center;
-  padding:50px;
-  color:#777;
-  grid-column:1/-1;
-}
+/* CART */
 
-.modal{
-  display:none;
+.cart{
   position:fixed;
-  inset:0;
-  background:#000b;
-  z-index:500;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.active{
-  display:flex;
-}
-
-.modalBox{
+  right:-430px;
+  top:0;
+  width:420px;
+  max-width:100%;
+  height:100%;
   background:white;
-  max-width:500px;
-  width:100%;
-  border-radius:20px;
+  z-index:500;
+  transition:.3s;
+  box-shadow:-5px 0 25px #0004;
+  display:flex;
+  flex-direction:column
+}
+
+.cart.open{right:0}
+
+.cart-head{
+  background:#111;
+  color:white;
   padding:18px;
-  position:relative;
+  display:flex;
+  justify-content:space-between
 }
 
 .close{
-  position:absolute;
-  right:12px;
-  top:10px;
+  background:#333;
+  color:white;
   border:0;
-  background:#111;
-  color:white;
-  width:35px;
-  height:35px;
+  width:33px;
+  height:33px;
   border-radius:50%;
-  cursor:pointer;
+  cursor:pointer
 }
 
-.zoomImage{
-  height:400px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f3f3f3;
-  border-radius:15px;
-}
-
-.zoomImage .emoji{
-  font-size:180px;
-}
-
-.cartPanel{
-  position:fixed;
-  right:-420px;
-  top:0;
-  width:400px;
-  max-width:95%;
-  height:100%;
-  background:white;
-  z-index:600;
-  box-shadow:-5px 0 25px #0003;
-  transition:.3s;
-  display:flex;
-  flex-direction:column;
-}
-
-.cartPanel.open{
-  right:0;
-}
-
-.cartHeader{
-  padding:18px;
-  background:#111;
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.cartItems{
+.cart-list{
   flex:1;
   overflow:auto;
-  padding:15px;
+  padding:15px
 }
 
-.cartItem{
+.cart-item{
   display:flex;
   gap:10px;
   padding:12px 0;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #eee
 }
 
-.cartEmoji{
-  width:60px;
-  height:60px;
-  background:#f3f3f3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  font-size:32px;
+.cart-item svg{
+  width:65px;
+  height:65px;
+  border-radius:9px;
+  background:#eee
 }
 
-.cartInfo{
-  flex:1;
-}
-
-.cartInfo strong{
-  display:block;
-  margin-bottom:5px;
+.cart-info{
+  flex:1
 }
 
 .qty{
   display:flex;
   align-items:center;
   gap:8px;
+  margin-top:8px
 }
 
 .qty button{
   width:27px;
   height:27px;
   border:0;
-  border-radius:6px;
   background:#111;
   color:white;
-  cursor:pointer;
+  border-radius:6px
 }
 
 .remove{
   border:0;
   background:none;
-  color:#d00;
-  cursor:pointer;
-  margin-left:8px;
+  color:red;
+  margin-left:7px
 }
 
-.cartFooter{
+.cart-footer{
   padding:18px;
-  border-top:1px solid #ddd;
+  border-top:1px solid #ddd
 }
 
 .total{
@@ -397,7 +312,7 @@ select{
   justify-content:space-between;
   font-size:20px;
   font-weight:bold;
-  margin-bottom:15px;
+  margin-bottom:15px
 }
 
 .checkout{
@@ -406,77 +321,83 @@ select{
   background:#d4af37;
   padding:14px;
   border-radius:11px;
-  font-weight:bold;
-  cursor:pointer;
+  font-weight:bold
+}
+
+/* ZOOM */
+
+.zoom{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#000d;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px
+}
+
+.zoom.open{display:flex}
+
+.zoom-box{
+  max-width:600px;
+  width:100%;
+  background:white;
+  border-radius:18px;
+  padding:15px;
+  position:relative
+}
+
+.zoom-box svg{
+  width:100%;
+  height:500px
+}
+
+.zoom-close{
+  position:absolute;
+  right:10px;
+  top:10px;
+  z-index:5;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  font-size:20px
 }
 
 footer{
   background:#111;
   color:white;
-  padding:35px 15px;
   text-align:center;
+  padding:35px
 }
 
 @media(max-width:900px){
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .filters{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .products{grid-template-columns:repeat(3,1fr)}
 }
 
 @media(max-width:600px){
-  .header{
-    flex-wrap:wrap;
-  }
 
-  .logo{
-    font-size:19px;
-  }
-
-  .hero{
-    padding:35px 14px;
-  }
-
-  .hero h1{
-    font-size:27px;
-  }
+  .hero h1{font-size:28px}
 
   .filters{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr
   }
 
   .products{
     grid-template-columns:repeat(2,1fr);
-    gap:10px;
+    gap:10px
   }
 
-  .productImage{
-    height:180px;
-  }
+  .product-img{height:190px}
 
-  .productImage .emoji{
-    font-size:72px;
-  }
+  .body{padding:10px}
 
-  .cardBody{
-    padding:10px;
-  }
+  .name{font-size:14px}
 
-  .name{
-    font-size:14px;
-  }
-
-  .price{
-    font-size:16px;
-  }
-
-  .cartPanel{
-    width:100%;
-    max-width:100%;
-  }
+  .price{font-size:16px}
 }
 </style>
 </head>
@@ -484,739 +405,1157 @@ footer{
 <body>
 
 <header>
-  <div class="header">
-    <div class="logo">Abdii <span>Market</span></div>
+<div class="nav">
 
-    <button class="cartBtn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
-    </button>
-  </div>
+<div class="logo">
+Abdii <span>Market</span>
+</div>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
+</div>
 </header>
 
 <section class="hero">
-  <h1>✨ Abdii Fashion Market</h1>
-  <p>Fashion products for everyone</p>
 
-  <div class="searchBox">
-    <input
-      id="search"
-      type="search"
-      placeholder="Search product, color, category..."
-      oninput="renderProducts()"
-    >
-    <button onclick="renderProducts()">🔎</button>
-  </div>
+<h1>✨ Abdii Fashion</h1>
+
+<p>
+Premium Fashion • Men • Women
+</p>
+
+<div class="search">
+
+<input
+id="search"
+placeholder="Search fashion, color, category..."
+oninput="render()"
+>
+
+<button>🔎</button>
+
+</div>
+
 </section>
 
 <div class="filters">
 
-  <select id="category" onchange="renderProducts()">
-    <option value="all">All Categories</option>
-    <option value="clothes">👕 Clothes</option>
-    <option value="shoes">👟 Shoes</option>
-    <option value="pants">👖 Pants</option>
-    <option value="glasses">🕶️ Eye Glass</option>
-    <option value="watch">⌚ Watch</option>
-    <option value="necklace">📿 Necklace</option>
-    <option value="bag">👜 Bag</option>
-  </select>
+<select id="category" onchange="render()">
+<option value="all">All Categories</option>
+<option value="clothes">👕 Clothes</option>
+<option value="shoes">👟 Shoes</option>
+<option value="pants">👖 Pants</option>
+<option value="glasses">🕶️ Eye Glass</option>
+<option value="watch">⌚ Watch</option>
+<option value="necklace">📿 Necklace</option>
+<option value="bag">👜 Bag</option>
+</select>
 
-  <select id="gender" onchange="renderProducts()">
-    <option value="all">All Gender</option>
-    <option value="male">👨 Men</option>
-    <option value="female">👩 Women</option>
-  </select>
+<select id="gender" onchange="render()">
+<option value="all">All Gender</option>
+<option value="male">👨 Men</option>
+<option value="female">👩 Women</option>
+</select>
 
-  <select id="color" onchange="renderProducts()">
-    <option value="all">All Colors</option>
-    <option>Black</option>
-    <option>White</option>
-    <option>Red</option>
-    <option>Blue</option>
-    <option>Green</option>
-    <option>Yellow</option>
-    <option>Pink</option>
-    <option>Purple</option>
-    <option>Brown</option>
-    <option>Gold</option>
-    <option>Silver</option>
-  </select>
+<select id="color" onchange="render()">
+<option value="all">All Colors</option>
+<option>Black</option>
+<option>White</option>
+<option>Red</option>
+<option>Blue</option>
+<option>Green</option>
+<option>Yellow</option>
+<option>Pink</option>
+<option>Purple</option>
+<option>Brown</option>
+<option>Gold</option>
+<option>Silver</option>
+</select>
 
-  <select id="sort" onchange="renderProducts()">
-    <option value="default">Sort Products</option>
-    <option value="low">Price: Low → High</option>
-    <option value="high">Price: High → Low</option>
-  </select>
-
-</div>
-
-<section class="section">
-
-  <div class="sectionTitle">
-    <h2>🛍️ Fashion Collection</h2>
-    <span class="count" id="count"></span>
-  </div>
-
-  <div class="products" id="products"></div>
-
-</section>
-
-<!-- IMAGE ZOOM -->
-
-<div class="modal" id="imageModal" onclick="closeImage()">
-
-  <div class="modalBox" onclick="event.stopPropagation()">
-
-    <button class="close" onclick="closeImage()">×</button>
-
-    <div class="zoomImage">
-      <div class="emoji" id="zoomEmoji">👕</div>
-    </div>
-
-    <h2 id="zoomName" style="margin-top:15px"></h2>
-    <p id="zoomPrice" style="margin-top:7px;color:#b38b00;font-weight:bold"></p>
-
-  </div>
+<select id="sort" onchange="render()">
+<option value="default">Sort Products</option>
+<option value="low">Price Low → High</option>
+<option value="high">Price High → Low</option>
+</select>
 
 </div>
+
+<main class="container">
+
+<div class="top">
+<h2>🛍️ Fashion Collection</h2>
+<span id="count"></span>
+</div>
+
+<div class="products" id="products"></div>
+
+</main>
 
 <!-- CART -->
 
-<div class="cartPanel" id="cartPanel">
+<div class="cart" id="cart">
 
-  <div class="cartHeader">
-    <h2>🛒 Your Cart</h2>
-    <button class="close" onclick="closeCart()">×</button>
-  </div>
+<div class="cart-head">
 
-  <div class="cartItems" id="cartItems"></div>
+<h2>🛒 Cart</h2>
 
-  <div class="cartFooter">
+<button class="close" onclick="closeCart()">×</button>
 
-    <div class="total">
-      <span>Total</span>
-      <span id="total">0 ETB</span>
-    </div>
+</div>
 
-    <button class="checkout" onclick="checkout()">
-      💳 Checkout with Chapa
-    </button>
+<div class="cart-list" id="cartList"></div>
 
-  </div>
+<div class="cart-footer">
+
+<div class="total">
+<span>Total</span>
+<span id="total">0 ETB</span>
+</div>
+
+<button class="checkout" onclick="checkout()">
+💳 Pay with Chapa
+</button>
+
+</div>
+
+</div>
+
+<!-- ZOOM -->
+
+<div class="zoom" id="zoom" onclick="closeZoom()">
+
+<div class="zoom-box" onclick="event.stopPropagation()">
+
+<button class="zoom-close" onclick="closeZoom()">×</button>
+
+<div id="zoomImage"></div>
+
+<h2 id="zoomName"></h2>
+
+<p
+id="zoomPrice"
+style="color:#a77d00;font-weight:bold;margin-top:7px"
+></p>
+
+</div>
 
 </div>
 
 <footer>
-  <h3>Abdii Market</h3>
-  <p style="margin-top:8px;color:#aaa">
-    Your fashion marketplace
-  </p>
-  <p style="margin-top:15px;color:#777">
-    © 2026 Abdii Market
-  </p>
+
+<h3>Abdii Market</h3>
+
+<p style="margin-top:8px;color:#aaa">
+Fashion • Quality • Style
+</p>
+
+<p style="margin-top:15px;color:#777">
+© 2026 Abdii Market
+</p>
+
 </footer>
 
 <script>
 
-const products = [];
+/* =====================================
+   SVG FASHION PRODUCT GENERATOR
+===================================== */
 
-let id = 1;
+function fashionSVG(type,color){
 
-/* --------------------------------
-   PRODUCT GENERATOR
--------------------------------- */
+let c=colorMap[color] || "#111";
 
-function addProducts(category, count, gender, emoji, basePrice, colors){
+let accent=accentMap[color] || "#ddd";
 
-  for(let i=1;i<=count;i++){
+if(type==="clothes"){
 
-    const color = colors[(i-1)%colors.length];
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
 
-    products.push({
+<defs>
+<linearGradient id="g" x1="0" x2="1">
+<stop offset="0" stop-color="${c}"/>
+<stop offset="1" stop-color="${accent}"/>
+</linearGradient>
+</defs>
 
-      id:id++,
+<rect width="400" height="400" fill="#f5f5f5"/>
 
-      name:
-        category.charAt(0).toUpperCase()
-        + category.slice(1)
-        + " Fashion "
-        + i,
+<ellipse cx="200" cy="355"
+rx="105" ry="18"
+fill="#0002"/>
 
-      category:category,
+<path
+d="M135 95
+L80 135
+L115 185
+L140 165
+L140 310
+L260 310
+L260 165
+L285 185
+L320 135
+L265 95
+L230 75
+L170 75Z"
+fill="url(#g)"
+stroke="#222"
+stroke-width="3"/>
 
-      gender:gender,
+<path
+d="M170 75
+Q200 110 230 75"
+fill="none"
+stroke="#222"
+stroke-width="5"/>
 
-      color:color,
+<path
+d="M140 165L115 185
+M260 165L285 185"
+stroke="#fff8"
+stroke-width="8"/>
 
-      price:basePrice + ((i%7)*500),
+<text x="200" y="350"
+text-anchor="middle"
+font-size="17"
+font-family="Arial"
+font-weight="bold">
+ABDII FASHION
+</text>
 
-      emoji:emoji
+</svg>`;
+}
 
-    });
+if(type==="shoes"){
 
-  }
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="205" cy="320"
+rx="140" ry="20" fill="#0002"/>
+
+<path
+d="M80 260
+C120 260 140 245 160 205
+L190 225
+C205 250 245 260 300 275
+L330 295
+L320 325
+L75 325
+C55 325 55 285 80 260Z"
+fill="${c}"
+stroke="#222"
+stroke-width="4"/>
+
+<path
+d="M170 220L210 275
+M155 230L195 285
+M140 240L180 295"
+stroke="#fff"
+stroke-width="6"/>
+
+<path
+d="M75 300L325 300"
+stroke="#222"
+stroke-width="12"/>
+
+<text x="200" y="365"
+text-anchor="middle"
+font-size="18"
+font-family="Arial"
+font-weight="bold">
+ABDII SHOES
+</text>
+
+</svg>`;
+}
+
+if(type==="pants"){
+
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="200" cy="350"
+rx="100" ry="15" fill="#0002"/>
+
+<path
+d="M125 70
+L275 70
+L260 190
+L300 330
+L225 330
+L200 205
+L175 330
+L100 330
+L140 190Z"
+fill="${c}"
+stroke="#222"
+stroke-width="4"/>
+
+<path
+d="M200 75L200 205"
+stroke="#fff8"
+stroke-width="5"/>
+
+<path
+d="M125 85L275 85"
+stroke="#fff5"
+stroke-width="8"/>
+
+<text x="200" y="365"
+text-anchor="middle"
+font-size="18"
+font-weight="bold"
+font-family="Arial">
+ABDII PANTS
+</text>
+
+</svg>`;
+}
+
+if(type==="glasses"){
+
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="200" cy="300"
+rx="110" ry="12" fill="#0002"/>
+
+<circle cx="135" cy="190"
+r="58"
+fill="${c}"
+stroke="#111"
+stroke-width="10"/>
+
+<circle cx="265" cy="190"
+r="58"
+fill="${c}"
+stroke="#111"
+stroke-width="10"/>
+
+<path
+d="M193 185Q200 175 207 185"
+stroke="#111"
+stroke-width="10"
+fill="none"/>
+
+<path
+d="M75 175L40 160
+M325 175L360 160"
+stroke="#111"
+stroke-width="10"/>
+
+<text x="200" y="340"
+text-anchor="middle"
+font-size="18"
+font-weight="bold"
+font-family="Arial">
+ABDII GLASSES
+</text>
+
+</svg>`;
+}
+
+if(type==="watch"){
+
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="200" cy="350"
+rx="90" ry="12" fill="#0002"/>
+
+<rect x="145" y="45"
+width="110"
+height="310"
+rx="45"
+fill="${c}"/>
+
+<circle cx="200" cy="200"
+r="83"
+fill="#eee"
+stroke="#111"
+stroke-width="10"/>
+
+<circle cx="200" cy="200"
+r="68"
+fill="${accent}"
+stroke="#555"
+stroke-width="3"/>
+
+<path
+d="M200 200L200 155
+M200 200L235 220"
+stroke="#111"
+stroke-width="8"
+stroke-linecap="round"/>
+
+<circle cx="200" cy="200"
+r="8" fill="#111"/>
+
+<text x="200" y="340"
+text-anchor="middle"
+font-size="18"
+font-weight="bold"
+font-family="Arial">
+ABDII WATCH
+</text>
+
+</svg>`;
+}
+
+if(type==="necklace"){
+
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="200" cy="340"
+rx="100" ry="12" fill="#0002"/>
+
+<path
+d="M90 75
+Q200 270 310 75"
+fill="none"
+stroke="${c}"
+stroke-width="18"/>
+
+<path
+d="M90 75
+Q200 270 310 75"
+fill="none"
+stroke="#fff8"
+stroke-width="3"/>
+
+<circle cx="200" cy="265"
+r="38"
+fill="${c}"
+stroke="#222"
+stroke-width="5"/>
+
+<text x="200" y="355"
+text-anchor="middle"
+font-size="18"
+font-weight="bold"
+font-family="Arial">
+ABDII JEWELRY
+</text>
+
+</svg>`;
+}
+
+if(type==="bag"){
+
+return `
+<svg viewBox="0 0 400 400"
+xmlns="http://www.w3.org/2000/svg">
+
+<rect width="400" height="400" fill="#f5f5f5"/>
+
+<ellipse cx="200" cy="340"
+rx="100" ry="15" fill="#0002"/>
+
+<path
+d="M105 145
+L295 145
+L320 320
+L80 320Z"
+fill="${c}"
+stroke="#222"
+stroke-width="5"/>
+
+<path
+d="M140 145
+Q140 55 200 55
+Q260 55 260 145"
+fill="none"
+stroke="${c}"
+stroke-width="18"/>
+
+<rect x="145" y="205"
+width="110"
+height="70"
+rx="10"
+fill="${accent}"
+opacity=".7"/>
+
+<text x="200" y="245"
+text-anchor="middle"
+font-size="20"
+font-weight="bold">
+A
+</text>
+
+<text x="200" y="355"
+text-anchor="middle"
+font-size="18"
+font-weight="bold"
+font-family="Arial">
+ABDII BAG
+</text>
+
+</svg>`;
+}
 
 }
+
+
+/* =====================================
+   COLORS
+===================================== */
+
+const colorMap={
+Black:"#111111",
+White:"#eeeeee",
+Red:"#b91c1c",
+Blue:"#2563eb",
+Green:"#15803d",
+Yellow:"#eab308",
+Pink:"#ec4899",
+Purple:"#7e22ce",
+Brown:"#78350f",
+Gold:"#d4af37",
+Silver:"#9ca3af"
+};
+
+const accentMap={
+Black:"#444",
+White:"#fff",
+Red:"#ef4444",
+Blue:"#60a5fa",
+Green:"#4ade80",
+Yellow:"#fde047",
+Pink:"#f9a8d4",
+Purple:"#c084fc",
+Brown:"#a16207",
+Gold:"#f5d76e",
+Silver:"#e5e7eb"
+};
+
+
+/* =====================================
+   PRODUCTS — 180
+===================================== */
+
+const products=[];
+let id=1;
+
+const colors=[
+"Black","White","Red","Blue",
+"Green","Yellow","Pink",
+"Purple","Brown","Gold","Silver"
+];
+
 
 /* 80 CLOTHES */
 
-const clothesColors=[
-  "Black","White","Red","Blue",
-  "Green","Yellow","Pink","Purple",
-  "Brown","Black"
-];
-
 for(let i=1;i<=80;i++){
 
-  const gender = i%2===0 ? "female":"male";
+const gender=i<=40?"male":"female";
 
-  products.push({
+const color=colors[(i-1)%colors.length];
 
-    id:id++,
+products.push({
 
-    name:
-      (gender==="male" ? "Men's" : "Women's")
-      +" Fashion Dress "
-      +i,
+id:id++,
 
-    category:"clothes",
+name:
+gender==="male"
+?`Men Fashion Shirt ${i}`
+:`Women Fashion Dress ${i}`,
 
-    gender:gender,
+category:"clothes",
 
-    color:clothesColors[(i-1)%clothesColors.length],
+gender,
 
-    price:3000+((i%15)*500),
+color,
 
-    emoji:"👕"
+price:3000+(i%15)*500,
 
-  });
+type:"clothes"
 
-}
-
-/* SHOES 20 */
-
-addProducts(
-  "shoes",
-  10,
-  "male",
-  "👟",
-  4500,
-  ["Black","White","Blue","Red","Brown"]
-);
-
-addProducts(
-  "shoes",
-  10,
-  "female",
-  "👠",
-  4500,
-  ["Black","White","Pink","Red","Purple"]
-);
-
-/* PANTS 20 */
-
-addProducts(
-  "pants",
-  10,
-  "male",
-  "👖",
-  5000,
-  ["Black","Blue","Brown","White","Green"]
-);
-
-addProducts(
-  "pants",
-  10,
-  "female",
-  "👖",
-  5000,
-  ["Black","Blue","Pink","White","Purple"]
-);
-
-/* GLASSES 20 */
-
-addProducts(
-  "glasses",
-  10,
-  "male",
-  "🕶️",
-  2500,
-  ["Black","Brown","Blue","Silver","Gold"]
-);
-
-addProducts(
-  "glasses",
-  10,
-  "female",
-  "🕶️",
-  2500,
-  ["Black","Pink","Purple","Gold","Silver"]
-);
-
-/* WATCH 20 */
-
-addProducts(
-  "watch",
-  10,
-  "male",
-  "⌚",
-  7000,
-  ["Black","Silver","Gold","Blue","Brown"]
-);
-
-addProducts(
-  "watch",
-  10,
-  "female",
-  "⌚",
-  7000,
-  ["Gold","Silver","Pink","Black","Purple"]
-);
-
-/* NECKLACE 10 */
-
-addProducts(
-  "necklace",
-  10,
-  "male",
-  "📿",
-  6000,
-  ["Gold","Silver","Black","Gold","Silver"]
-);
-
-/* BAG 10 */
-
-addProducts(
-  "bag",
-  10,
-  "female",
-  "👜",
-  4500,
-  ["Black","Brown","Red","Pink","Purple"]
-);
-
-let cart =
-  JSON.parse(localStorage.getItem("abdiiCart")) || [];
-
-
-/* --------------------------------
-   RENDER PRODUCTS
--------------------------------- */
-
-function renderProducts(){
-
-  const container =
-    document.getElementById("products");
-
-  const search =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase();
-
-  const category =
-    document.getElementById("category").value;
-
-  const gender =
-    document.getElementById("gender").value;
-
-  const color =
-    document.getElementById("color").value;
-
-  const sort =
-    document.getElementById("sort").value;
-
-  let list = products.filter(p=>{
-
-    const searchMatch =
-      p.name.toLowerCase().includes(search)
-      ||
-      p.category.toLowerCase().includes(search)
-      ||
-      p.gender.toLowerCase().includes(search)
-      ||
-      p.color.toLowerCase().includes(search);
-
-    const categoryMatch =
-      category==="all" ||
-      p.category===category;
-
-    const genderMatch =
-      gender==="all" ||
-      p.gender===gender;
-
-    const colorMatch =
-      color==="all" ||
-      p.color===color;
-
-    return
-      searchMatch &&
-      categoryMatch &&
-      genderMatch &&
-      colorMatch;
-
-  });
-
-  if(sort==="low"){
-    list.sort((a,b)=>a.price-b.price);
-  }
-
-  if(sort==="high"){
-    list.sort((a,b)=>b.price-a.price);
-  }
-
-  document.getElementById("count").textContent =
-    list.length+" products";
-
-  container.innerHTML="";
-
-  if(list.length===0){
-
-    container.innerHTML=
-      `<div class="empty">
-        😔 Product hin argamne.
-      </div>`;
-
-    return;
-
-  }
-
-  list.forEach(p=>{
-
-    const card=document.createElement("div");
-
-    card.className="card";
-
-    card.innerHTML=`
-
-      <div
-        class="productImage"
-        onclick="zoomProduct(${p.id})"
-      >
-
-        <span class="badge">
-          ${p.gender==="male"?"MEN":"WOMEN"}
-        </span>
-
-        <div class="emoji">
-          ${p.emoji}
-        </div>
-
-      </div>
-
-      <div class="cardBody">
-
-        <div class="category">
-          ${p.category.toUpperCase()}
-        </div>
-
-        <div class="name">
-          ${p.name}
-        </div>
-
-        <div class="price">
-          ${p.price.toLocaleString()} ETB
-        </div>
-
-        <div class="meta">
-          <span class="tag">${p.gender}</span>
-          <span class="tag">${p.color}</span>
-        </div>
-
-        <button
-          class="addBtn"
-          onclick="addToCart(${p.id})"
-        >
-          🛒 Add to Cart
-        </button>
-
-      </div>
-    `;
-
-    container.appendChild(card);
-
-  });
+});
 
 }
 
 
-/* --------------------------------
+/* 20 SHOES */
+
+for(let i=1;i<=20;i++){
+
+products.push({
+
+id:id++,
+
+name:
+i<=10
+?`Men Shoes ${i}`
+:`Women Shoes ${i}`,
+
+category:"shoes",
+
+gender:i<=10?"male":"female",
+
+color:colors[i%colors.length],
+
+price:4500+(i%8)*500,
+
+type:"shoes"
+
+});
+
+}
+
+
+/* 20 PANTS */
+
+for(let i=1;i<=20;i++){
+
+products.push({
+
+id:id++,
+
+name:
+i<=10
+?`Men Pant ${i}`
+:`Women Pant ${i}`,
+
+category:"pants",
+
+gender:i<=10?"male":"female",
+
+color:colors[(i+2)%colors.length],
+
+price:5000+(i%7)*500,
+
+type:"pants"
+
+});
+
+}
+
+
+/* 20 GLASSES */
+
+for(let i=1;i<=20;i++){
+
+products.push({
+
+id:id++,
+
+name:
+i<=10
+?`Men Eye Glass ${i}`
+:`Women Eye Glass ${i}`,
+
+category:"glasses",
+
+gender:i<=10?"male":"female",
+
+color:colors[(i+3)%colors.length],
+
+price:2500+(i%6)*500,
+
+type:"glasses"
+
+});
+
+}
+
+
+/* 20 WATCH */
+
+for(let i=1;i<=20;i++){
+
+products.push({
+
+id:id++,
+
+name:
+i<=10
+?`Men Watch ${i}`
+:`Women Watch ${i}`,
+
+category:"watch",
+
+gender:i<=10?"male":"female",
+
+color:colors[(i+4)%colors.length],
+
+price:7000+(i%8)*1000,
+
+type:"watch"
+
+});
+
+}
+
+
+/* 10 NECKLACE */
+
+for(let i=1;i<=10;i++){
+
+products.push({
+
+id:id++,
+
+name:`Fashion Necklace ${i}`,
+
+category:"necklace",
+
+gender:i%2?"male":"female",
+
+color:i%2?"Gold":"Silver",
+
+price:6000+(i%5)*1000,
+
+type:"necklace"
+
+});
+
+}
+
+
+/* 10 BAG */
+
+for(let i=1;i<=10;i++){
+
+products.push({
+
+id:id++,
+
+name:`Fashion Bag ${i}`,
+
+category:"bag",
+
+gender:"female",
+
+color:colors[(i+5)%colors.length],
+
+price:4500+(i%6)*1000,
+
+type:"bag"
+
+});
+
+}
+
+
+/* =====================================
    CART
--------------------------------- */
+===================================== */
 
-function addToCart(id){
+let cart=
+JSON.parse(
+localStorage.getItem("abdiiCart")
+)||[];
 
-  const existing =
-    cart.find(item=>item.id===id);
 
-  if(existing){
+/* =====================================
+   RENDER
+===================================== */
 
-    existing.qty++;
+function render(){
 
-  }else{
+const search=
+document.getElementById("search")
+.value.toLowerCase();
 
-    const product =
-      products.find(p=>p.id===id);
+const category=
+document.getElementById("category").value;
 
-    cart.push({
+const gender=
+document.getElementById("gender").value;
 
-      id:product.id,
+const color=
+document.getElementById("color").value;
 
-      name:product.name,
+const sort=
+document.getElementById("sort").value;
 
-      price:product.price,
+let list=products.filter(p=>{
 
-      emoji:product.emoji,
+const text=
+`${p.name} ${p.category} ${p.gender} ${p.color}`
+.toLowerCase();
 
-      qty:1
+return text.includes(search)
+&&
+(category==="all"||p.category===category)
+&&
+(gender==="all"||p.gender===gender)
+&&
+(color==="all"||p.color===color);
 
-    });
+});
 
-  }
+if(sort==="low")
+list.sort((a,b)=>a.price-b.price);
 
-  saveCart();
+if(sort==="high")
+list.sort((a,b)=>b.price-a.price);
 
-  updateCart();
+document.getElementById("count")
+.textContent=list.length+" products";
 
-  openCart();
+const box=
+document.getElementById("products");
+
+box.innerHTML="";
+
+list.forEach(p=>{
+
+const card=
+document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<div
+class="product-img"
+onclick="zoomProduct(${p.id})"
+>
+
+<div class="badge">
+${p.gender==="male"?"MEN":"WOMEN"}
+</div>
+
+${fashionSVG(p.type,p.color)}
+
+</div>
+
+<div class="body">
+
+<div class="category">
+${p.category.toUpperCase()}
+</div>
+
+<div class="name">
+${p.name}
+</div>
+
+<div class="price">
+${p.price.toLocaleString()} ETB
+</div>
+
+<div class="tags">
+
+<span class="tag">
+${p.gender}
+</span>
+
+<span class="tag">
+${p.color}
+</span>
+
+</div>
+
+<button
+class="add"
+onclick="addCart(${p.id})"
+>
+🛒 Add to Cart
+</button>
+
+</div>
+`;
+
+box.appendChild(card);
+
+});
 
 }
 
+
+/* =====================================
+   CART FUNCTIONS
+===================================== */
+
+function addCart(id){
+
+const p=
+products.find(x=>x.id===id);
+
+const old=
+cart.find(x=>x.id===id);
+
+if(old){
+
+old.qty++;
+
+}else{
+
+cart.push({
+
+id:p.id,
+name:p.name,
+price:p.price,
+type:p.type,
+color:p.color,
+qty:1
+
+});
+
+}
+
+saveCart();
+updateCart();
+openCart();
+
+}
 
 function saveCart(){
 
-  localStorage.setItem(
-    "abdiiCart",
-    JSON.stringify(cart)
-  );
+localStorage.setItem(
+"abdiiCart",
+JSON.stringify(cart)
+);
 
 }
-
 
 function updateCart(){
 
-  const container =
-    document.getElementById("cartItems");
+const box=
+document.getElementById("cartList");
 
-  const count =
-    cart.reduce((sum,item)=>sum+item.qty,0);
+box.innerHTML="";
 
-  document.getElementById("cartCount").textContent =
-    count;
+let total=0;
+let count=0;
 
-  container.innerHTML="";
+cart.forEach(item=>{
 
-  let total=0;
+total+=item.price*item.qty;
+count+=item.qty;
 
-  if(cart.length===0){
+const div=
+document.createElement("div");
 
-    container.innerHTML=
-      `<div style="text-align:center;padding:50px;color:#777">
-        🛒 Cart kee duwwaa dha.
-      </div>`;
+div.className="cart-item";
 
-  }
+div.innerHTML=`
 
-  cart.forEach(item=>{
+<div style="width:65px;height:65px">
+${fashionSVG(item.type,item.color)}
+</div>
 
-    total += item.price * item.qty;
+<div class="cart-info">
 
-    const div=document.createElement("div");
+<strong>${item.name}</strong>
 
-    div.className="cartItem";
+<div>
+${item.price.toLocaleString()} ETB
+</div>
 
-    div.innerHTML=`
+<div class="qty">
 
-      <div class="cartEmoji">
-        ${item.emoji}
-      </div>
+<button
+onclick="changeQty(${item.id},-1)"
+>−</button>
 
-      <div class="cartInfo">
+<span>${item.qty}</span>
 
-        <strong>${item.name}</strong>
+<button
+onclick="changeQty(${item.id},1)"
+>+</button>
 
-        <div style="font-size:13px;margin-bottom:8px">
-          ${item.price.toLocaleString()} ETB
-        </div>
+<button
+class="remove"
+onclick="removeItem(${item.id})"
+>
+Remove
+</button>
 
-        <div class="qty">
+</div>
 
-          <button
-            onclick="changeQty(${item.id},-1)"
-          >−</button>
+</div>
+`;
 
-          <span>${item.qty}</span>
+box.appendChild(div);
 
-          <button
-            onclick="changeQty(${item.id},1)"
-          >+</button>
+});
 
-          <button
-            class="remove"
-            onclick="removeFromCart(${item.id})"
-          >
-            Remove
-          </button>
+if(cart.length===0){
 
-        </div>
+box.innerHTML=`
+<div style="
+text-align:center;
+padding:60px;
+color:#777
+">
+🛒 Cart kee duwwaa dha.
+</div>
+`;
 
-      </div>
-    `;
+}
 
-    container.appendChild(div);
+document.getElementById("cartCount")
+.textContent=count;
 
-  });
+document.getElementById("total")
+.textContent=
+total.toLocaleString()+" ETB";
 
-  document.getElementById("total").textContent =
-    total.toLocaleString()+" ETB";
+}
+
+function changeQty(id,n){
+
+const item=
+cart.find(x=>x.id===id);
+
+if(!item)return;
+
+item.qty+=n;
+
+if(item.qty<=0){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+}
+
+saveCart();
+updateCart();
+
+}
+
+function removeItem(id){
+
+cart=
+cart.filter(x=>x.id!==id);
+
+saveCart();
+updateCart();
 
 }
 
 
-function changeQty(id,change){
-
-  const item =
-    cart.find(x=>x.id===id);
-
-  if(!item) return;
-
-  item.qty += change;
-
-  if(item.qty<=0){
-
-    cart =
-      cart.filter(x=>x.id!==id);
-
-  }
-
-  saveCart();
-
-  updateCart();
-
-}
-
-
-function removeFromCart(id){
-
-  cart =
-    cart.filter(item=>item.id!==id);
-
-  saveCart();
-
-  updateCart();
-
-}
-
+/* =====================================
+   CART OPEN
+===================================== */
 
 function openCart(){
 
-  document
-    .getElementById("cartPanel")
-    .classList.add("open");
+document
+.getElementById("cart")
+.classList.add("open");
 
 }
-
 
 function closeCart(){
 
-  document
-    .getElementById("cartPanel")
-    .classList.remove("open");
+document
+.getElementById("cart")
+.classList.remove("open");
 
 }
 
 
-/* --------------------------------
-   IMAGE ZOOM
--------------------------------- */
+/* =====================================
+   ZOOM
+===================================== */
 
 function zoomProduct(id){
 
-  const p =
-    products.find(x=>x.id===id);
+const p=
+products.find(x=>x.id===id);
 
-  if(!p) return;
+document.getElementById("zoomImage")
+.innerHTML=
+fashionSVG(p.type,p.color);
 
-  document.getElementById("zoomEmoji")
-    .textContent=p.emoji;
+document.getElementById("zoomName")
+.textContent=p.name;
 
-  document.getElementById("zoomName")
-    .textContent=p.name;
+document.getElementById("zoomPrice")
+.textContent=
+p.price.toLocaleString()+" ETB";
 
-  document.getElementById("zoomPrice")
-    .textContent=
-      p.price.toLocaleString()+" ETB";
+document.getElementById("zoom")
+.classList.add("open");
 
-  document
-    .getElementById("imageModal")
-    .classList.add("active");
+}
+
+function closeZoom(){
+
+document
+.getElementById("zoom")
+.classList.remove("open");
 
 }
 
 
-function closeImage(){
-
-  document
-    .getElementById("imageModal")
-    .classList.remove("active");
-
-}
-
-
-/* --------------------------------
-   CHAPA PLACEHOLDER
--------------------------------- */
+/* =====================================
+   CHAPA
+===================================== */
 
 function checkout(){
 
-  if(cart.length===0){
+if(!cart.length){
 
-    alert("Cart kee duwwaa dha.");
+alert("Cart kee duwwaa dha.");
 
-    return;
+return;
 
-  }
+}
 
-  const total =
-    cart.reduce(
-      (sum,item)=>
-        sum+(item.price*item.qty),
-      0
-    );
+const total=
+cart.reduce(
+(s,x)=>s+x.price*x.qty,
+0
+);
 
-  /*
-    CHAPA BACKEND
+/*
+CHAPA BACKEND:
 
-    Asitti booda endpoint kee galchi:
+fetch("/api/checkout",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+amount:total,
+currency:"ETB",
+items:cart
+})
+})
+.then(r=>r.json())
+.then(data=>{
+window.location.href=data.checkout_url;
+});
 
-    fetch("/api/checkout",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        amount:total,
-        items:cart
-      })
-    })
+*/
 
-  */
-
-  alert(
-    "Checkout ready!\n\n"+
-    "Total: "+
-    total.toLocaleString()+
-    " ETB\n\n"+
-    "Chapa backend itti aanu keessatti walitti hidha."
-  );
+alert(
+"Chapa checkout qophaa'eera.\n\n"+
+"Total: "+
+total.toLocaleString()+
+" ETB"
+);
 
 }
 
 
 /* START */
 
-renderProducts();
-
+render();
 updateCart();
 
 </script>
