@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Abdii Market | Fashion Marketplace</title>
+<title>Abdii Market — Real Fashion Store</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -11,146 +11,145 @@
 body{
 font-family:Arial,Helvetica,sans-serif;
 background:#f5f5f5;
-color:#111;
+color:#111
 }
 
 header{
 position:sticky;
 top:0;
-z-index:100;
+z-index:50;
 background:#111;
 color:#fff;
-padding:14px;
-box-shadow:0 2px 15px #0003;
+padding:14px
 }
 
 .nav{
-max-width:1250px;
+max-width:1280px;
 margin:auto;
 display:flex;
 align-items:center;
-justify-content:space-between;
-gap:10px;
+justify-content:space-between
 }
 
 .logo{
-font-size:24px;
-font-weight:900;
+font-size:25px;
+font-weight:900
 }
 
-.logo span{
-color:#d4af37;
+.logo b{
+color:#d4af37
 }
 
 .cartBtn{
-background:#d4af37;
 border:0;
-padding:11px 16px;
 border-radius:12px;
-font-weight:bold;
-cursor:pointer;
+background:#d4af37;
+padding:11px 16px;
+font-weight:800;
+cursor:pointer
 }
 
 .hero{
-background:
-linear-gradient(#0009,#0009),
-linear-gradient(135deg,#050505,#333);
-color:#fff;
-text-align:center;
+min-height:390px;
 padding:55px 15px;
+display:grid;
+place-items:center;
+text-align:center;
+color:#fff;
+
+background:
+linear-gradient(#0008,#0008),
+url("https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1800&q=85")
+center/cover
 }
 
 .hero h1{
-font-size:40px;
-margin-bottom:10px;
+font-size:clamp(30px,6vw,58px);
+margin-bottom:10px
 }
 
 .hero p{
-color:#ddd;
-margin-bottom:22px;
+color:#eee;
+margin-bottom:22px
 }
 
 .search{
-max-width:800px;
+display:flex;
+max-width:820px;
 margin:auto;
 background:#fff;
-border-radius:15px;
-display:flex;
-overflow:hidden;
+border-radius:16px;
+overflow:hidden
 }
 
 .search input{
 flex:1;
 border:0;
 outline:0;
-padding:16px;
-font-size:16px;
+padding:17px;
+font-size:16px
 }
 
 .search button{
-width:60px;
 border:0;
 background:#d4af37;
-font-size:21px;
-cursor:pointer;
+width:60px;
+font-size:21px
 }
 
 .filters{
-max-width:1250px;
+max-width:1280px;
 margin:18px auto;
 padding:0 15px;
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:9px;
+gap:9px
 }
 
 select{
-width:100%;
 padding:12px;
 border:1px solid #ddd;
 border-radius:10px;
-background:#fff;
-outline:none;
+background:#fff
 }
 
-.container{
-max-width:1250px;
+main{
+max-width:1280px;
 margin:auto;
-padding:10px 15px 50px;
+padding:10px 15px 50px
 }
 
 .top{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:20px 0;
+margin:22px 0
 }
 
 .products{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:16px;
+gap:16px
 }
 
 .card{
 background:#fff;
 border-radius:17px;
 overflow:hidden;
-box-shadow:0 3px 15px #00000012;
-transition:.25s;
+box-shadow:0 3px 15px #0001;
+transition:.2s
 }
 
 .card:hover{
-transform:translateY(-5px);
-box-shadow:0 8px 25px #0002;
+transform:translateY(-4px)
 }
 
 .pic{
-height:280px;
-background:#eee;
+height:290px;
 position:relative;
+background:#eee;
 overflow:hidden;
-cursor:zoom-in;
+cursor:zoom-in
 }
 
 .pic img{
@@ -158,157 +157,154 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
-transition:.35s;
+transition:.35s
 }
 
 .pic:hover img{
-transform:scale(1.08);
+transform:scale(1.06)
 }
 
 .badge{
 position:absolute;
-top:9px;
 left:9px;
+top:9px;
 background:#111;
 color:#fff;
 padding:6px 9px;
-border-radius:7px;
+border-radius:8px;
 font-size:10px;
 font-weight:bold;
-z-index:2;
+z-index:2
 }
 
 .info{
-padding:13px;
+padding:13px
 }
 
 .cat{
 font-size:11px;
 color:#888;
-margin-bottom:5px;
+margin-bottom:5px
 }
 
 .name{
-font-weight:bold;
-font-size:15px;
-margin-bottom:7px;
+font-weight:800;
+margin-bottom:7px
 }
 
 .price{
 font-size:18px;
 font-weight:900;
 color:#a27800;
-margin-bottom:8px;
+margin-bottom:9px
 }
 
 .tags{
 display:flex;
 gap:5px;
 flex-wrap:wrap;
-margin-bottom:11px;
+margin-bottom:11px
 }
 
 .tag{
-font-size:10px;
-background:#f0f0f0;
-padding:5px 7px;
+background:#f1f1f1;
 border-radius:6px;
+padding:5px 7px;
+font-size:10px
 }
 
 .add{
 width:100%;
-padding:11px;
 border:0;
 border-radius:10px;
+padding:11px;
 background:#111;
 color:#fff;
-font-weight:bold;
-cursor:pointer;
+font-weight:800;
+cursor:pointer
 }
 
 .add:hover{
 background:#d4af37;
-color:#111;
+color:#111
 }
 
 /* CART */
 
 .cart{
 position:fixed;
+z-index:100;
 right:-430px;
 top:0;
 width:420px;
 max-width:100%;
 height:100%;
 background:#fff;
-z-index:500;
 transition:.3s;
 box-shadow:-5px 0 25px #0004;
 display:flex;
-flex-direction:column;
+flex-direction:column
 }
 
 .cart.open{
-right:0;
+right:0
 }
 
 .cartHead{
+padding:17px;
 background:#111;
 color:#fff;
-padding:17px;
 display:flex;
-justify-content:space-between;
-align-items:center;
+justify-content:space-between
 }
 
 .close{
-width:34px;
-height:34px;
-border:0;
-border-radius:50%;
 background:#333;
 color:#fff;
-font-size:20px;
-cursor:pointer;
+border:0;
+border-radius:50%;
+width:34px;
+height:34px;
+font-size:20px
 }
 
 .cartList{
 flex:1;
 overflow:auto;
-padding:15px;
+padding:15px
 }
 
 .cartItem{
 display:flex;
 gap:10px;
 padding:12px 0;
-border-bottom:1px solid #eee;
+border-bottom:1px solid #eee
 }
 
 .cartImg{
-width:65px;
-height:65px;
+width:70px;
+height:70px;
 flex-shrink:0;
-overflow:hidden;
 border-radius:8px;
-background:#eee;
+overflow:hidden;
+background:#eee
 }
 
 .cartImg img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:cover
 }
 
 .cartInfo{
-flex:1;
+flex:1
 }
 
 .qty{
 display:flex;
 align-items:center;
 gap:8px;
-margin-top:7px;
+margin-top:7px
 }
 
 .qty button{
@@ -317,29 +313,27 @@ height:27px;
 border:0;
 background:#111;
 color:#fff;
-border-radius:6px;
-cursor:pointer;
+border-radius:6px
 }
 
 .remove{
 border:0;
 background:none;
 color:red;
-margin-left:5px;
-cursor:pointer;
+margin-left:5px
 }
 
 .cartFoot{
 padding:17px;
-border-top:1px solid #ddd;
+border-top:1px solid #ddd
 }
 
 .total{
 display:flex;
 justify-content:space-between;
+font-weight:900;
 font-size:20px;
-font-weight:bold;
-margin-bottom:14px;
+margin-bottom:14px
 }
 
 .checkout{
@@ -348,8 +342,7 @@ padding:14px;
 border:0;
 border-radius:11px;
 background:#d4af37;
-font-weight:bold;
-cursor:pointer;
+font-weight:900
 }
 
 /* ZOOM */
@@ -358,115 +351,97 @@ cursor:pointer;
 position:fixed;
 inset:0;
 background:#000d;
-z-index:1000;
+z-index:200;
 display:none;
 align-items:center;
 justify-content:center;
-padding:15px;
+padding:15px
 }
 
 .zoom.show{
-display:flex;
+display:flex
 }
 
 .zoomBox{
 background:#fff;
-max-width:650px;
+max-width:850px;
 width:100%;
-border-radius:18px;
+max-height:92vh;
+overflow:auto;
 padding:15px;
-position:relative;
+border-radius:18px;
+position:relative
 }
 
 .zoomBox img{
 width:100%;
-max-height:520px;
+max-height:72vh;
 object-fit:contain;
-display:block;
-border-radius:12px;
+border-radius:12px
 }
 
 .zoomClose{
 position:absolute;
 right:10px;
 top:10px;
-width:36px;
-height:36px;
+width:38px;
+height:38px;
 border:0;
 border-radius:50%;
 background:#111;
 color:#fff;
 font-size:20px;
-z-index:3;
-cursor:pointer;
+z-index:2
 }
 
 footer{
 background:#111;
 color:#fff;
 text-align:center;
-padding:35px;
+padding:35px
 }
-
-/* MOBILE */
 
 @media(max-width:1000px){
 
 .products{
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(3,1fr)
 }
 
 .filters{
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(3,1fr)
 }
 
 }
 
 @media(max-width:650px){
 
-.hero h1{
-font-size:28px;
-}
-
 .filters{
-grid-template-columns:1fr 1fr;
+grid-template-columns:1fr 1fr
 }
 
 .products{
 grid-template-columns:repeat(2,1fr);
-gap:9px;
+gap:9px
 }
 
 .pic{
-height:210px;
+height:215px
 }
 
 .info{
-padding:9px;
+padding:9px
 }
 
 .name{
-font-size:13px;
+font-size:13px
 }
 
 .price{
-font-size:15px;
+font-size:15px
 }
 
 .cart{
-width:100%;
-}
-
-}
-
-@media(max-width:380px){
-
-.products{
-grid-template-columns:1fr 1fr;
-}
-
-.pic{
-height:180px;
+width:100%
 }
 
 }
@@ -480,7 +455,7 @@ height:180px;
 <div class="nav">
 
 <div class="logo">
-Abdii <span>Market</span>
+Abdii <b>Market</b>
 </div>
 
 <button class="cartBtn" onclick="openCart()">
@@ -494,22 +469,25 @@ Abdii <span>Market</span>
 
 <section class="hero">
 
+<div>
+
 <h1>🔥 Abdii Fashion Market</h1>
 
 <p>
-Fashion • Shoes • Kufiya • Watches • Jewelry • Bags
+Real fashion photos • Shoes • Kufiya • Watches • Jewelry • Bags
 </p>
 
 <div class="search">
 
 <input
 id="search"
-type="search"
 placeholder="Search Jordan 4, Kufiya, Black, Dhiira, Size 42..."
 oninput="render()"
 >
 
-<button onclick="render()">🔎</button>
+<button>🔎</button>
+
+</div>
 
 </div>
 
@@ -520,30 +498,63 @@ oninput="render()"
 
 <select id="category" onchange="render()">
 
-<option value="all">🛍️ All Products</option>
-<option value="clothes">👕 Uffata</option>
-<option value="kufiya">🧢 Kufiya</option>
-<option value="pants">👖 Pants</option>
-<option value="glasses">🕶️ Eye Glass</option>
-<option value="watch">⌚ Watch</option>
-<option value="necklace">💎 Necklace</option>
-<option value="bag">👜 Borsa</option>
+<option value="all">
+🛍️ All Products
+</option>
+
+<option value="clothes">
+👕 Uffata
+</option>
+
+<option value="kufiya">
+🧢 Kufiya
+</option>
+
+<option value="pants">
+👖 Pants
+</option>
+
+<option value="glasses">
+🕶️ Eye Glass
+</option>
+
+<option value="watch">
+⌚ Watch
+</option>
+
+<option value="necklace">
+💎 Necklace
+</option>
+
+<option value="bag">
+👜 Borsa
+</option>
 
 </select>
 
 
 <select id="gender" onchange="render()">
 
-<option value="all">👥 Gender Hunda</option>
-<option value="male">👨 Dhiira</option>
-<option value="female">👩 Durba</option>
+<option value="all">
+👥 Gender Hunda
+</option>
+
+<option value="male">
+👨 Dhiira
+</option>
+
+<option value="female">
+👩 Durba
+</option>
 
 </select>
 
 
 <select id="size" onchange="render()">
 
-<option value="all">📏 Size Hunda</option>
+<option value="all">
+📏 Size Hunda
+</option>
 
 <option>XS</option>
 <option>S</option>
@@ -551,7 +562,6 @@ oninput="render()"
 <option>L</option>
 <option>XL</option>
 <option>XXL</option>
-
 <option>38</option>
 <option>39</option>
 <option>40</option>
@@ -566,7 +576,9 @@ oninput="render()"
 
 <select id="color" onchange="render()">
 
-<option value="all">🎨 Color Hunda</option>
+<option value="all">
+🎨 Color Hunda
+</option>
 
 <option>Black</option>
 <option>White</option>
@@ -594,26 +606,39 @@ oninput="render()"
 
 <select id="sort" onchange="render()">
 
-<option value="default">↕️ Sort</option>
-<option value="low">Gatii xiqqaa → guddaa</option>
-<option value="high">Gatii guddaa → xiqqaa</option>
+<option value="default">
+↕️ Sort
+</option>
+
+<option value="low">
+Gatii xiqqaa → guddaa
+</option>
+
+<option value="high">
+Gatii guddaa → xiqqaa
+</option>
 
 </select>
 
 </div>
 
 
-<main class="container">
+<main>
 
 <div class="top">
 
-<h2>🛍️ Products</h2>
+<h2>
+🛍️ Products
+</h2>
 
 <span id="count"></span>
 
 </div>
 
-<div class="products" id="products"></div>
+<div
+class="products"
+id="products">
+</div>
 
 </main>
 
@@ -624,25 +649,42 @@ oninput="render()"
 
 <div class="cartHead">
 
-<h2>🛒 Cart</h2>
+<h2>
+🛒 Cart
+</h2>
 
-<button class="close" onclick="closeCart()">×</button>
+<button
+class="close"
+onclick="closeCart()">
+×
+</button>
 
 </div>
 
-<div class="cartList" id="cartList"></div>
+
+<div
+class="cartList"
+id="cartList">
+</div>
+
 
 <div class="cartFoot">
 
 <div class="total">
 
-<span>Total</span>
+<span>
+Total
+</span>
 
-<span id="total">0 ETB</span>
+<span id="total">
+0 ETB
+</span>
 
 </div>
 
-<button class="checkout" onclick="checkout()">
+<button
+class="checkout"
+onclick="checkout()">
 
 💳 Chapa Checkout
 
@@ -655,17 +697,27 @@ oninput="render()"
 
 <!-- ZOOM -->
 
-<div class="zoom" id="zoom" onclick="closeZoom()">
+<div
+class="zoom"
+id="zoom"
+onclick="closeZoom()">
 
-<div class="zoomBox" onclick="event.stopPropagation()">
+<div
+class="zoomBox"
+onclick="event.stopPropagation()">
 
-<button class="zoomClose" onclick="closeZoom()">
+<button
+class="zoomClose"
+onclick="closeZoom()">
 ×
 </button>
 
 <div id="zoomImage"></div>
 
-<h2 id="zoomName" style="margin-top:10px"></h2>
+<h2
+id="zoomName"
+style="margin-top:10px">
+</h2>
 
 <p
 id="zoomPrice"
@@ -679,7 +731,9 @@ style="color:#a27800;font-weight:bold;margin-top:6px">
 
 <footer>
 
-<h3>Abdii Market</h3>
+<h3>
+Abdii Market
+</h3>
 
 <p style="color:#aaa;margin-top:8px">
 Your Fashion Marketplace
@@ -694,133 +748,125 @@ Your Fashion Marketplace
 
 <script>
 
-/* ================================
-   COLORS
-================================ */
+const images={
 
-const COLORS = [
-"Black",
-"White",
-"Red",
-"Blue",
-"Green",
-"Brown",
-"Grey",
-"Pink",
-"Purple",
-"Yellow",
-"Orange",
-"Beige",
-"Cream",
-"Navy",
-"Maroon",
-"Gold",
-"Silver",
-"Khaki",
-"Sky Blue",
-"Dark Green"
+clothes:[
+"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85"
+],
+
+kufiya:[
+"https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?auto=format&fit=crop&w=800&q=85"
+],
+
+pants:[
+"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1506629905607-d9a7a2c4e6f0?auto=format&fit=crop&w=800&q=85"
+],
+
+glasses:[
+"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=800&q=85"
+],
+
+watch:[
+"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=85"
+],
+
+necklace:[
+"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=800&q=85"
+],
+
+bag:[
+"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=85",
+"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=85"
+]
+
+};
+
+
+const colors=[
+"Black","White","Red","Blue","Green",
+"Brown","Grey","Pink","Purple","Yellow",
+"Orange","Beige","Cream","Navy","Maroon",
+"Gold","Silver","Khaki","Sky Blue","Dark Green"
 ];
 
-const SIZES = [
+
+const sizes=[
 "XS","S","M","L","XL","XXL",
 "38","39","40","41","42","43","44","45"
 ];
 
 
-/* ================================
-   PRODUCTS
-================================ */
+const products=[];
 
-const products = [];
-
-let ID = 1;
+let ID=1;
 
 
-function addProduct(
+function add(
+name,
+category,
+gender,
+color,
+size,
+price
+){
+
+products.push({
+
+id:ID++,
 name,
 category,
 gender,
 color,
 size,
 price,
-keywords=[]
-){
 
-products.push({
-
-id:ID++,
-
-name:name,
-
-category:category,
-
-gender:gender,
-
-color:color,
-
-size:size,
-
-price:price,
-
-keywords:keywords
+image:
+images[category]
+[(ID-2)%images[category].length]
 
 });
 
 }
 
 
-/* 80 CLOTHES */
+/* 80 UFFATA */
 
 for(let i=1;i<=80;i++){
 
-const gender =
-i <= 40 ? "male" : "female";
+let g=i<=40?"male":"female";
 
-const color =
-COLORS[(i-1)%20];
+add(
 
-const size =
-SIZES[(i-1)%SIZES.length];
-
-let name;
-
-if(i===1){
-
-name="Jordan 4 Fashion Shirt";
-
-}else{
-
-name =
-gender==="male"
+i===1
+?"Jordan 4 Inspired Fashion Shirt"
+:
+g==="male"
 ?`Men Fashion Shirt ${i}`
-:`Women Fashion Dress ${i}`;
-
-}
-
-addProduct(
-
-name,
+:`Women Fashion Dress ${i-40}`,
 
 "clothes",
 
-gender,
+g,
 
-color,
+colors[(i-1)%20],
 
-size,
+sizes[(i-1)%sizes.length],
 
-3000 + (i%15)*500,
-
-[
-"fashion",
-"uffata",
-"shirt",
-"dress",
-"jordan 4",
-color,
-size,
-gender==="male"?"dhiira":"durba"
-]
+850+(i%14)*100
 
 );
 
@@ -831,32 +877,21 @@ gender==="male"?"dhiira":"durba"
 
 for(let i=1;i<=20;i++){
 
-const gender =
-i<=10 ? "male" : "female";
+let g=i<=10?"male":"female";
 
-const color =
-COLORS[(i+5)%20];
-
-addProduct(
+add(
 
 `Kufiya Fashion ${i}`,
 
 "kufiya",
 
-gender,
+g,
 
-color,
+colors[(i+5)%20],
 
 "Free",
 
-2000+(i%8)*500,
-
-[
-"kufiya",
-"headwear",
-color,
-gender==="male"?"dhiira":"durba"
-]
+800+(i%8)*150
 
 );
 
@@ -867,38 +902,21 @@ gender==="male"?"dhiira":"durba"
 
 for(let i=1;i<=20;i++){
 
-const gender =
-i<=10 ? "male" : "female";
+let g=i<=10?"male":"female";
 
-const color =
-COLORS[(i+3)%20];
+add(
 
-const size =
-SIZES[(i+2)%SIZES.length];
-
-addProduct(
-
-gender==="male"
-?`Men Pant ${i}`
-:`Women Pant ${i}`,
+`${g==="male"?"Men":"Women"} Pant ${i<=10?i:i-10}`,
 
 "pants",
 
-gender,
+g,
 
-color,
+colors[(i+3)%20],
 
-size,
+sizes[(i+2)%sizes.length],
 
-5000+(i%8)*500,
-
-[
-"pant",
-"pants",
-color,
-size,
-gender==="male"?"dhiira":"durba"
-]
+950+(i%8)*200
 
 );
 
@@ -907,50 +925,23 @@ gender==="male"?"dhiira":"durba"
 
 /* 20 EYEGLASS */
 
-const glassColors=[
-"Black",
-"Brown",
-"Clear",
-"Gold",
-"Silver",
-"Black",
-"Brown",
-"Clear",
-"Gold",
-"Silver"
-];
-
 for(let i=1;i<=20;i++){
 
-const gender =
-i<=10 ? "male" : "female";
+let g=i<=10?"male":"female";
 
-const color =
-glassColors[(i-1)%10];
+add(
 
-addProduct(
-
-gender==="male"
-?`Men Eyeglass ${i}`
-:`Women Eyeglass ${i}`,
+`${g==="male"?"Men":"Women"} Eyeglass ${i<=10?i:i-10}`,
 
 "glasses",
 
-gender,
+g,
 
-color,
+["Black","Brown","Gold","Silver","Grey"][(i-1)%5],
 
 "Free",
 
-2500+(i%7)*500,
-
-[
-"eyeglass",
-"eye glass",
-"glasses",
-color,
-gender==="male"?"dhiira":"durba"
-]
+700+(i%7)*150
 
 );
 
@@ -961,34 +952,21 @@ gender==="male"?"dhiira":"durba"
 
 for(let i=1;i<=20;i++){
 
-const gender =
-i<=10 ? "male" : "female";
+let g=i<=10?"male":"female";
 
-const color =
-COLORS[(i+8)%20];
+add(
 
-addProduct(
-
-gender==="male"
-?`Men Watch ${i}`
-:`Women Watch ${i}`,
+`${g==="male"?"Men":"Women"} Watch ${i<=10?i:i-10}`,
 
 "watch",
 
-gender,
+g,
 
-color,
+colors[(i+8)%20],
 
 "Free",
 
-7000+(i%8)*1000,
-
-[
-"watch",
-"sa'aatii",
-"wrist watch",
-color
-]
+1500+(i%8)*300
 
 );
 
@@ -999,261 +977,160 @@ color
 
 for(let i=1;i<=10;i++){
 
-const gender =
-i<=5 ? "male" : "female";
+let g=i<=5?"male":"female";
 
-const color =
-i%2 ? "Gold" : "Silver";
+add(
 
-addProduct(
-
-`Necklace ${i}`,
+`${g==="male"?"Men":"Women"} Necklace ${i<=5?i:i-5}`,
 
 "necklace",
 
-gender,
+g,
 
-color,
+i%2?"Gold":"Silver",
 
 "Free",
 
-6000+(i%5)*1000,
-
-[
-"necklace",
-"warqee",
-"morma",
-"gold",
-color
-]
+1800+(i%5)*500
 
 );
 
 }
 
 
-/* 10 BAGS */
+/* 10 BAG */
 
 for(let i=1;i<=10;i++){
 
-const gender =
-i<=5 ? "male" : "female";
+let g=i<=5?"male":"female";
 
-const color =
-COLORS[(i+11)%20];
+add(
 
-addProduct(
-
-gender==="male"
-?`Men Bag ${i}`
-:`Women Bag ${i}`,
+`${g==="male"?"Men":"Women"} Bag ${i<=5?i:i-5}`,
 
 "bag",
 
-gender,
+g,
 
-color,
+colors[(i+11)%20],
 
 "Free",
 
-4500+(i%7)*1000,
-
-[
-"bag",
-"borsa",
-color,
-gender==="male"?"dhiira":"durba"
-]
+1200+(i%7)*300
 
 );
 
 }
 
 
-/* ================================
-   IMAGE SYSTEM
-================================ */
-
-/*
-IMPORTANT:
-
-Your real product photos must be here:
-
-images/product-1.jpg
-images/product-2.jpg
-...
-images/product-180.jpg
-
-If a product image is missing,
-no-image.jpg will be shown.
-*/
-
-const IMAGE_FOLDER = "images/";
+let cart=
+JSON.parse(
+localStorage.getItem("abdiiMarketCart")
+||"[]"
+);
 
 
-function imageURL(id){
-
-return IMAGE_FOLDER +
-"product-" +
-id +
-".jpg";
-
-}
-
-
-function fallbackImage(){
-
-return IMAGE_FOLDER +
-"no-image.jpg";
-
-}
-
-
-function productImage(product){
-
-return `
-
-<img
-src="${imageURL(product.id)}"
-alt="${product.name}"
-loading="lazy"
-onerror="this.onerror=null;this.src='${fallbackImage()}'"
->
-
-`;
-
-}
-
-
-/* ================================
-   SEARCH / FILTER
-================================ */
+/* SEARCH + FILTER */
 
 function render(){
 
-const q =
+let q=
 document
 .getElementById("search")
 .value
 .toLowerCase()
 .trim();
 
-const category =
-document.getElementById("category")
+let c=
+document
+.getElementById("category")
 .value;
 
-const gender =
-document.getElementById("gender")
+let g=
+document
+.getElementById("gender")
 .value;
 
-const size =
-document.getElementById("size")
+let s=
+document
+.getElementById("size")
 .value;
 
-const color =
-document.getElementById("color")
+let col=
+document
+.getElementById("color")
 .value;
 
-const sort =
-document.getElementById("sort")
+let sort=
+document
+.getElementById("sort")
 .value;
 
 
-let list =
-products.filter(product=>{
+let list=
+products.filter(p=>{
 
-const text = [
-
-product.name,
-product.category,
-product.gender,
-product.gender==="male"
+let t=[
+p.name,
+p.category,
+p.gender,
+p.gender==="male"
 ?"dhiira"
 :"durba",
-product.color,
-product.size,
-...product.keywords
-
+p.color,
+p.size
 ]
 .join(" ")
 .toLowerCase();
 
 
-return (
+return(
 
-(!q || text.includes(q))
-
-&&
-
-(
-category==="all"
-||
-product.category===category
-)
+(!q||t.includes(q))
 
 &&
 
-(
-gender==="all"
-||
-product.gender===gender
-)
+(c==="all"||p.category===c)
 
 &&
 
-(
-size==="all"
-||
-product.size===size
-)
+(g==="all"||p.gender===g)
 
 &&
 
-(
-color==="all"
-||
-product.color===color
-)
+(s==="all"||p.size===s)
+
+&&
+
+(col==="all"||p.color===col)
 
 );
 
 });
 
 
-if(sort==="low"){
+if(sort==="low")
+list.sort((a,b)=>a.price-b.price);
 
-list.sort(
-(a,b)=>a.price-b.price
-);
-
-}
-
-
-if(sort==="high"){
-
-list.sort(
-(a,b)=>b.price-a.price
-);
-
-}
+if(sort==="high")
+list.sort((a,b)=>b.price-a.price);
 
 
 document
 .getElementById("count")
-.textContent =
-list.length +
-" products";
+.textContent=
+list.length+" products";
 
 
-const box =
+let box=
 document.getElementById("products");
 
-box.innerHTML = "";
+box.innerHTML="";
 
 
 if(!list.length){
 
-box.innerHTML = `
+box.innerHTML=`
 
 <div style="
 grid-column:1/-1;
@@ -1261,11 +1138,7 @@ text-align:center;
 padding:70px;
 color:#777">
 
-<h2>😔</h2>
-
-<p style="margin-top:10px">
-Product hin argamne.
-</p>
+😔 Product hin argamne.
 
 </div>
 
@@ -1276,32 +1149,32 @@ return;
 }
 
 
-list.forEach(product=>{
+list.forEach(p=>{
 
-const card =
+let card=
 document.createElement("div");
 
 card.className="card";
 
 
-card.innerHTML = `
+card.innerHTML=`
 
 <div
 class="pic"
-onclick="zoomProduct(${product.id})"
->
+onclick="zoomProduct(${p.id})">
 
 <div class="badge">
 
-${
-product.gender==="male"
+${p.gender==="male"
 ?"👨 DHIIRA"
-:"👩 DURBA"
-}
+:"👩 DURBA"}
 
 </div>
 
-${productImage(product)}
+<img
+src="${p.image}"
+alt="${p.name}"
+loading="lazy">
 
 </div>
 
@@ -1309,45 +1182,32 @@ ${productImage(product)}
 <div class="info">
 
 <div class="cat">
-
-${product.category.toUpperCase()}
-
+${p.category.toUpperCase()}
 </div>
-
 
 <div class="name">
-
-${product.name}
-
+${p.name}
 </div>
 
-
 <div class="price">
-
-${product.price.toLocaleString()}
-ETB
-
+${p.price.toLocaleString()} ETB
 </div>
 
 
 <div class="tags">
 
 <span class="tag">
-🎨 ${product.color}
+🎨 ${p.color}
 </span>
 
 <span class="tag">
-📏 ${product.size}
+📏 ${p.size}
 </span>
 
 <span class="tag">
-
-${
-product.gender==="male"
+${p.gender==="male"
 ?"👨 Dhiira"
-:"👩 Durba"
-}
-
+:"👩 Durba"}
 </span>
 
 </div>
@@ -1355,8 +1215,7 @@ product.gender==="male"
 
 <button
 class="add"
-onclick="addCart(${product.id})"
->
+onclick="addCart(${p.id})">
 
 🛒 Add to Cart
 
@@ -1374,69 +1233,33 @@ box.appendChild(card);
 }
 
 
-/* ================================
-   CART
-================================ */
-
-let cart =
-JSON.parse(
-localStorage.getItem(
-"abdiiMarketCart"
-)
-) || [];
-
-
-function saveCart(){
-
-localStorage.setItem(
-
-"abdiiMarketCart",
-
-JSON.stringify(cart)
-
-);
-
-}
-
+/* CART */
 
 function addCart(id){
 
-const product =
-products.find(
-p=>p.id===id
-);
+let p=
+products.find(x=>x.id===id);
 
-if(!product)return;
-
-
-const old =
-cart.find(
-p=>p.id===id
-);
+let old=
+cart.find(x=>x.id===id);
 
 
-if(old){
-
+if(old)
 old.qty++;
 
-}else{
+else
 
 cart.push({
 
-id:product.id,
-
-name:product.name,
-
-price:product.price,
-
+id:p.id,
+name:p.name,
+price:p.price,
 qty:1
 
 });
 
-}
 
-
-saveCart();
+save();
 
 updateCart();
 
@@ -1445,50 +1268,52 @@ openCart();
 }
 
 
+function save(){
+
+localStorage.setItem(
+"abdiiMarketCart",
+JSON.stringify(cart)
+);
+
+}
+
+
 function updateCart(){
 
-const box =
+let box=
 document.getElementById("cartList");
 
 box.innerHTML="";
 
 
 let total=0;
-
 let count=0;
 
 
-cart.forEach(item=>{
+cart.forEach(i=>{
 
-total +=
-item.price *
-item.qty;
-
-count +=
-item.qty;
+total+=i.price*i.qty;
+count+=i.qty;
 
 
-const product =
+let p=
 products.find(
-p=>p.id===item.id
+x=>x.id===i.id
 );
 
 
-const div =
+let d=
 document.createElement("div");
 
-div.className="cartItem";
+d.className="cartItem";
 
 
-div.innerHTML = `
+d.innerHTML=`
 
 <div class="cartImg">
 
-${
-product
-?productImage(product)
-:""
-}
+<img
+src="${p.image}">
 
 </div>
 
@@ -1496,40 +1321,36 @@ product
 <div class="cartInfo">
 
 <strong>
-${item.name}
+${i.name}
 </strong>
 
-<div style="margin-top:4px">
-
-${item.price.toLocaleString()}
-ETB
-
+<div>
+${i.price.toLocaleString()} ETB
 </div>
 
 
 <div class="qty">
 
 <button
-onclick="changeQty(${item.id},-1)"
->
+onclick="changeQty(${i.id},-1)">
 −
 </button>
 
 <span>
-${item.qty}
+${i.qty}
 </span>
 
 <button
-onclick="changeQty(${item.id},1)"
->
+onclick="changeQty(${i.id},1)">
 +
 </button>
 
 <button
 class="remove"
-onclick="removeItem(${item.id})"
->
+onclick="removeItem(${i.id})">
+
 Remove
+
 </button>
 
 </div>
@@ -1539,27 +1360,21 @@ Remove
 `;
 
 
-box.appendChild(div);
+box.appendChild(d);
 
 });
 
 
 if(!cart.length){
 
-box.innerHTML = `
+box.innerHTML=`
 
 <div style="
 text-align:center;
 padding:60px;
 color:#777">
 
-<div style="font-size:40px">
-🛒
-</div>
-
-<p style="margin-top:10px">
-Cart kee duwwaa dha.
-</p>
+🛒 Cart kee duwwaa dha.
 
 </div>
 
@@ -1575,37 +1390,33 @@ document
 
 document
 .getElementById("total")
-.textContent =
-total.toLocaleString() +
-" ETB";
+.textContent=
+total.toLocaleString()+" ETB";
 
 }
 
 
-function changeQty(id,number){
+function changeQty(id,n){
 
-const item =
-cart.find(
-p=>p.id===id
-);
+let i=
+cart.find(x=>x.id===id);
 
-if(!item)return;
+if(!i)return;
 
-
-item.qty += number;
+i.qty+=n;
 
 
-if(item.qty<=0){
+if(i.qty<=0){
 
-cart =
+cart=
 cart.filter(
-p=>p.id!==id
+x=>x.id!==id
 );
 
 }
 
 
-saveCart();
+save();
 
 updateCart();
 
@@ -1614,21 +1425,19 @@ updateCart();
 
 function removeItem(id){
 
-cart =
+cart=
 cart.filter(
-p=>p.id!==id
+x=>x.id!==id
 );
 
-saveCart();
+save();
 
 updateCart();
 
 }
 
 
-/* ================================
-   CART OPEN / CLOSE
-================================ */
+/* CART OPEN */
 
 function openCart(){
 
@@ -1648,37 +1457,34 @@ document
 }
 
 
-/* ================================
-   PRODUCT ZOOM
-================================ */
+/* ZOOM */
 
 function zoomProduct(id){
 
-const product =
+let p=
 products.find(
-p=>p.id===id
+x=>x.id===id
 );
-
-if(!product)return;
 
 
 document
 .getElementById("zoomImage")
-.innerHTML =
-productImage(product);
+.innerHTML=
+
+`<img src="${p.image}">`;
 
 
 document
 .getElementById("zoomName")
-.textContent =
-product.name;
+.textContent=
+p.name;
 
 
 document
 .getElementById("zoomPrice")
-.textContent =
-product.price.toLocaleString() +
-" ETB";
+.textContent=
+p.price.toLocaleString()
++" ETB";
 
 
 document
@@ -1697,9 +1503,7 @@ document
 }
 
 
-/* ================================
-   CHAPA
-================================ */
+/* CHAPA */
 
 function checkout(){
 
@@ -1714,72 +1518,19 @@ return;
 }
 
 
-const total =
+let t=
 cart.reduce(
-
-(sum,item)=>
-sum +
-item.price *
-item.qty,
-
+(s,i)=>
+s+i.price*i.qty,
 0
-
 );
-
-
-/*
-----------------------------------
-CHAPA BACKEND
-----------------------------------
-
-fetch("/api/checkout",{
-
-method:"POST",
-
-headers:{
-"Content-Type":
-"application/json"
-},
-
-body:JSON.stringify({
-
-amount:total,
-
-currency:"ETB",
-
-items:cart
-
-})
-
-})
-
-.then(response =>
-response.json()
-)
-
-.then(data=>{
-
-if(data.checkout_url){
-
-window.location.href =
-data.checkout_url;
-
-}
-
-});
-
-----------------------------------
-*/
 
 
 alert(
 
-"Chapa checkout qophaa'eera.\n\n" +
-
-"Total: " +
-
-total.toLocaleString() +
-
+"Chapa checkout qophaa'eera.\n\n"+
+"Total: "+
+t.toLocaleString()+
 " ETB"
 
 );
@@ -1787,48 +1538,11 @@ total.toLocaleString() +
 }
 
 
-/* ================================
-   START
-================================ */
+/* START */
 
 render();
 
 updateCart();
-
-
-/* SEARCH ENTER */
-
-document
-.getElementById("search")
-.addEventListener(
-"keydown",
-function(e){
-
-if(e.key==="Enter"){
-
-render();
-
-}
-
-});
-
-
-/* ESC CLOSE */
-
-document
-.addEventListener(
-"keydown",
-function(e){
-
-if(e.key==="Escape"){
-
-closeZoom();
-
-closeCart();
-
-}
-
-});
 
 </script>
 
